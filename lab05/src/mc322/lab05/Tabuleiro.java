@@ -2,8 +2,8 @@ package mc322.lab05;
 
 public class Tabuleiro {
 
-	PecaDama[][] tabuleiro_damas = new PecaDama[8][8];
-	PecaRainha[][] tabuleiro_rainhas = new PecaRainha[8][8];
+	Peca[][] tabuleiroPecas = new Peca[8][8];
+
 
 	static int direcao(int a,int b){
 		if (a>b){
@@ -22,89 +22,47 @@ public class Tabuleiro {
 		//Inicia o tabuleiro
 		for(int i=0;i<8;i++) {
 			for(int j=0;j<8;j++){
-				int player = noTabuleiro(i,j);
-				tabuleiro_rainhas[i][j]=null;
+				int player = posInicialTabuleiro(i,j);
 				if(player != -1) {
 					
-					tabuleiro_damas[i][j]=new PecaDama(this,i,j,player);
+					tabuleiroPecas[i][j]= new Peao(i,j,player);
 				}
 				else {
-					tabuleiro_damas[i][j]= null;
+					tabuleiroPecas[i][j]= null;
 				}
 			}		
 			
 		}
+ 
 		
 	}
 
-	void realizarMovimentoDama(int linha1, int coluna1,int linha2,int coluna2, boolean eh_captura) {
-		//Movimenta a peça e come remove a da casa intermediaria
-
-		PecaDama dama =tabuleiro_damas[linha1][coluna1];
-		tabuleiro_damas[linha1][coluna1] = null;
-		/*
-		if(moduloDif(linha1,linha2)>1 && moduloDif(coluna1,coluna2)>1) {//Verifica se uma casa foi pulada, indicando captura
-			tabuleiro_damas[(linha1+linha2)/2][(coluna1+coluna2)/2]= null;
-			tabuleiro_rainhas[(linha1+linha2)/2][(coluna1+coluna2)/2]= null;
+	int[] obterCaminho(int[] posInicial,int[] posFinal) {
+		//Retorna uma lista de números, inclui a posição inicial e a final.
+		//Cada índice da lista possui o jogador a qual a peça pertence:
+		//0->Player 0
+		//1->Player 1
+		//-1 -> Casa vazia
+		int tamanho = moduloDif(posInicial[1], posFinal[1]);
+		int[] caminho = new int[tamanho];
+		for(int i=0;i<tamanho;i++) {
+				
 		}
-		*/
-		 if (eh_captura){
-			 tabuleiro_damas[(linha1+linha2)/2][(coluna1+coluna2)/2]= null;
-			 tabuleiro_rainhas[(linha1+linha2)/2][(coluna1+coluna2)/2]= null;
-		 }
-		 if(dama.getPlayer() == 0){
-		 	if (linha2 == 7){
-				tabuleiro_rainhas[linha2][coluna2]= new PecaRainha(this,linha2,coluna2,0);
-			}else{
-				tabuleiro_damas[linha2][coluna2]= dama;
-			}
-		 }else{
-			 if (linha2 == 0){
-				 tabuleiro_rainhas[linha2][coluna2]= new PecaRainha(this,linha2,coluna2,1);
-			 }else{
-				 tabuleiro_damas[linha2][coluna2]= dama;
-			 }
-		 }
-
-
-	}
-	void realizarMovimentoRainha(int linha1, int coluna1,int linha2,int coluna2, boolean eh_captura) {
-		//Movimenta a peça e come remove a da casa "anterior" à posição final
-
-		PecaRainha rainha =tabuleiro_rainhas[linha1][coluna1];
-		tabuleiro_rainhas[linha1][coluna1] = null;
-
-
-		if (eh_captura){
-			int linha_captura,coluna_captura;
-			if(linha2>linha1){
-				linha_captura = linha2-1;
-			}else{
-				linha_captura = linha2+1;
-			}
-			if(coluna2>coluna1){
-				coluna_captura = coluna2-1;
-			}else{
-				coluna_captura = coluna2+1;
-			}
-			tabuleiro_damas[linha_captura][coluna_captura]= null;
-			tabuleiro_rainhas[linha_captura][coluna_captura]= null;
-		}
-		tabuleiro_rainhas[linha2][coluna2]= rainha;
-
-
+		
+		return null;
 	}
 	
 	
 	int[] strParaCoords(String coords){
-		//Converte as coordenadas do Tipo CharInt -> IntInt
+		//Converte as coordenadas do Tipo CharInt -> LinhaColuna
 		int[] ret = {coords.charAt(1)-1-'0',coords.charAt(0)-'a'};
 		
 		return(ret);
 		
 	}
 	
-	int noTabuleiro(int i,int j) {
+	int posInicialTabuleiro(int i,int j) {
+		//Serve como condição para gerar o tabuleiro
 		//Verifica se deve ser colocada uma peÃ§a em i,j
 		// retorna -1 para casa vazia, 1 para player 1 e 0 para player 0
 		if (i<3){
@@ -119,48 +77,45 @@ public class Tabuleiro {
 
 
 	boolean casaPreenchida(int linha, int coluna){
-		if (linha<0 || linha > 7 || coluna < 0 || coluna > 7){
-			return false;
-		}
-		if (tabuleiro_damas[linha][coluna] != null || tabuleiro_rainhas[linha][coluna] != null){
-			return true;
-		}
-		return false;
+		//Verifica se a casa está preenchida
+		return tabuleiroPecas[linha][coluna]!=null;
 	}
-
-	boolean ehCaptura(int[] coordsFonte, int[] coordsAlvo){
-		int linha, coluna;
-
-		linha = coordsAlvo[0] +direcao(coordsFonte[0],coordsAlvo[0]);
-		coluna = coordsAlvo[1]+ direcao(coordsFonte[1],coordsAlvo[1]);
-
-		return casaPreenchida(linha,coluna);
+	boolean movimentoDiagonalValida(int[] fonte,int[] alvo) {
+		//Verifica se o movimento ocorre em diagonal
+		//Evita que a peça seja movida fora de uma diagonal
+		
+		return moduloDif(fonte[0],alvo[0])==moduloDif(fonte[1],alvo[1]);
 	}
-
+	void executarMovimento(int[] fonte,int[] alvo) {
+		//Executa o 
+		
+	}
 	void jogada(String fonte,String alvo) {
 		//Movimenta a peï¿½a na casa fonte atï¿½ a casa alvo
-		boolean movimento_valido;
-		int[] coordsFonte = strParaCoords(fonte);
-		int[] coordsAlvo = strParaCoords(alvo);
-		boolean eh_captura = ehCaptura(coordsFonte,coordsAlvo);
-
-		if (tabuleiro_damas[coordsFonte[0]][coordsFonte[1]] != null) {
-
-			movimento_valido = tabuleiro_damas[coordsFonte[0]][coordsFonte[1]].movimentoValido(coordsFonte[0],coordsFonte[1],coordsAlvo[0],coordsAlvo[1],eh_captura);
-			if (movimento_valido){
-				realizarMovimentoDama(coordsFonte[0],coordsFonte[1],coordsAlvo[0],coordsAlvo[1],eh_captura);
-			}else{
-				System.out.println("JOGADA INVÁLIDA!");
-			}
-		}else if(tabuleiro_rainhas[coordsFonte[0]][coordsFonte[1]] != null) {
-			movimento_valido = tabuleiro_rainhas[coordsFonte[0]][coordsFonte[1]].movimentoValido(coordsFonte[0], coordsFonte[1], coordsAlvo[0], coordsAlvo[1],eh_captura);
-			if (movimento_valido) {
-				realizarMovimentoRainha(coordsFonte[0],coordsFonte[1],coordsAlvo[0],coordsAlvo[1],eh_captura);
-			}else{
-				System.out.println("JOGADA INVÁLIDA!");
-			}
+		int[] coordenadasFonte = strParaCoords(fonte);
+		int[] coordenadasAlvo = strParaCoords(alvo);
+		
+		//Verifica se há uma peça no local
+		if(!casaPreenchida(coordenadasFonte[0],coordenadasFonte[1])) {
+			System.out.println("Não há peça na casa");
+			return;
 		}
+		
+		
+		if(!movimentoDiagonalValida(coordenadasFonte,coordenadasAlvo)) {
+			System.out.println("O movimento não ocorre em diagonal");
+			return;
+		}
+		
+		int[] caminho = obterCaminho(coordenadasFonte,coordenadasAlvo);
+		
+		
+		//Pergunta pra peça se o movimento é válido e identifica o tipo de movimento
+		int ehMovimento= tabuleiroPecas[coordenadasFonte[0]][coordenadasFonte[1]].ehMovimentoValido(caminho);
+		
+		//Executa o movimento (O tabuleiro deve executar os movimentos,a peça apenas retorna o tipo)
 	}
+
 	
 	String estadoEmString() {
 		//Retorna o estado atual do tabuleiro em uma string
@@ -168,12 +123,12 @@ public class Tabuleiro {
 		for(int i=7;i>=0;i--) {
 			for(int j=0;j<8;j++){
 
-				if(tabuleiro_damas[i][j]!=null) {
-					estadoAtual+=tabuleiro_damas[i][j].String();
+				if(tabuleiroPecas[i][j]!=null) {
+					estadoAtual+=tabuleiroPecas[i][j].String();
 				}
-				else if(tabuleiro_rainhas[i][j]!=null) {
+				else if(tabuleiroPecas[i][j]!=null) {
 
-					estadoAtual+=tabuleiro_rainhas[i][j].String();
+					estadoAtual+=tabuleiroPecas[i][j].String();
 				}
 				else {
 					estadoAtual+=" ";
@@ -193,10 +148,8 @@ public class Tabuleiro {
 			System.out.print(i+1+" ");
 			for(int j=0;j<8;j++){
 
-				if(tabuleiro_damas[i][j]!=null) {
-					System.out.print(tabuleiro_damas[i][j].String());
-				}else if(tabuleiro_rainhas[i][j]!=null){
-					System.out.print(tabuleiro_rainhas[i][j].String());
+				if(tabuleiroPecas[i][j]!=null) {
+					System.out.print(tabuleiroPecas[i][j].String());
 				}else {
 					System.out.print(" ");
 				}
@@ -209,5 +162,6 @@ public class Tabuleiro {
 	}
 	System.out.print("  a b c d e f g h \n");
 	}
+	
 
 }

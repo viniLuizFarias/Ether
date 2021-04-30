@@ -1,5 +1,4 @@
 package mc322.lab05;
-import static mc322.lab05.Tabuleiro.direcao;
 
 public class Dama extends Peca{
 	
@@ -18,12 +17,12 @@ public class Dama extends Peca{
 		// SE FOR UMA CAPTURA IGNORA A PENULTIMA CASA
 		for(int i = 1;i< caminho.length-1;i++){
 			if(caminho[i] != -1){
-				System.out.println("B1");
+				//System.out.println("B1");
 				return false;
 			}
 		}
 		if (caminho.length>1){
-			System.out.println("B2");
+			//System.out.println("B2");
 			return !(caminho[caminho.length-1] == -2);
 		}
 		return true;
@@ -31,11 +30,11 @@ public class Dama extends Peca{
 
 	boolean movimentoValido(int[] caminho,int[] coordsAlvo) {
 		if(!caminho_livre(coordsAlvo[0],coordsAlvo[1], caminho)){
-			System.out.println("B");
+			//System.out.println("B");
 			return false;
 		}
 		if (caminho[caminho.length-1]!=0){
-			System.out.println("C");
+			//System.out.println("C");
 			return false;
 		}
 		return true;

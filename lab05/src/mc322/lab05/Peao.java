@@ -13,13 +13,34 @@ public class Peao extends Peca{
 	}
 	
 	
-	int ehMovimentoValido(int[] caminho) {
-		//Retorna -1 se não é válido
-		//Retorna 0 se o movimento é de deslocamento
-		//Retorna 1 se o movimento é de captura
+	boolean ehMovimentoValido(int[] caminho, int[] coordenadasAlvo) {
+		boolean eh_valido = false;
+		if(this.player == 0){ // DAMAS BRANCAS
+
+			if (caminho.length == 1){ // MOVIMENTO NORMAL
+				System.out.println(coordenadasAlvo[0]);
+				System.out.println(linha);
+				if (coordenadasAlvo[0]==linha+1){
+					eh_valido = caminho[0] == -1;
+				}
+			}else if(caminho.length == 2){ // BRANCA CAPTURA
+				eh_valido = caminho[0] == 1 && caminho[1] == -1;
+			}
+		}else{ // DAMAS VERMELHAS
+			if (caminho.length == 1){ // MOVIMENTO NORMAL
+
+				if (coordenadasAlvo[0] == linha - 1){
+					eh_valido = caminho[0] == -1;
+				}
+			}else if(caminho.length == 2){ // VERMELHA CAPTURA
+				eh_valido = caminho[0] == 0 && caminho[1] == -1;
+			}
+		}
 		
-		//Pseudocódigo
-		return -999;
+		if(eh_valido){
+			atualizar_estado(coordenadasAlvo);
+		}
+		return eh_valido;
 	}
 
 }

@@ -6,10 +6,14 @@ public class Tabuleiro {
 
 
 	static int direcao(int a,int b){
+		// "vai na direï¿½ï¿½o" de B para A
 		if (a>b){
 			return 1;
 		}
-		return -1;
+		if (b>a){
+			return -1;
+		}
+		return 0;
 	}
 	static int moduloDif(int a,int b){
 		if (a>b){
@@ -38,18 +42,33 @@ public class Tabuleiro {
 	}
 
 	int[] obterCaminho(int[] posInicial,int[] posFinal) {
-		//Retorna uma lista de números, inclui a posição inicial e a final.
-		//Cada índice da lista possui o jogador a qual a peça pertence:
+		//Retorna uma lista de nï¿½meros, inclui a posiï¿½ï¿½o inicial e a final.
+		//Cada ï¿½ndice da lista possui o jogador a qual a peï¿½a pertence:
 		//0->Player 0
 		//1->Player 1
 		//-1 -> Casa vazia
+		//-2 -> casa inexistente (FORA DO TABULEIRO)
 		int tamanho = moduloDif(posInicial[1], posFinal[1]);
+		int direcaox = direcao(posFinal[0],posInicial[0]);
+		int direcaoy = direcao(posFinal[1],posInicial[1]);
+		int linha_atual=posInicial[0];
+		int coluna_atual=posInicial[1];
 		int[] caminho = new int[tamanho];
 		for(int i=0;i<tamanho;i++) {
-				
+			linha_atual += direcaox;
+			coluna_atual += direcaoy;
+			if(linha_atual < 0 || linha_atual > 7 || coluna_atual< 0 || coluna_atual > 7){
+				caminho[i] = -2;
+			}
+			else if (tabuleiroPecas[linha_atual][coluna_atual] != null){
+				caminho[i] = tabuleiroPecas[linha_atual][coluna_atual].getPlayer();
+			}else{
+				caminho[i] = -1;
+			}
+			System.out.println("caminho:"+ caminho[i]);
 		}
 		
-		return null;
+		return caminho;
 	}
 	
 	
@@ -62,7 +81,7 @@ public class Tabuleiro {
 	}
 	
 	int posInicialTabuleiro(int i,int j) {
-		//Serve como condição para gerar o tabuleiro
+		//Serve como condiï¿½ï¿½o para gerar o tabuleiro
 		//Verifica se deve ser colocada uma peÃ§a em i,j
 		// retorna -1 para casa vazia, 1 para player 1 e 0 para player 0
 		if (i<3){
@@ -77,43 +96,54 @@ public class Tabuleiro {
 
 
 	boolean casaPreenchida(int linha, int coluna){
-		//Verifica se a casa está preenchida
+		//Verifica se a casa estï¿½ preenchida
 		return tabuleiroPecas[linha][coluna]!=null;
 	}
 	boolean movimentoDiagonalValida(int[] fonte,int[] alvo) {
 		//Verifica se o movimento ocorre em diagonal
-		//Evita que a peça seja movida fora de uma diagonal
+		//Evita que a peï¿½a seja movida fora de uma diagonal
 		
 		return moduloDif(fonte[0],alvo[0])==moduloDif(fonte[1],alvo[1]);
 	}
 	void executarMovimento(int[] fonte,int[] alvo) {
-		//Executa o 
-		
+		if(alvo[0] == 0  && tabuleiroPecas[fonte[0]][fonte[1]].getPlayer() == 1){
+			tabuleiroPecas[alvo[0]][alvo[1]] = new Dama(alvo[0], alvo[1], 1);
+		}else if(alvo[0] == 7  && tabuleiroPecas[fonte[0]][fonte[1]].getPlayer() == 0){
+			tabuleiroPecas[alvo[0]][alvo[1]] = new Dama(alvo[0], alvo[1], 0);
+		}else{
+			tabuleiroPecas[alvo[0]][alvo[1]] = tabuleiroPecas[fonte[0]][fonte[1]];
+		}
+		tabuleiroPecas[alvo[0]+direcao(fonte[0],alvo[0])][alvo[1]+direcao(fonte[1],alvo[1])] = null;
+		tabuleiroPecas[fonte[0]][fonte[1]] = null;
 	}
 	void jogada(String fonte,String alvo) {
 		//Movimenta a peï¿½a na casa fonte atï¿½ a casa alvo
 		int[] coordenadasFonte = strParaCoords(fonte);
 		int[] coordenadasAlvo = strParaCoords(alvo);
 		
-		//Verifica se há uma peça no local
+		//Verifica se hï¿½ uma peï¿½a no local
 		if(!casaPreenchida(coordenadasFonte[0],coordenadasFonte[1])) {
-			System.out.println("Não há peça na casa");
+			System.out.println("NÃ£o hÃ¡ peÃ§a na casa");
 			return;
 		}
 		
 		
 		if(!movimentoDiagonalValida(coordenadasFonte,coordenadasAlvo)) {
-			System.out.println("O movimento não ocorre em diagonal");
+			System.out.println("O movimento nï¿½o ocorre em diagonal");
 			return;
 		}
 		
 		int[] caminho = obterCaminho(coordenadasFonte,coordenadasAlvo);
 		
 		
-		//Pergunta pra peça se o movimento é válido e identifica o tipo de movimento
-		int ehMovimento= tabuleiroPecas[coordenadasFonte[0]][coordenadasFonte[1]].ehMovimentoValido(caminho);
-		
-		//Executa o movimento (O tabuleiro deve executar os movimentos,a peça apenas retorna o tipo)
+		//Pergunta pra peï¿½a se o movimento ï¿½ vï¿½lido e identifica o tipo de movimento
+		boolean ehValido= tabuleiroPecas[coordenadasFonte[0]][coordenadasFonte[1]].ehMovimentoValido(caminho,coordenadasAlvo);
+		if(ehValido){
+			executarMovimento(coordenadasFonte,coordenadasAlvo);
+		}else{
+			System.out.println("Movimento InvÃ¡lido");
+		}
+		//Executa o movimento (O tabuleiro deve executar os movimentos,a peï¿½a apenas retorna o tipo)
 	}
 
 	

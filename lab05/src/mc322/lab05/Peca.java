@@ -1,7 +1,14 @@
 package mc322.lab05;
 
 public class Peca {
-	
+	public int getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(int player) {
+		this.player = player;
+	}
+
 	protected int linha;
 	protected int coluna;
 	protected int player;
@@ -13,11 +20,15 @@ public class Peca {
 		this.player = player;
 	}
 
-	int ehMovimentoValido(int[] caminho) {
-		//Vai ser sobreescrita
-		return 99;
-		
+	boolean ehMovimentoValido(int[] caminho,int[] coordenadasAlvo) {
+		//vai ser sobreescrita
+		return true;
 	}
+	void atualizar_estado(int[] coordenadasAlvo){
+		linha = coordenadasAlvo[0];
+		coluna = coordenadasAlvo[1];
+	}
+
 	String String(){
 		return ("Classe_Peca");
 	}

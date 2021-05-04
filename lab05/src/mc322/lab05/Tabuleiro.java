@@ -113,8 +113,14 @@ public class Tabuleiro {
 		}else{
 			tabuleiroPecas[alvo[0]][alvo[1]] = tabuleiroPecas[fonte[0]][fonte[1]];
 		}
-		tabuleiroPecas[alvo[0]+direcao(fonte[0],alvo[0])][alvo[1]+direcao(fonte[1],alvo[1])] = null;
-		tabuleiroPecas[fonte[0]][fonte[1]] = null;
+		
+		for(int i =1;i<=moduloDif(fonte[0], alvo[0]);i++) {
+			//Remove todas as peças entre o a fonte e o alvo
+			tabuleiroPecas[alvo[0]+i*direcao(fonte[0],alvo[0])][alvo[1]+i*direcao(fonte[1],alvo[1])] = null;
+			
+		}
+		//tabuleiroPecas[alvo[0]+direcao(fonte[0],alvo[0])][alvo[1]+direcao(fonte[1],alvo[1])] = null;
+		//tabuleiroPecas[fonte[0]][fonte[1]] = null; <-A função acima já inclui esta linha, mas a deixarei comentada
 	}
 	void jogada(String fonte,String alvo) {
 		//Movimenta a pe�a na casa fonte at� a casa alvo

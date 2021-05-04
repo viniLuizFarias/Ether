@@ -14,29 +14,34 @@ public class Dama extends Peca{
 
 	boolean caminho_livre(int linha2, int coluna2,int[] caminho){
 		// VE SE O CAMINHO ATE O DESTINO EST� VAZIO
-		// SE FOR UMA CAPTURA IGNORA A PENULTIMA CASA
-		for(int i = 1;i< caminho.length-1;i++){
+		// SE NÃO HOUVEREM PEÇAS NO CAMINHO, O CAMINHO ESTÁ LIVRE
+		// SE HOUVEREM 2 OU MAIS PEÇAS, ELE NÃO ESTÁ LIVRE
+		// CASO HAJA 1 PEÇA, ESTA DEVE SER A PENULTIMA DO CAMINHO, SENÃO ELE NÃO ESTÁ LIVRE
+		//System.out.println("caminho_livre");
+		int nPecasCaminho=0;
+		for(int i = 0;i< caminho.length;i++){
 			if(caminho[i] != -1){
-				//System.out.println("B1");
-				return false;
+				nPecasCaminho++;
 			}
 		}
-		if (caminho.length>1){
-			//System.out.println("B2");
-			return !(caminho[caminho.length-1] == -2);
+		if(nPecasCaminho==0) {
+			return true;
 		}
-		return true;
+		else if(nPecasCaminho==1 && caminho[caminho.length-2]==ehPecaInimiga()){
+			return true;
+		}
+		return false;
 	}
 
-	boolean movimentoValido(int[] caminho,int[] coordsAlvo) {
+	boolean ehMovimentoValido(int[] caminho,int[] coordsAlvo) {
+		//System.out.println("movValido");
 		if(!caminho_livre(coordsAlvo[0],coordsAlvo[1], caminho)){
 			//System.out.println("B");
 			return false;
 		}
-		if (caminho[caminho.length-1]!=0){
-			//System.out.println("C");
-			return false;
-		}
+
+		//System.out.println("C");
+
 		return true;
 	}
 }

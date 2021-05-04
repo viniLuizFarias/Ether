@@ -19,6 +19,13 @@ public class Peca {
 		this.coluna = coluna;
 		this.player = player;
 	}
+	int ehPecaInimiga(){
+		
+		if(player ==0) {
+			return 1;
+		}
+		return 0;
+	}
 
 	boolean ehMovimentoValido(int[] caminho,int[] coordenadasAlvo) {
 		//vai ser sobreescrita

@@ -2,7 +2,7 @@ package mc322.lab05;
 
 public class AppDama {
 	
-	static CSVReader csv = new CSVReader();
+	static CSVHandling csv = new CSVHandling();
 	static String[] comandos;
 	static Tabuleiro tab = new Tabuleiro();
 	static String[] linhaTemporalTabuleiro;
@@ -41,7 +41,7 @@ public class AppDama {
 	public static void main(String[] args) {
 
 
-		String[] retorno = AppDama.executaJogo("testeSimples.csv");
+		String[] retorno = AppDama.executaJogo("src/mc322/lab05/arq001.csv");
 		
 
 		

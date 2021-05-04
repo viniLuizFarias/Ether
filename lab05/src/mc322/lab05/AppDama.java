@@ -41,8 +41,8 @@ public class AppDama {
 	public static void main(String[] args) {
 
 
-		String[] retorno = AppDama.executaJogo("src/mc322/lab05/arq001.csv");
-		
+		String[] retorno = AppDama.executaJogo("arq001.csv");
+		tab.exportarArquivo(args[1]);
 
 		
 

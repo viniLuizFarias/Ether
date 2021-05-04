@@ -198,6 +198,31 @@ public class Tabuleiro {
 	}
 	System.out.print("  a b c d e f g h \n");
 	}
+
+	void exportarArquivo(String path){
+		CSVHandling csv = new CSVHandling();
+
+		String texto[] = new String[8*8];
+		for(int i=7;i>=0;i--) {
+			System.out.print(i+1+" ");
+			for(int j=0;j<8;j++){
+				texto[j+i*8] = "";
+				texto[j+i*8] += (char)('a'+i);
+				texto[j+i*8] += Integer.toString(j+1);
+				if(tabuleiroPecas[i][j]!=null) {
+					texto[j+i*8] += tabuleiroPecas[i][j].String();
+				}else {
+					texto[j+i*8] += "_";
+				}
+				
+			
+			
+			}
+			
+		}
+		csv.setDataExport(path);
+		csv.exportState(texto);
+	}
 	
 
 }

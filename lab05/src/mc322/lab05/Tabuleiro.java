@@ -65,7 +65,7 @@ public class Tabuleiro {
 			}else{
 				caminho[i] = -1;
 			}
-			System.out.println("caminho:"+ caminho[i]);
+			//System.out.println("caminho:"+ caminho[i]);
 		}
 		
 		return caminho;

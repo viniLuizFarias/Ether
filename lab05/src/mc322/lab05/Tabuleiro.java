@@ -4,7 +4,6 @@ public class Tabuleiro {
 
 	Peca[][] tabuleiroPecas = new Peca[8][8];
 
-
 	static int direcao(int a,int b){
 		// "vai na dire��o" de B para A
 		if (a>b){
@@ -122,21 +121,24 @@ public class Tabuleiro {
 		//tabuleiroPecas[alvo[0]+direcao(fonte[0],alvo[0])][alvo[1]+direcao(fonte[1],alvo[1])] = null;
 		//tabuleiroPecas[fonte[0]][fonte[1]] = null; <-A função acima já inclui esta linha, mas a deixarei comentada
 	}
-	void jogada(String fonte,String alvo) {
+	boolean jogada(String fonte,String alvo) {
+		// RETORNA true CASO A JOGADA SEJA VALIDA E false CASO CONTRARIO
 		//Movimenta a pe�a na casa fonte at� a casa alvo
 		int[] coordenadasFonte = strParaCoords(fonte);
 		int[] coordenadasAlvo = strParaCoords(alvo);
 		
 		//Verifica se h� uma pe�a no local
 		if(!casaPreenchida(coordenadasFonte[0],coordenadasFonte[1])) {
-			System.out.println("Não há peça na casa");
-			return;
+			//System.out.println("Não há peça na casa");
+			System.out.println("Movimento Inválido");
+			return false;
 		}
 		
 		
 		if(!movimentoDiagonalValida(coordenadasFonte,coordenadasAlvo)) {
-			System.out.println("O movimento n�o ocorre em diagonal");
-			return;
+			//System.out.println("O movimento n�o ocorre em diagonal");
+			System.out.println("Movimento Inválido");
+			return false;
 		}
 		
 		int[] caminho = obterCaminho(coordenadasFonte,coordenadasAlvo);
@@ -146,9 +148,10 @@ public class Tabuleiro {
 		boolean ehValido= tabuleiroPecas[coordenadasFonte[0]][coordenadasFonte[1]].ehMovimentoValido(caminho,coordenadasAlvo);
 		if(ehValido){
 			executarMovimento(coordenadasFonte,coordenadasAlvo);
-		}else{
-			System.out.println("Movimento Inválido");
+			return true;
 		}
+		System.out.println("Movimento Inválido");
+		return false;
 		//Executa o movimento (O tabuleiro deve executar os movimentos,a pe�a apenas retorna o tipo)
 	}
 
@@ -199,26 +202,30 @@ public class Tabuleiro {
 	System.out.print("  a b c d e f g h \n");
 	}
 
-	void exportarArquivo(String path){
+	void exportarArquivo(String path,boolean ocorreu_erro){
 		CSVHandling csv = new CSVHandling();
-
-		String texto[] = new String[8*8];
-		for(int i=7;i>=0;i--) {
-			System.out.print(i+1+" ");
-			for(int j=0;j<8;j++){
-				texto[j+i*8] = "";
-				texto[j+i*8] += (char)('a'+i);
-				texto[j+i*8] += Integer.toString(j+1);
-				if(tabuleiroPecas[i][j]!=null) {
-					texto[j+i*8] += tabuleiroPecas[i][j].String();
-				}else {
-					texto[j+i*8] += "_";
+		String texto[];
+		if (ocorreu_erro){
+			texto = new String[1];	
+			texto[0] = "erro";
+		}else{
+			texto = new String[8*8];
+			for(int i=7;i>=0;i--) {
+				System.out.print(i+1+" ");
+				for(int j=0;j<8;j++){
+					texto[j+i*8] = "";
+					texto[j+i*8] += (char)('a'+i);
+					texto[j+i*8] += Integer.toString(j+1);
+					if(tabuleiroPecas[i][j]!=null) {
+						texto[j+i*8] += tabuleiroPecas[i][j].String();
+					}else {
+						texto[j+i*8] += "_";
+					}
+					
+				
 				}
 				
-			
-			
 			}
-			
 		}
 		csv.setDataExport(path);
 		csv.exportState(texto);

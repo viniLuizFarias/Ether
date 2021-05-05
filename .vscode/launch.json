@@ -1,0 +1,22 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}",
+            "args": "arq001.csv arquivo"
+        },
+        {
+            "type": "java",
+            "name": "Launch AppDama",
+            "request": "launch",
+            "mainClass": "mc322.lab05.AppDama",
+            "projectName": "MC322-DUPLA_bfb90cd4"
+        }
+    ]
+}

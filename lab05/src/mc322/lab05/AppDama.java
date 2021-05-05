@@ -36,9 +36,9 @@ public class AppDama {
 			ocorreu_erro = !tab.jogada(comandos[i].substring(0, 2),comandos[i].substring(3, 5));
 			tab.imprimir();
 			linhaTemporalTabuleiro[i+1]=tab.estadoEmString();
-			tab.exportarArquivo(path, ocorreu_erro);
 			
 		}
+	tab.exportarArquivo(path, ocorreu_erro);
 		
 	}
 	public static void main(String[] args) {
@@ -47,6 +47,5 @@ public class AppDama {
 		String[] retorno = AppDama.executaJogo(args[0],args[1]);
 
 		
-
 	}
 }

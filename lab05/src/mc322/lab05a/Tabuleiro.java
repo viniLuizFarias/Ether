@@ -1,4 +1,4 @@
-package mc322.lab05;
+package mc322.lab05a;
 
 public class Tabuleiro {
 
@@ -38,7 +38,7 @@ public class Tabuleiro {
 	}
 
 	void realizarMovimentoDama(int linha1, int coluna1,int linha2,int coluna2, boolean eh_captura) {
-		//Movimenta a peça e come remove a da casa intermediaria
+		//Movimenta a peï¿½a e come remove a da casa intermediaria
 
 		PecaDama dama =tabuleiro_damas[linha1][coluna1];
 		tabuleiro_damas[linha1][coluna1] = null;
@@ -69,7 +69,7 @@ public class Tabuleiro {
 
 	}
 	void realizarMovimentoRainha(int linha1, int coluna1,int linha2,int coluna2, boolean eh_captura) {
-		//Movimenta a peça e come remove a da casa "anterior" à posição final
+		//Movimenta a peï¿½a e come remove a da casa "anterior" ï¿½ posiï¿½ï¿½o final
 
 		PecaRainha rainha =tabuleiro_rainhas[linha1][coluna1];
 		tabuleiro_rainhas[linha1][coluna1] = null;
@@ -150,14 +150,14 @@ public class Tabuleiro {
 			if (movimento_valido){
 				realizarMovimentoDama(coordsFonte[0],coordsFonte[1],coordsAlvo[0],coordsAlvo[1],eh_captura);
 			}else{
-				System.out.println("JOGADA INVÁLIDA!");
+				System.out.println("JOGADA INVï¿½LIDA!");
 			}
 		}else if(tabuleiro_rainhas[coordsFonte[0]][coordsFonte[1]] != null) {
 			movimento_valido = tabuleiro_rainhas[coordsFonte[0]][coordsFonte[1]].movimentoValido(coordsFonte[0], coordsFonte[1], coordsAlvo[0], coordsAlvo[1],eh_captura);
 			if (movimento_valido) {
 				realizarMovimentoRainha(coordsFonte[0],coordsFonte[1],coordsAlvo[0],coordsAlvo[1],eh_captura);
 			}else{
-				System.out.println("JOGADA INVÁLIDA!");
+				System.out.println("JOGADA INVï¿½LIDA!");
 			}
 		}
 	}

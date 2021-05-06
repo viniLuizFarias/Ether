@@ -1,6 +1,7 @@
 ﻿##Projeto que simula um jogo de damas
 
 [Link arquivos .java da versão 'a'](src/mc322/lab05a)
+
 [Link arquivos .java da versão 'b'](src/mc322/lab05b)
 
 Este projeto apresenta duas versões de um simulador de jogo

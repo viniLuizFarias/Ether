@@ -74,7 +74,6 @@ public class Tabuleiro {
 	int[] strParaCoords(String coords){
 		//Converte as coordenadas do Tipo CharInt -> LinhaColuna
 		int[] ret = {coords.charAt(1)-1-'0',coords.charAt(0)-'a'};
-		
 		return(ret);
 		
 	}
@@ -126,6 +125,15 @@ public class Tabuleiro {
 		//Movimenta a pe�a na casa fonte at� a casa alvo
 		int[] coordenadasFonte = strParaCoords(fonte);
 		int[] coordenadasAlvo = strParaCoords(alvo);
+		//Verifica se uma peça está no tabuleiro
+		if(coordenadasFonte[0] <0 || coordenadasFonte[0]>7) {
+			System.out.println("Movimento Inválido");
+			return false;
+		}
+		if(coordenadasFonte[1] <0 || coordenadasFonte[1]>7) {
+			System.out.println("Movimento Inválido");
+			return false;
+		}
 		
 		//Verifica se h� uma pe�a no local
 		if(!casaPreenchida(coordenadasFonte[0],coordenadasFonte[1])) {

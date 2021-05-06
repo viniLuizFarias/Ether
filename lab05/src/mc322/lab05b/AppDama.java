@@ -31,9 +31,18 @@ public class AppDama {
 		for(int i=0;i<comandos.length;i++) {
 			
 			//Da o comando e mostra a sa�da conforme esperado
-			System.out.println("\nSource: "+comandos[i].substring(0, 2));
-			System.out.println("Target: "+comandos[i].substring(3, 5));
-			ocorreu_erro = !tab.solicitaMovimento(comandos[i].substring(0, 2),comandos[i].substring(3, 5));
+			int posDoisPontos=0;
+			while(true) {
+				if(comandos[i].charAt(posDoisPontos)!=':') {
+					posDoisPontos ++;
+				}
+				else {
+					break;
+				}
+			}
+			System.out.println("\nSource: "+comandos[i].substring(0, posDoisPontos));
+			System.out.println("Target: "+comandos[i].substring(posDoisPontos+1, comandos[i].length()));
+			ocorreu_erro = !tab.solicitaMovimento(comandos[i].substring(0, posDoisPontos),comandos[i].substring(posDoisPontos+1, comandos[i].length()));
 			tab.imprimirTabuleiro();
 			linhaTemporalTabuleiro[i+1]=tab.estadoEmString();
 			

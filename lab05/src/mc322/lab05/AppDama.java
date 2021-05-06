@@ -15,9 +15,9 @@ public class AppDama {
 		
 		//Mostra a condi��o inicial do tabuleiro
 		System.out.println("Tabuleiro inicial: ");
-		tab.imprimir();
+		tab.imprimirTabuleiro();
 		linhaTemporalTabuleiro[0]=tab.estadoEmString();
-		tab.exportarArquivo(caminho_saida, false);
+		//tab.exportarArquivo(caminho_saida, false);
 
 		PassarComandos(caminho_saida);
 
@@ -27,14 +27,14 @@ public class AppDama {
 	}
 	public static void PassarComandos(String path) {
 		//Passa por cada comando e executa
-		boolean ocorreu_erro;
+		boolean ocorreu_erro=true;
 		for(int i=0;i<comandos.length;i++) {
 			
 			//Da o comando e mostra a sa�da conforme esperado
 			System.out.println("\nSource: "+comandos[i].substring(0, 2));
 			System.out.println("Target: "+comandos[i].substring(3, 5));
-			ocorreu_erro = !tab.jogada(comandos[i].substring(0, 2),comandos[i].substring(3, 5));
-			tab.imprimir();
+			ocorreu_erro = !tab.solicitaMovimento(comandos[i].substring(0, 2),comandos[i].substring(3, 5));
+			tab.imprimirTabuleiro();
 			linhaTemporalTabuleiro[i+1]=tab.estadoEmString();
 			
 		}

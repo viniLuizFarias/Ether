@@ -9,7 +9,7 @@ public class Peao extends Peca{
 
 	String String(){
 		if (player == 0) return ("b");
-		return ("v");
+		return ("p");
 	}
 	
 	

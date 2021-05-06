@@ -9,7 +9,7 @@ public class Dama extends Peca{
 
 	String String(){
 		if (player == 0) return ("B");
-		return ("V");
+		return ("P");
 	}
 
 	boolean caminho_livre(int linha2, int coluna2,int[] caminho){

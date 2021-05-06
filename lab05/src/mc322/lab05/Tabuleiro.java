@@ -121,7 +121,7 @@ public class Tabuleiro {
 		//tabuleiroPecas[alvo[0]+direcao(fonte[0],alvo[0])][alvo[1]+direcao(fonte[1],alvo[1])] = null;
 		//tabuleiroPecas[fonte[0]][fonte[1]] = null; <-A função acima já inclui esta linha, mas a deixarei comentada
 	}
-	boolean jogada(String fonte,String alvo) {
+	boolean solicitaMovimento(String fonte,String alvo) {
 		// RETORNA true CASO A JOGADA SEJA VALIDA E false CASO CONTRARIO
 		//Movimenta a pe�a na casa fonte at� a casa alvo
 		int[] coordenadasFonte = strParaCoords(fonte);
@@ -181,7 +181,7 @@ public class Tabuleiro {
 
 	}
 	
-	void imprimir() {
+	void imprimirTabuleiro() {
 		//Imprime como o tabuleiro est� no momento.
 		for(int i=7;i>=0;i--) {
 			System.out.print(i+1+" ");
@@ -211,13 +211,13 @@ public class Tabuleiro {
 		}else{
 			texto = new String[8*8];
 			for(int i=7;i>=0;i--) {
-				System.out.print(i+1+" ");
+
 				for(int j=0;j<8;j++){
 					texto[j+i*8] = "";
 					texto[j+i*8] += (char)('a'+i);
 					texto[j+i*8] += Integer.toString(j+1);
-					if(tabuleiroPecas[i][j]!=null) {
-						texto[j+i*8] += tabuleiroPecas[i][j].String();
+					if(tabuleiroPecas[j][i]!=null) {
+						texto[j+i*8] += tabuleiroPecas[j][i].String();
 					}else {
 						texto[j+i*8] += "_";
 					}

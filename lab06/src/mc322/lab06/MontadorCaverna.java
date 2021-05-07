@@ -64,6 +64,7 @@ public class MontadorCaverna {
 		for(int linha =0;linha <4;linha++) {
 			for(int coluna=0;coluna<4;coluna ++) {
 				tabuleiroCaverna[linha][coluna] = new Sala();
+				tabuleiroCaverna[linha][coluna].setExplorada(true);
 			}
 		}
 		for(int linha =0;linha <4;linha++) {
@@ -74,7 +75,6 @@ public class MontadorCaverna {
 				}
 			}
 		}
-		tabuleiroCaverna[0][0].setExplorada(true);
 
 		
 		

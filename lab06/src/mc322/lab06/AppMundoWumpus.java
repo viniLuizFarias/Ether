@@ -10,8 +10,8 @@ public class AppMundoWumpus {
 	public static void main(String[] args) {
 
 		String entradaCsv= args[0];
-		String nomeHeroi = args[1];
-		String arquivoSaida = args[2];
+		String arquivoSaida = args[1];
+		String nomeHeroi = args[2];
 		
 		Scanner keyboard = new Scanner(System.in);
 		//System.out.println("Digite o nome do seu Herói! :");

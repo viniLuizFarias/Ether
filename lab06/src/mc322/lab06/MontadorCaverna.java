@@ -64,9 +64,9 @@ public class MontadorCaverna {
 		for(int linha =0;linha <4;linha++) {
 			for(int coluna=0;coluna<4;coluna ++) {
 				tabuleiroCaverna[linha][coluna] = new Sala();
-				tabuleiroCaverna[linha][coluna].setExplorada(true);
 			}
 		}
+		tabuleiroCaverna[0][0].setExplorada(true);
 		for(int linha =0;linha <4;linha++) {
 			for(int coluna=0;coluna<4;coluna ++) {
 				char letra = configInicial[4*linha+coluna][1].charAt(0);

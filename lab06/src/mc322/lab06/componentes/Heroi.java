@@ -12,6 +12,9 @@ public class Heroi extends Componente{
 	public Heroi(int linha, int coluna, char identificador,Caverna caverna) {
 		super(linha, coluna, identificador,caverna);
 	}
+	public void explorarSala(){
+		this.caverna.getTabuleiroCaverna()[this.linha][this.coluna].setExplorada(true);
+	}
 	private Boolean ehMovimentoValido(char direcao) {
 		//Verifica se um movimento é válido
 		int linhaProx = this.linha;

@@ -3,6 +3,8 @@ import mc322.lab06.componentes.Componente;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Arrays;  
+
 
 public class Caverna {
 	// DICIONARIO QUE ARMAZENA A PRIORIDADE DE CADA TIPO DE COMPONENTE
@@ -18,6 +20,25 @@ public class Caverna {
 		return getTabuleiroCaverna()[linha][coluna].componenteMaiorPrioridade();
 	}
 
+	Componente[] getAllComponents(){
+		int len = 0;
+		for(int linha = 0;linha<4;linha++){
+			for(int coluna=0;coluna<4;coluna++){
+				len += tabuleiroCaverna[linha][coluna].getComponentes().length;
+			}
+		}
+		int posicao = 0;
+		Componente[] retorno = new Componente[len];
+		for(int linha = 0;linha<4;linha++){
+			for(int coluna=0;coluna<4;coluna++){
+				Componente[] atual = tabuleiroCaverna[linha][coluna].getComponentes();
+				System.arraycopy(atual, 0, retorno, posicao,atual.length);
+				posicao += atual.length;
+			}
+		}
+		return retorno;
+	}
+
 
 	void Imprimir(){
 		for (int linha = 0;linha<4;linha++){
@@ -28,6 +49,24 @@ public class Caverna {
 			System.out.println("");
 		}
 		System.out.println("  1 2 3 4 ");
+	}
+
+	public String[] String(){
+		String[] retorno = new String[16];
+		for (int linha=0;linha<4;linha++){
+			for(int coluna=0;coluna<4;coluna ++) {
+				Componente comp = tabuleiroCaverna[linha][coluna].componenteMaiorPrioridade();
+				char simbolo = '-';
+				if (comp != null){
+					if(comp.getIdentificador() != 'b' && comp.getIdentificador() != 'f'){
+						simbolo = comp.getIdentificador();
+					}
+				}
+				retorno[linha +4*coluna] = Integer.toString(coluna+1)+":"+Integer.toString(linha+1)+","+simbolo;
+				
+			}
+		}
+		return retorno;
 	}
 
 	public Sala[][] getTabuleiroCaverna() {

@@ -60,10 +60,10 @@ public class Sala {
       		
       	}
     }
-    void setExplorada(boolean b){
+    public void setExplorada(boolean b){
         this.explorada = b;
     }
-    boolean getExplorada(){
+    public boolean getExplorada(){
         return this.explorada;
     }
     public Componente obterComponente(char identificador) {

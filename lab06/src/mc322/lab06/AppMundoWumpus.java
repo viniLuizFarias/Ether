@@ -11,9 +11,9 @@ public class AppMundoWumpus {
 
 		String entradaCsv= args[0];
 		String nomeHeroi = args[1];
+		String arquivoSaida = args[2];
 		
-		//Obtém o nome do jogador
-		//Scanner keyboard = new Scanner(System.in);
+		Scanner keyboard = new Scanner(System.in);
 		//System.out.println("Digite o nome do seu Herói! :");
 		//String nomeHeroi = keyboard.nextLine();
 		
@@ -29,8 +29,22 @@ public class AppMundoWumpus {
 
 		
 		
-		caverna.Imprimir();
-		System.out.println(controle.getHeroi().getNome());
+		controle.imprimir();
+		controle.escreverCSV(arquivoSaida);
+
+		while(!controle.jaAcabou()){
+			String input = keyboard.nextLine();
+			if (input.length() != 0){
+				
+				char acao = input.charAt(0);
+				String msg = controle.comando(acao);
+				controle.imprimir();
+				controle.escreverCSV(arquivoSaida);
+				if (msg != ""){
+					System.out.println(msg);
+				}
+			}
+		}
 		
 		
 	}

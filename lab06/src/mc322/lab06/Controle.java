@@ -8,11 +8,14 @@ public class Controle {
 	private Componente[] componentes;
 	private Caverna caverna;
 	private Heroi heroi;
+	private boolean acabou;
 
 	
 	public Controle(Caverna caverna) {
 		this.caverna = caverna;		
 		this.heroi = iniciarHeroi();
+		this.componentes = caverna.getAllComponents();
+		this.acabou = false;
 	}
 	public void movimentarHeroi(char direcao) {
 		
@@ -33,6 +36,35 @@ public class Controle {
 		return caverna;
 	}
 
+	public boolean jaAcabou() {
+		return this.acabou;
+	}
+
+	public int getPontuacao() {
+		return this.pontuacao;
+	}
+
+	public void setPontuacao(int pontuacao) {
+		this.pontuacao = pontuacao;
+	}
+
+	public void setAcabou(boolean acabou) {
+		this.acabou = acabou;
+	}
+
+	public void imprimir(){
+		caverna.Imprimir();
+		System.out.println("\nPlayer: "+heroi.getNome());
+		System.out.println("Score: "+getPontuacao());
+
+	}
+	public void escreverCSV(String path){
+		String[] conteudo = caverna.String();
+		CSVHandling escritor = new CSVHandling();
+		escritor.setDataExport(path);
+		escritor.exportState(conteudo);
+	}
+
 	public char haEncontro() {
 		//Retorna o identificador do componente que está na casa junto com o heroi
 		//Se não houver nenhum, retorna -
@@ -45,21 +77,33 @@ public class Controle {
 		if(caverna.estaoNaMesmaSala('O',heroi.getIdentificador(), heroi.getLinha(), heroi.getColuna())) {
 			return 'O';
 		}
+		if(heroi.getPegouTesouro() && heroi.getColuna() == 0 && heroi.getLinha() == 0){
+			return 'A';
+		}
 		
 		
 		return '-';
 	}
-	public void comando(char comando) {
+	String comando(char comando) {
 		
 		if("wasd".indexOf(comando)!=-1) {
 			heroi.mover(comando);
+			heroi.explorarSala();
 			this.pontuacao-=15;
 			char encontro = haEncontro();
 			if(encontro =='-') {
-				return;
+				return "";
+			}
+			if (encontro == 'A'){
+				this.pontuacao+=1000;
+				setAcabou(true);
+				return ("Voce ganhou =D !!!");
+				//PERDEU				
 			}
 			if(encontro =='B') {
 				this.pontuacao-=1000;
+				setAcabou(true);
+				return ("Voce perdeu =(...");
 				//PERDEU
 			}
 			if(encontro =='W'){
@@ -70,6 +114,9 @@ public class Controle {
 				}
 				else {
 					this.pontuacao-=1000;
+					setAcabou(true);
+					return ("Voce perdeu =(...");
+					
 					//PERDEU
 				}
 			}
@@ -99,7 +146,12 @@ public class Controle {
 				System.out.println("Não há tesouro nesta sala");
 			}
 		}
-		if(comando=='q') {}
+		if(comando=='q') {
+			this.setAcabou(true);
+			return ("Volte sempre !");
+			
+		}
+		return "";
 	}
 	
 	

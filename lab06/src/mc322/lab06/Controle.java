@@ -10,11 +10,9 @@ public class Controle {
 	private Heroi heroi;
 
 	
-	public Controle(Caverna caverna,String nomeHeroi) {
+	public Controle(Caverna caverna) {
 		this.caverna = caverna;		
 		this.heroi = iniciarHeroi();
-		heroi.setNome(nomeHeroi);
-		
 	}
 	public void movimentarHeroi(char direcao) {
 		
@@ -34,7 +32,75 @@ public class Controle {
 	public Caverna getCaverna() {
 		return caverna;
 	}
-	
+
+	public char haEncontro() {
+		//Retorna o identificador do componente que está na casa junto com o heroi
+		//Se não houver nenhum, retorna -
+		if(caverna.estaoNaMesmaSala('W',heroi.getIdentificador(), heroi.getLinha(), heroi.getColuna())) {
+			return 'W';
+		}
+		if(caverna.estaoNaMesmaSala('B',heroi.getIdentificador(), heroi.getLinha(), heroi.getColuna())) {
+			return 'B';
+		}
+		if(caverna.estaoNaMesmaSala('O',heroi.getIdentificador(), heroi.getLinha(), heroi.getColuna())) {
+			return 'O';
+		}
+		
+		
+		return '-';
+	}
+	public void comando(char comando) {
+		
+		if("wasd".indexOf(comando)!=-1) {
+			heroi.mover(comando);
+			this.pontuacao-=15;
+			char encontro = haEncontro();
+			if(encontro =='-') {
+				return;
+			}
+			if(encontro =='B') {
+				this.pontuacao-=1000;
+				//PERDEU
+			}
+			if(encontro =='W'){
+				Wumpus wumpus = (Wumpus) heroi.getSala().obterComponente('W');
+				if(heroi.combater(wumpus)==true) {
+					this.pontuacao+=500;
+					//MATOU O WUMPUS
+				}
+				else {
+					this.pontuacao-=1000;
+					//PERDEU
+				}
+			}
+			
+			heroi.setIsFlechaEquipada(false);
+				
+		}
+		
+		if(comando=='k') {
+			if(heroi.getQtdFlechas()==1) {
+				heroi.setQtdFlechas(0);
+				this.pontuacao-=100;
+				heroi.setIsFlechaEquipada(true);
+			}
+			else {
+				System.out.println("Não há flechas");
+			}
+		}
+		
+		if(comando=='c') {
+			if(haEncontro()=='O') {
+				heroi.setPegouTesouro(true);
+				heroi.getSala().removerComponente('O');
+				//COLETOU O TESOURO
+						}
+			else {
+				System.out.println("Não há tesouro nesta sala");
+			}
+		}
+		if(comando=='q') {}
+	}
 	
 	
 }

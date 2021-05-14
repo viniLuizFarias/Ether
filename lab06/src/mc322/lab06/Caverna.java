@@ -2,19 +2,20 @@ package mc322.lab06;
 import mc322.lab06.componentes.Componente;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 public class Caverna {
 	// DICIONARIO QUE ARMAZENA A PRIORIDADE DE CADA TIPO DE COMPONENTE
 	static Map<Character, Integer> dicionarioPrioridades = new HashMap<Character, Integer>();
 
-	Sala[][] tabuleiroCaverna;
+	private Sala[][] tabuleiroCaverna;
 
-	Caverna(String caminhoCsv,String nomeHeroi){
-		tabuleiroCaverna = MontadorCaverna.gerarCaverna(caminhoCsv, this, nomeHeroi);
+	Caverna(String caminhoCsv){
+		setTabuleiroCaverna(MontadorCaverna.gerarCaverna(caminhoCsv, this));
 	}
 
 	Componente componenteMaiorPrioridade(int linha, int coluna){
-		return tabuleiroCaverna[linha][coluna].componenteMaiorPrioridade();
+		return getTabuleiroCaverna()[linha][coluna].componenteMaiorPrioridade();
 	}
 
 
@@ -22,10 +23,41 @@ public class Caverna {
 		for (int linha = 0;linha<4;linha++){
 			System.out.print(linha+1+" ");
 			for(int coluna = 0;coluna<4;coluna++){
-				System.out.print(tabuleiroCaverna[linha][coluna].String()+" ");
+				System.out.print(getTabuleiroCaverna()[linha][coluna].String()+" ");
 			}
 			System.out.println("");
 		}
 		System.out.println("  1 2 3 4 ");
 	}
+
+	public Sala[][] getTabuleiroCaverna() {
+		return tabuleiroCaverna;
+	}
+
+	public void setTabuleiroCaverna(Sala[][] tabuleiroCaverna) {
+		this.tabuleiroCaverna = tabuleiroCaverna;
+	}
+
+	public boolean estaoNaMesmaSala(char identificadorA,char identificadorB,int linha,int coluna) {
+		//Verifica se tem 2 componentes na memsma sala (Útil para ver se o jogador está interagindo)
+		List<Componente> lista = this.tabuleiroCaverna[linha][coluna].listaComponentes;
+		int n=0;
+		for(int i=0;i<lista.size();i++) {
+			if(lista.get(i).getIdentificador()==identificadorA){
+				n++;
+				break;
+			}	
+		}
+		for(int j=0;j<lista.size();j++) {
+			if(lista.get(j).getIdentificador()==identificadorB){
+				n++;
+				break;
+			}	
+		}
+		if(n==2) {
+			return true;
+		}
+		return false;
+	}
+	
 }

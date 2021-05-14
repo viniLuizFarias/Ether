@@ -3,6 +3,8 @@ package mc322.lab06;
 
 import java.util.Scanner;
 
+import mc322.lab06.componentes.*;
+
 public class AppMundoWumpus {
     
 	public static void main(String[] args) {
@@ -16,11 +18,19 @@ public class AppMundoWumpus {
 		//String nomeHeroi = keyboard.nextLine();
 		
 		//Gera a caverna
-		Caverna caverna = new Caverna(entradaCsv,nomeHeroi);
+		Caverna caverna = new Caverna(entradaCsv);
 		
 		//Inicializa o controle
-		Controle controle = new Controle(caverna,nomeHeroi);
+		Controle controle = new Controle(caverna);
+		
+		//Obtém o herói e o nome
+		Heroi player = controle.getHeroi();
+		player.setNome(nomeHeroi);
+
+		
+		
 		caverna.Imprimir();
+		System.out.println(controle.getHeroi().getNome());
 		
 		
 	}

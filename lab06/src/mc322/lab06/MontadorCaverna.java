@@ -52,7 +52,7 @@ public class MontadorCaverna {
 		Caverna.dicionarioPrioridades.put('b',1);
 	}
 
-	public static Sala[][] gerarCaverna(String caminhoCsv,Caverna caverna,String nomeHeroi){
+	public static Sala[][] gerarCaverna(String caminhoCsv,Caverna caverna){
 		
 		
 		Sala[][] tabuleiroCaverna= new Sala[4][4];

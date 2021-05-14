@@ -40,19 +40,41 @@ public class Sala {
             }else{
                 return "#";
             }
-        }else{
+        }else{ 
             return "-";
         }
     }
 
-    void adicionarComponente(Componente componente){
+    public void adicionarComponente(Componente componente){
         listaComponentes.add(componente);
+    }
+    public void removerComponente(Componente componente) {
+      	listaComponentes.remove(componente);
+    }
+    public void removerComponente(char identificador) {
+      	for(int i =0; i<listaComponentes.size();i++) {
+      		if(listaComponentes.get(i).getIdentificador()==identificador) {
+      			listaComponentes.remove(i);
+      			return;
+      		}
+      		
+      	}
     }
     void setExplorada(boolean b){
         this.explorada = b;
     }
-    boolean isExplorada(){
+    boolean getExplorada(){
         return this.explorada;
+    }
+    public Componente obterComponente(char identificador) {
+    	//Retorna o componente cujo identificador foi passado
+    	//Se não houver tal, retorna null
+    	for(int i=0;i<listaComponentes.size();i++) {
+    		if(listaComponentes.get(i).getIdentificador()==identificador) {
+    			return listaComponentes.get(i);
+    		}
+    	}
+    	return null;
     }
     
 }

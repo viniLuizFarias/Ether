@@ -98,18 +98,19 @@ public class Controle {
 				this.pontuacao+=1000;
 				setAcabou(true);
 				return ("Voce ganhou =D !!!");
-				//PERDEU				
+					
 			}
 			if(encontro =='B') {
 				this.pontuacao-=1000;
 				setAcabou(true);
 				return ("Voce perdeu =(...");
-				//PERDEU
+				
 			}
 			if(encontro =='W'){
 				Wumpus wumpus = (Wumpus) heroi.getSala().obterComponente('W');
 				if(heroi.combater(wumpus)==true) {
 					this.pontuacao+=500;
+					heroi.getSala().removerComponente('W');
 					//MATOU O WUMPUS
 				}
 				else {
@@ -130,6 +131,7 @@ public class Controle {
 				heroi.setQtdFlechas(0);
 				this.pontuacao-=100;
 				heroi.setIsFlechaEquipada(true);
+				System.out.println("Flecha Equipada");
 			}
 			else {
 				System.out.println("Não há flechas");

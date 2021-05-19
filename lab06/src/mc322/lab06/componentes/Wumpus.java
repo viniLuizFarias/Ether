@@ -13,7 +13,6 @@ public class Wumpus extends Componente{
 		//Verifica se o wumpus foi derrotado, se sim, retorna true, senão, false
 	    Random random = new Random();
 	    if(random.nextInt(2)==1) {
-	    	this.deletarComponente();
 	    	return true;
 	    }
 	    return false;

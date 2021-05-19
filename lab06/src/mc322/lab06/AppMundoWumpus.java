@@ -9,13 +9,13 @@ public class AppMundoWumpus {
     
 	public static void main(String[] args) {
 
-		String entradaCsv= args[0];
-		String nomeHeroi = args[1];
+
 		
 		Scanner keyboard = new Scanner(System.in);
-		//System.out.println("Digite o nome do seu Herói! :");
-		//String nomeHeroi = keyboard.nextLine();
-		
+		System.out.println("Digite o nome do seu Herói! :");
+		String nomeHeroi = keyboard.nextLine();
+		String entradaCsv= args[0];
+
 		//Gera a caverna
 		Caverna caverna = MontadorCaverna.criarCaverna(entradaCsv);
 		
@@ -42,8 +42,10 @@ public class AppMundoWumpus {
 				if (msg != ""){
 					System.out.println(msg);
 				}
+				
 			}
 		}
+		System.exit(0);
 		
 	}
 }

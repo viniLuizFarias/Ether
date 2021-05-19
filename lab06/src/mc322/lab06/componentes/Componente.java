@@ -46,8 +46,4 @@ public class Componente {
 	public Sala getSala() {
 		return caverna.getTabuleiroCaverna()[this.linha][this.coluna];
 	}
-	public void deletarComponente() {
-		getSala().removerComponente(this.identificador);
-		
-	}
 }

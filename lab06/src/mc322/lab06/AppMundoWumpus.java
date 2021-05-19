@@ -11,9 +11,6 @@ public class AppMundoWumpus {
 
 
 		
-		Scanner keyboard = new Scanner(System.in);
-		System.out.println("Digite o nome do seu Herói! :");
-		String nomeHeroi = keyboard.nextLine();
 		String entradaCsv= args[0];
 
 		//Gera a caverna
@@ -23,6 +20,9 @@ public class AppMundoWumpus {
 		Controle controle = new Controle(caverna);
 		
 		//Obtém o herói e o nome
+		Scanner keyboard = new Scanner(System.in);
+		System.out.println("Digite o nome do seu Herói! :");
+		String nomeHeroi = keyboard.nextLine();
 		Heroi player = controle.getHeroi();
 		player.setNome(nomeHeroi);
 

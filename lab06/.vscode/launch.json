@@ -9,14 +9,15 @@
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "args": "caverna3.csv JooJinhoAventureiro"
+            "args": "data/caverna1.csv JooJinhoAventureiro"
         },
         {
             "type": "java",
             "name": "Launch AppMundoWumpus",
             "request": "launch",
             "mainClass": "mc322.lab06.AppMundoWumpus",
-            "projectName": "lab06"
+            "projectName": "lab06",
+            "args": "data/caverna1.csv"
         }
     ]
 }

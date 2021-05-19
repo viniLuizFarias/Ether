@@ -48,7 +48,7 @@ a sala do teletransporte: bastaria colocar um outro condicional que verificaria 
 
 TRECHO 02:
 
-´´´
+```
 public class Heroi extends Componente{
     
 
@@ -59,12 +59,14 @@ public class Heroi extends Componente{
 
 	...
 
-´´´
+```
 Embora simples, este trecho está de acordo com o item 3 e 4, em especial com o item 3, pois o herói é o componente
 que deve ter conhecimento de suas condições.
 
 
 TRECHO 3:
+
+```
 public class Sala {
     ...
     List<Componente> listaComponentes;
@@ -72,6 +74,7 @@ public class Sala {
         listaComponentes = new ArrayList<>();
 	...
     }
+	```
 	
 Este trecho de código é um bom exemplo de polimorfismo e de como o uso de estruturas já conhecidas em conjuto com ele
 permitem um código mais expansível.

@@ -7,6 +7,7 @@ public class MontadorCaverna {
 		gerarSalas(arquivoEntrada,caverna);
 		gerarDicionarioPrioridades();
 
+		// TERMINA DE CONFERiR SE A CAVERNA CRIADA É VÁLIDA
 		int[][] quantidadesAceitaveis = {{1,1},{1,1},{1,1},{2,3}}; // QUANTIDADES ADEQUADAS DE CADA COMPONENTE
 		if(!quantidadesValidas(quantidadesAceitaveis,caverna)){
 			System.out.println("Quantidades inadequadas de componentes");

@@ -74,7 +74,8 @@ public class Sala {
         listaComponentes = new ArrayList<>();
 	...
     }
-	```
+	
+```
 	
 Este trecho de código é um bom exemplo de polimorfismo e de como o uso de estruturas já conhecidas em conjuto com ele
 permitem um código mais expansível.

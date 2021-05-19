@@ -9,7 +9,7 @@
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "args": "caverna3.csv JooJinhoAventureiro ArqSaida"
+            "args": "caverna3.csv JooJinhoAventureiro"
         },
         {
             "type": "java",

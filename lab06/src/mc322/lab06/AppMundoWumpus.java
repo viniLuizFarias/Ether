@@ -10,15 +10,14 @@ public class AppMundoWumpus {
 	public static void main(String[] args) {
 
 		String entradaCsv= args[0];
-		String arquivoSaida = args[1];
-		String nomeHeroi = args[2];
+		String nomeHeroi = args[1];
 		
 		Scanner keyboard = new Scanner(System.in);
 		//System.out.println("Digite o nome do seu Herói! :");
 		//String nomeHeroi = keyboard.nextLine();
 		
 		//Gera a caverna
-		Caverna caverna = new Caverna(entradaCsv);
+		Caverna caverna = MontadorCaverna.criarCaverna(entradaCsv);
 		
 		//Inicializa o controle
 		Controle controle = new Controle(caverna);
@@ -30,7 +29,7 @@ public class AppMundoWumpus {
 		
 		
 		controle.imprimir();
-		controle.escreverCSV(arquivoSaida);
+		//controle.escreverCSV(arquivoSaida);
 
 		while(!controle.jaAcabou()){
 			String input = keyboard.nextLine();
@@ -39,13 +38,12 @@ public class AppMundoWumpus {
 				char acao = input.charAt(0);
 				String msg = controle.comando(acao);
 				controle.imprimir();
-				controle.escreverCSV(arquivoSaida);
+				//controle.escreverCSV(arquivoSaida);
 				if (msg != ""){
 					System.out.println(msg);
 				}
 			}
 		}
-		
 		
 	}
 }

@@ -12,12 +12,29 @@ public class Caverna {
 
 	private Sala[][] tabuleiroCaverna;
 
-	Caverna(String caminhoCsv){
-		setTabuleiroCaverna(MontadorCaverna.gerarCaverna(caminhoCsv, this));
+	Caverna(){
+		this.tabuleiroCaverna = new Sala[4][4];
+		for(int linha =0;linha <4;linha++) {
+			for(int coluna=0;coluna<4;coluna ++) {
+				this.tabuleiroCaverna[linha][coluna] = new Sala();
+			}
+		}
 	}
 
 	Componente componenteMaiorPrioridade(int linha, int coluna){
 		return getTabuleiroCaverna()[linha][coluna].componenteMaiorPrioridade();
+	}
+	boolean salaPreenchida(int linha,int coluna){
+		Componente[] componentes = tabuleiroCaverna[linha][coluna].getComponentes();
+		if (componentes == null){
+			return false;
+		}
+		for (int i = 0;i<componentes.length;i++){
+			if (componentes[i].getIdentificador() == 'O' ||componentes[i].getIdentificador() == 'P'||componentes[i].getIdentificador() == 'B'||componentes[i].getIdentificador() == 'W'){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	Componente[] getAllComponents(){

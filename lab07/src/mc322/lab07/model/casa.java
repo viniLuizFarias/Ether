@@ -1,5 +1,27 @@
 package mc322.lab07.model;
+import mc322.lab07.model.peca.*;
 
-public class casa {
+public class Casa{
+    private Peca peca;
 
+    public Casa(){
+        this.peca = null;
+    }
+
+ 
+    public Peca getPeca() {
+        return this.peca;
+    }
+
+    public void setPeca(Peca tipo_de_peca) {
+        this.peca = tipo_de_peca.construirPeca();
+    }
+
+    public boolean vazia(){
+        if (peca == null){
+            return true;
+        }
+        return false;
+    }
+    
 }

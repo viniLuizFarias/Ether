@@ -1,5 +1,4 @@
 package mc322.lab07.model;
-import mc322.lab07.model.peca.*;
 
 public class Tabuleiro {
     int altura;

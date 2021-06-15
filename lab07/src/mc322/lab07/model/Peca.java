@@ -1,20 +1,22 @@
-package mc322.lab07.model.peca;
-import mc322.lab07.model.Tabuleiro;
-
+package mc322.lab07.model;
 
 public abstract class Peca {
 	protected int vida;
 	protected int ataque;
 	protected int mobilidade;
 	protected int player;
+	protected String nome;
 	protected Tabuleiro tabuleiro;
+	protected String nomeArquivo;
 	
-	public static Peca construirPeca(){
-		// DEVE SER SOBREESCRITO
-        Guerreiro guerreiro = new Guerreiro();
-        return guerreiro;
-    }
-	
+	public Peca(int vida,int ataque,int mobilidade,String nome,String nomeArquivo) {
+		this.vida=vida;
+		this.ataque=ataque;
+		this.mobilidade=mobilidade;
+		this.nome = nome;
+		this.nomeArquivo=nomeArquivo;
+		
+	}
 	public abstract  int validarMovimento();
 	public abstract  int atacar();
 	public abstract boolean efeito();
@@ -51,6 +53,18 @@ public abstract class Peca {
 	public void setPlayer(int player) {
 		this.player = player;
 	}
+	public String getNome() {
+
+		return this.nome;
+	}
+	public String getNomeArquivo() {
+		return nomeArquivo;
+	}
+	public void setNomeArquivo(String nomeArquivo) {
+		this.nomeArquivo=nomeArquivo;
+	}
+	
+
 	
 
 }

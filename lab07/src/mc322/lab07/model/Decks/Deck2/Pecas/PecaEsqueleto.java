@@ -1,29 +1,31 @@
-package mc322.lab07.model.Decks.Deck0.Pecas;
+package mc322.lab07.model.Decks.Deck2.Pecas;
 
 import mc322.lab07.model.Peca;
 
-public class PecaCavaleiro extends Peca{
-	public PecaCavaleiro(int vida,int ataque,int mobilidade,String nome,String nomeArquivo) {
+public class PecaEsqueleto extends Peca{
+
+	public PecaEsqueleto(int vida,int ataque,int mobilidade,String nome,String nomeArquivo) {
 		super(vida, ataque, mobilidade, nome, nomeArquivo);
 		
 	}
-	
-	public PecaCavaleiro() {
-		super(1, 1, 1, "Cavaleiro", "Cavaleiro");
+	public PecaEsqueleto(){
+		super(1, 1, 1, "Esqueleto", "Esqueleto");
 		
 	}
+
+	@Override
 	public int validarMovimento() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-
+	@Override
 	public int atacar() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-
+	@Override
 	public boolean efeito() {
 		// TODO Auto-generated method stub
 		return false;
@@ -34,4 +36,5 @@ public class PecaCavaleiro extends Peca{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 }

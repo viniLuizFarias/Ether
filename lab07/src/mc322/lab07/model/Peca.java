@@ -1,10 +1,11 @@
 package mc322.lab07.model;
 
-public abstract class Peca {
+public abstract class Peca implements IPeca{
 	protected int vida;
 	protected int ataque;
 	protected int mobilidade;
 	protected int player;
+	protected int quantidade;
 	protected String nome;
 	protected Tabuleiro tabuleiro;
 	protected String nomeArquivo;
@@ -20,9 +21,11 @@ public abstract class Peca {
 	public abstract  int validarMovimento();
 	public abstract  int atacar();
 	public abstract boolean efeito();
+	public abstract int gerarPeca();
 	
 
 	public int getVida() {
+	
 		return this.vida;
 	}
 

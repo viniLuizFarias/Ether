@@ -7,7 +7,11 @@ public class PecaMago extends Peca{
 		super(vida, ataque, mobilidade, nome, nomeArquivo);
 		
 	}
-
+	
+	public PecaMago() {
+		super(1, 1, 1, "Mago", "Mago");
+		
+	}
 	public int validarMovimento() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -23,5 +27,11 @@ public class PecaMago extends Peca{
 	public boolean efeito() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int gerarPeca() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

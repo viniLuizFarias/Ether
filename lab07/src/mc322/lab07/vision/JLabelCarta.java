@@ -6,13 +6,23 @@ public class JLabelCarta extends JLabelInterativa{
 
 	int jogador;
 	boolean clicavel;
+	int identificador;
 
 	public JLabelCarta(String nome, int tamanho,int jogador,int identificador,boolean clicavel,String nomeArquivo) {
 		super(nome, tamanho,nomeArquivo);
 		this.jogador = jogador;
 		this.clicavel=clicavel;
+		this.identificador=identificador;
 		
-		addMouseListener(new MouseListener() {
+		tornarInterativa();
+
+	}
+
+	@Override
+	
+	
+	public void tornarInterativa() {
+		this.addMouseListener(new MouseListener() {
 			
 			public void mouseReleased(MouseEvent e) {
 				if(clicavel) {
@@ -47,6 +57,7 @@ public class JLabelCarta extends JLabelInterativa{
 			
 			
 		});
+		
 	}
 
 }

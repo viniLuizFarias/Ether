@@ -23,6 +23,7 @@ public class MainJogo {
 		controle.setJanelaSelecaoDeck(janelaDeck);
 		
 		controle.abrirJanela(janelaDeck);
+		controle.abrirJanela(janelaInGame);
 
 	}
 

@@ -9,9 +9,15 @@ public class JLabelCelula extends JLabelInterativa{
 		super(nome, tamanho,nomeArquivo);
 		this.linha = linha;
 		this.coluna = coluna;
+		tornarInterativa();
+
+	}
+
+	@Override
+	public void tornarInterativa() {
 		
 		
-		addMouseListener(new MouseListener() {
+		this.addMouseListener(new MouseListener() {
 			
 			public void mouseReleased(MouseEvent e) {
 				System.out.println("Nome: "+nome +" Linha: "+ linha +" Coluna: "+coluna);
@@ -44,6 +50,7 @@ public class JLabelCelula extends JLabelInterativa{
 			
 			
 		});
+		
 	}
 	
 	

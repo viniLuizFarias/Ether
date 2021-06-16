@@ -8,6 +8,11 @@ public class PecaGuerreiro extends Peca{
 		
 	}
 
+	
+	public PecaGuerreiro() {
+		super(1, 1, 1, "Guerreiro", "Guerreiro");
+		
+	}
 	public int validarMovimento() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -23,5 +28,11 @@ public class PecaGuerreiro extends Peca{
 	public boolean efeito() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int gerarPeca() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

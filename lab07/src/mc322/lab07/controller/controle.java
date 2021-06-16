@@ -34,4 +34,8 @@ public class Controle {
     public void abrirJanela(JFrame janela) {
     	janela.setVisible(true);
     }
+    public void alterarSelecionada(Peca peca, JFrame janela) {
+    	
+    	
+    }
 }

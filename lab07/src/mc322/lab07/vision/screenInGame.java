@@ -4,7 +4,9 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class ScreenInGame extends JFrame{
+import mc322.lab07.model.Peca;
+
+public class ScreenInGame extends JFrame implements IJanela{
 	
 		private int altura,largura;
 		private int turno;
@@ -49,7 +51,7 @@ public class ScreenInGame extends JFrame{
 		int tamanhoCelula = 64;
 		for(int i=0;i<l;i++) {
 			for(int j=0;j<c;j++) {
-				JLabelCelula celula = new JLabelCelula("grama", i, j,tamanhoCelula,"Carta");
+				JLabelCelula celula = new JLabelCelula("Celula", i, j,tamanhoCelula,"grama");
 				celula.setLocation(xTrans+i*tamanhoCelula, yTrans+j*tamanhoCelula);
 				this.add(celula);
 			}
@@ -69,7 +71,7 @@ public class ScreenInGame extends JFrame{
 	
 	private void gerarInfos(int xTrans,int yTrans) {
 		//IMG
-		JLabelInterativa picInfo = new JLabelInterativa("Carta",192,"Carta");
+		JLabelCarta picInfo = new JLabelCarta("Carta",192,1, 1, true, "Carta");
 		picInfo.setLocation(1625,150);
 		this.add(picInfo);
 		//NOME
@@ -174,6 +176,12 @@ public class ScreenInGame extends JFrame{
 		
 	}
 	
+
+	public void alterarSelecionada(Peca peca) {
+
+		
+	}
+	
 	
 	//GETTERS E SETTERS
 	public void setVidaJogador1(int vida) {
@@ -220,6 +228,9 @@ public class ScreenInGame extends JFrame{
 	public int getRestante() {
 		return this.restante;
 	}
+
+
+
 	
 		
 		

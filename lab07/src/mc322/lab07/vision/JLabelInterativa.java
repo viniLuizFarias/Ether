@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class JLabelInterativa extends JLabel {
+public abstract class JLabelInterativa extends JLabel implements IJlabelInterativa{
 	private static final long serialVersionUID = -692369956380797782L;
 	String nome;
 	int tamanho;
@@ -16,12 +16,18 @@ public class JLabelInterativa extends JLabel {
 		this.nome = nome;
 		this.tamanho = tamanho;
 		this.nomeArquivo=nomeArquivo;
-		
+
+			
 		this.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\"+nomeArquivo+".png"));
+
 		setSize(tamanho,tamanho);
 		
-		
 	}
+	@Override
+	public abstract void tornarInterativa();
+
+
+
 	
 	
 }

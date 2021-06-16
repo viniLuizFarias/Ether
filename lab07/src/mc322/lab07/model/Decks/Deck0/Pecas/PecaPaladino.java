@@ -8,6 +8,10 @@ public class PecaPaladino extends Peca{
 		
 	}
 
+	public PecaPaladino() {
+		super(1, 1, 1, "Paladino", "Paladino");
+		
+	}
 	public int validarMovimento() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -23,6 +27,12 @@ public class PecaPaladino extends Peca{
 	public boolean efeito() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int gerarPeca() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
 

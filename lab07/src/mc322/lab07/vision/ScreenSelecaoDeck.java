@@ -1,17 +1,21 @@
 package mc322.lab07.vision;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import mc322.lab07.model.Deck;
+import mc322.lab07.model.Peca;
 import mc322.lab07.model.Decks.Deck0.Deck0;
 import mc322.lab07.model.Decks.Deck1.Deck1;
 import mc322.lab07.model.Decks.Deck2.Deck2;
 
-public class ScreenSelecaoDeck extends JFrame{
+public class ScreenSelecaoDeck extends JFrame implements IJanela{
 		private String nomeSelecionada="@@";
-		private int vidaSelecionada,ataqueSelecionada,restanteSelecionada=0;
+		private int vidaSelecionada,ataqueSelecionada,restanteSelecionada,mobilidadeSelecionada=0;
 		public ScreenSelecaoDeck(int altura, int largura) {
 			
 			
@@ -23,50 +27,62 @@ public class ScreenSelecaoDeck extends JFrame{
 			this.setVisible(false);
 			
 			Deck0 deck0 = new Deck0(); 
-			//Deck1 deck1 = new Deck1(); 
-			//Deck2 deck2 = new Deck2(); 
+			Deck1 deck1 = new Deck1(); 
+			Deck2 deck2 = new Deck2(); 
 			
 			gerarInfos(0,0);
 			gerarCartas(450,150,deck0);
-			gerarCartas(450,400,deck0);
-			gerarCartas(450,650,deck0);
+			gerarCartas(450,400,deck1);
+			gerarCartas(450,650,deck2);
 			
 			gerarSelecionarDecks(100, 0);
 			
 			setExtendedState(JFrame.MAXIMIZED_BOTH);
 		}
 		private void gerarCartas(int xTrans,int yTrans,Deck deck) {
-			//GERA AS CARTAS DA MÃO DO JOGADOR
+
 			int tamanhoCarta=192;
 			for(int i=0;i<5;i++) {
 				JLabelVisualizarCarta carta = new JLabelVisualizarCarta(deck.getPecaLista(i).getNome(),deck.getPecaLista(i).getNomeArquivo(), tamanhoCarta, deck.getIdentificador(),i);
 				carta.setLocation(xTrans+i*(tamanhoCarta+16),yTrans);
+				//ISSO DEIXA TODAS AS CARTAS SEM TEXTURA - PARA TESTE
+				carta.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\Carta.png"));
 				this.add(carta);
 			}
 			
 		}
 		private void gerarSelecionarDecks(int xTrans, int yTrans) {
-			//VOU ALTERAR
 			
-			JLabelInterativa deck1 = new JLabelInterativa("Selecionar Deck 0",192,"Carta");
+			JLabel deck1 = new JLabel();
+			deck1.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\Carta.png"));
+			deck1.setSize(192,192);
+			adicionarMouseListener(deck1);
 			deck1.setLocation(xTrans,150+yTrans);
 			this.add(deck1);
 			
-			JLabelInterativa deck2 = new JLabelInterativa("Selecionar Deck 0",192,"Carta");
+			JLabel deck2 = new JLabel();
 			deck2.setLocation(xTrans,400+yTrans);
+			deck2.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\Carta.png"));
+			deck2.setSize(192,192);
+			adicionarMouseListener(deck2);
 			this.add(deck2);
 
 			
-			JLabelInterativa deck3 = new JLabelInterativa("Selecionar Deck 0",192,"Carta");
+			JLabel deck3 = new JLabel();
 			deck3.setLocation(xTrans,650+yTrans);
+			deck3.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\Carta.png"));
+			deck3.setSize(192,192);
+			adicionarMouseListener(deck3);
 			this.add(deck3);
 			
 		}
 		
 		private void gerarInfos(int xTrans,int yTrans) {
 			//IMG
-			JLabelInterativa picInfo = new JLabelInterativa("Selecionar Deck 0",192,"Carta");
+			JLabel picInfo = new JLabel();
+			picInfo.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\grama.png"));
 			picInfo.setLocation(1625+xTrans,150+yTrans);
+			picInfo.setSize(200,200);
 			this.add(picInfo);
 			//NOME
 			JLabel txtNome = new JLabel("Nome : ");
@@ -106,7 +122,7 @@ public class ScreenSelecaoDeck extends JFrame{
 			txtintVida.setFont(new Font("MV Boli", Font.BOLD,30));
 			this.add(txtintVida);
 			//RESTANTE
-			JLabel txtRest = new JLabel("Restante : ");
+			JLabel txtRest = new JLabel("Quantidade : ");
 			txtRest.setLocation(1550+xTrans,430+yTrans);
 			txtRest.setSize(200,200);
 			txtRest.setFont(new Font("MV Boli", Font.BOLD,30));
@@ -117,9 +133,67 @@ public class ScreenSelecaoDeck extends JFrame{
 			txtintRest.setSize(200,200);
 			txtintRest.setFont(new Font("MV Boli", Font.BOLD,30));
 			this.add(txtintRest);
+			//MOBILIDADE
+			JLabel txtMob = new JLabel("Mobilidade : ");
+			txtMob.setLocation(1550+xTrans,470+yTrans);
+			txtMob.setSize(200,200);
+			txtMob.setFont(new Font("MV Boli", Font.BOLD,30));
+			this.add(txtMob);
 			
+			JLabel txtintMob = new JLabel(this.mobilidadeSelecionada+"");
+			txtintMob.setLocation(1750+xTrans,470+yTrans);
+			txtintMob.setSize(200,200);
+			txtintMob.setFont(new Font("MV Boli", Font.BOLD,30));
+			this.add(txtintMob);			
 			
 			
 		}
+
+		public void alterarSelecionada(Peca peca) {
+			this.mobilidadeSelecionada=peca.getMobilidade();
+			this.ataqueSelecionada=peca.getAtaque();
+			this.vidaSelecionada = peca.getVida();
+			this.nomeSelecionada=peca.getNome();
+			
+		}
+		private void adicionarMouseListener(JLabel jlbl) {
+			jlbl.addMouseListener(new MouseListener() {
+				
+				public void mouseReleased(MouseEvent e) {
+					
+				}
+
+				public void mouseClicked(MouseEvent arg0) {
+
+					System.out.println("CLICOU");
+				}
+
+
+				public void mouseEntered(MouseEvent arg0) {
+
+					
+				}
+
+
+				public void mouseExited(MouseEvent arg0) {
+
+					
+				}
+
+
+				public void mousePressed(MouseEvent arg0) {
+					
+				}
+				
+				
+				
+				
+				
+			});
+			
+			
+		}
+
+
 		
 }

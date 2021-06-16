@@ -9,7 +9,7 @@ public class Deck0 extends Deck{
 		
 		super(0, "Deck0");
 		PecaArqueiro pArq = new PecaArqueiro(1, 1, 1, "Arqueiro","Carta");
-		PecaCavaleiro pCav = new PecaCavaleiro(1, 1, 1, "Cavalo","Carta");
+		PecaCavaleiro pCav = new PecaCavaleiro(1, 1, 1, "Cavaleiro","Carta");
 		PecaGuerreiro pGuerr= new PecaGuerreiro(1, 1, 1, "Guerreiro","Carta");
 		PecaMago pMago= new PecaMago(1, 1, 1, "Mago","Carta");
 		PecaPaladino pPalad = new PecaPaladino(1, 1, 1, "Paladino","Carta");

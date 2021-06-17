@@ -131,7 +131,9 @@ como prosseguir.
 
 # Detalhamento das interfaces
 
-##Interface IPeca
+
+## Interface IPeca
+
 
 A função desta interface é garantir que todas as peças possuam funcionalidades mínimas
 	
@@ -153,9 +155,9 @@ public interface IPeca {
 | validarMovimento  | Verifica se um movimento solicitado é: Válido, Invalo ou contitui um combate, dependendo de como a peça se comporta |
 | gerarPeca | Este método permite colocar a peça da mão no tabuleiro  |
 
-##Interface IJLabelInterativa
+## Interface IJLabelInterativa
 
-	A função desta interface é adaptar JLabels, fazer com que elas sejam responsívais ao mouse
+A função desta interface é adaptar JLabels, fazer com que elas sejam responsívais ao mouse
 	
 ```
 	
@@ -175,3 +177,15 @@ public interface IJlabelInterativa {
 
 
 # Plano de Exceções
+
+![](apresentação/imagens/PlanoExceções/1.PNG)
+
+|Método  | Detalhamento	|
+| ------------- | ------------- |
+| ExcecaoModelo  | Houve algum erro na seção interface-usuário, causada ou não por uma interação do usuário|
+| SelecaoInvalida  | O usuário selecionou alguma casa invalida|
+| PecaDoOponente | O usuario selecionou uma peca do oponente para controlar, o que não pode|
+| NaoHaPecaNaCasa  | O usuario tentou dar comandos a uma peça que não existe, pois a célula alvo era vazia|
+| InformacoesIncompletas  | Alguma caracteristica das peças não foram devidamente carregadas|
+| ValoresInexistentes  | Algum atributo da peça está nulo |
+| FotoInexistente  | A imagem que representa a peça não foi encontrada nos arquivos do jogo|

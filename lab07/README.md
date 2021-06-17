@@ -24,7 +24,7 @@ Vídeo da Prévia
 
 ## Diagramas
 
-![O](apresentação/imagens/ArquiteturaGeral/1.png)
+![O](apresentação/imagens/ArquiteturaGeral/1.PNG)
 
 O diagrama foi dividido em 3 ocasiões, quando o jogador escolhe seu deck(conjunto de cartas), quando o jogador coloca uma peça no tabuleiro e quanto um jogador mexe em uma peça.
 	

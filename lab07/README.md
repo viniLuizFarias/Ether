@@ -24,7 +24,9 @@ Vídeo da Prévia
 
 ## Diagramas
 
-![O](apresentação/imagens/ArquiteturaGeral/1.PNG)
+![](apresentação/imagens/ArquiteturaGeral/1.PNG)
+![](apresentação/imagens/ArquiteturaGeral/2.PNG)
+![](apresentação/imagens/ArquiteturaGeral/3.PNG)
 
 O diagrama foi dividido em 3 ocasiões, quando o jogador escolhe seu deck(conjunto de cartas), quando o jogador coloca uma peça no tabuleiro e quanto um jogador mexe em uma peça.
 	
@@ -42,6 +44,9 @@ entre o Deck e a Interface é para que as informações do deck sejam apresentad
 	
 ## Componente Interface
 
+![](apresentação/imagens/Interface/1.PNG)
+![](apresentação/imagens/Interface/2.PNG)
+
 A interface (gráfica) é o que permite o jogador interagir com o jogo, ela manda informações para o controle, para
 que este resolva os comandos desejados
 
@@ -53,6 +58,8 @@ que este resolva os comandos desejados
 | Interfaces | IJanelaInterativa |
 
 ## Componente Controle
+
+![](apresentação/imagens/Controle/1.PNG)
 
 O controle é como se fosse o "cérebro" do jogo, ele recebe comandos da interface e, junto com outros componentes, gera
 acontecimentos no jogo. Ele funciona como um itermediário entre os componentes, preservando o encapsulamento deles.
@@ -67,6 +74,10 @@ acontecimentos no jogo. Ele funciona como um itermediário entre os componentes,
 
 ## Componente Peça
 
+![](apresentação/imagens/Peça/1.PNG)
+![](apresentação/imagens/Peça/2.PNG)
+
+
 A peça é um componente que serve para armazenar as informações das peças, há no total 15, peças, com cada peça sendo uma
 classe distinta (esta escolha permite que as cartas possuam ações especiais). Em suma, o componente peça representa as peças
 do jogo.
@@ -80,6 +91,8 @@ do jogo.
 
 ## Componente Deck
 
+![](apresentação/imagens/Deck/1.PNG)
+
 O deck guarda as combinações possíveis de peças, cada deck possui 5 peças
 	
 |Item  | Detalhamento	|
@@ -89,6 +102,8 @@ O deck guarda as combinações possíveis de peças, cada deck possui 5 peças
 | Interfaces |  |
 
 ## Componente Jogador
+	
+![](apresentação/imagens/Jogador/1.PNG)
 	
 O componente jogador é responsável por guardar as informações de cada jogador, tais quais as peças que este possui para usar,
 a quantia de peças restantes, a vida , etc.
@@ -101,6 +116,8 @@ a quantia de peças restantes, a vida , etc.
 | Interfaces |  |
 
 ## Componente Tabuleiro
+	
+![](apresentação/imagens/Tabuleiro/1.PNG)
 	
 O tabuleiro é responsável por guardar a posição das peças, além de receber chamadas de movimento do controle e "perguntar" a peça
 como prosseguir.

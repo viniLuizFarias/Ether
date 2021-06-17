@@ -20,25 +20,24 @@ Vídeo da Prévia
 
 ## Diagramas
 
-	O diagrama foi dividido em 3 ocasiões, quando o jogador escolhe seu deck(conjunto de cartas), quando o jogador coloca uma peça no tabuleiro
-e quanto um jogador mexe em uma peça.
+O diagrama foi dividido em 3 ocasiões, quando o jogador escolhe seu deck(conjunto de cartas), quando o jogador coloca uma peça no tabuleiro e quanto um jogador mexe em uma peça.
 	
-	Ao colocar a peça no tabuleiro, a interface envia qual peça foi escolhida e a casa escolhida, após isso, o controle "questiona" o jogador se
-	está dentro do limite de peças.Após isso, o controle enviar o comando para o tabuleiro colocar a peça desejada e ele(controle) atualiza a
-	quantia de peças do jogador. Enquanto isso, o jogador obtém as informações da peça(para ser invocada) e atualiza a interface.
+Ao colocar a peça no tabuleiro, a interface envia qual peça foi escolhida e a casa escolhida, após isso, o controle "questiona" o jogador se
+está dentro do limite de peças.Após isso, o controle enviar o comando para o tabuleiro colocar a peça desejada e ele(controle) atualiza a
+quantia de peças do jogador. Enquanto isso, o jogador obtém as informações da peça(para ser invocada) e atualiza a interface.
 	
-	Ao movimentar a peça, a interface manda para o controle a peça e as casas envolvidas no movimento, após isso, ele pede para o tabuleiro efetuar
-	o movimento, e este, pos sua vez, pede para a peça avaliar se o movimento é válido, não ou se houve combate. Se o movimento for válido, ele ocorre; se
-	ocorrer um combate, o controle receve o retorno do tabuleiro indicando tal, após isso,  o controle pega as peças envolvidas e resolve o combate.
+Ao movimentar a peça, a interface manda para o controle a peça e as casas envolvidas no movimento, após isso, ele pede para o tabuleiro efetuar
+o movimento, e este, pos sua vez, pede para a peça avaliar se o movimento é válido, não ou se houve combate. Se o movimento for válido, ele ocorre; se
+ocorrer um combate, o controle receve o retorno do tabuleiro indicando tal, após isso,  o controle pega as peças envolvidas e resolve o combate.
 	
-	Finalmente, ao escolher o conjunto de cartas, a interface manda o deck escolhido para o controle, este por sua vez vincula o jogador ao deck,
-	recebendo as informações.Após a escolha de deck, o controle fecha a tela de escolha de decks e abre o jogo principal. Observação: A ligação "obter infos"
-	entre o Deck e a Interface é para que as informações do deck sejam apresentadas visualmente.
+Finalmente, ao escolher o conjunto de cartas, a interface manda o deck escolhido para o controle, este por sua vez vincula o jogador ao deck,
+recebendo as informações.Após a escolha de deck, o controle fecha a tela de escolha de decks e abre o jogo principal. Observação: A ligação "obter infos"
+entre o Deck e a Interface é para que as informações do deck sejam apresentadas visualmente.
 	
 ## Componente Interface
 
-	A interface (gráfica) é o que permite o jogador interagir com o jogo, ela manda informações para o controle, para
-	que este resolva os comandos desejados
+A interface (gráfica) é o que permite o jogador interagir com o jogo, ela manda informações para o controle, para
+que este resolva os comandos desejados
 
 	
 |Item  | Detalhamento	|
@@ -49,8 +48,9 @@ e quanto um jogador mexe em uma peça.
 
 ## Componente Controle
 
-	O controle é como se fosse o "cérebro" do jogo, ele recebe comandos da interface e, junto com outros componentes, gera
-	acontecimentos no jogo. Ele funciona como um itermediário entre os componentes, preservando o encapsulamento deles.
+O controle é como se fosse o "cérebro" do jogo, ele recebe comandos da interface e, junto com outros componentes, gera
+acontecimentos no jogo. Ele funciona como um itermediário entre os componentes, preservando o encapsulamento deles.
+
 |Item  | Detalhamento	|
 | ------------- | ------------- |
 | Classe  | mc322.lab07.vision  |
@@ -61,9 +61,9 @@ e quanto um jogador mexe em uma peça.
 
 ## Componente Peça
 
-	A peça é um componente que serve para armazenar as informações das peças, há no total 15, peças, com cada peça sendo uma
-	classe distinta (esta escolha permite que as cartas possuam ações especiais). Em suma, o componente peça representa as peças
-	do jogo.
+A peça é um componente que serve para armazenar as informações das peças, há no total 15, peças, com cada peça sendo uma
+classe distinta (esta escolha permite que as cartas possuam ações especiais). Em suma, o componente peça representa as peças
+do jogo.
 	
 |Item  | Detalhamento	|
 | ------------- | ------------- |
@@ -73,9 +73,10 @@ e quanto um jogador mexe em uma peça.
 
 
 ## Componente Deck
-	O deck guarda as combinações possíveis de peças, cada deck possui 5 peças
+
+O deck guarda as combinações possíveis de peças, cada deck possui 5 peças
 	
-			|Item  | Detalhamento	|
+|Item  | Detalhamento	|
 | ------------- | ------------- |
 | Classe  | mc322.lab07.model  |
 | Autores  |  Renan |
@@ -83,8 +84,8 @@ e quanto um jogador mexe em uma peça.
 
 ## Componente Jogador
 	
-	O componente jogador é responsável por guardar as informações de cada jogador, tais quais as peças que este possui para usar,
-	a quantia de peças restantes, a vida , etc.
+O componente jogador é responsável por guardar as informações de cada jogador, tais quais as peças que este possui para usar,
+a quantia de peças restantes, a vida , etc.
 	
 
 |Item  | Detalhamento	|
@@ -95,8 +96,8 @@ e quanto um jogador mexe em uma peça.
 
 ## Componente Tabuleiro
 	
-	O tabuleiro é responsável por guardar a posição das peças, além de receber chamadas de movimento do controle e "perguntar" a peça
-	como prosseguir.
+O tabuleiro é responsável por guardar a posição das peças, além de receber chamadas de movimento do controle e "perguntar" a peça
+como prosseguir.
 	
 |Item  | Detalhamento	|
 | ------------- | ------------- |
@@ -109,9 +110,9 @@ e quanto um jogador mexe em uma peça.
 
 ##Interface IPeca
 
-	A função desta interface é garantir que todas as peças possuam funcionalidades mínimas
+A função desta interface é garantir que todas as peças possuam funcionalidades mínimas
 	
-	```
+```
 	
 	
 public interface IPeca {
@@ -121,7 +122,7 @@ public interface IPeca {
 }
 
 	
-	```
+```
 	
 |Método  | Detalhamento	|
 | ------------- | ------------- |
@@ -133,7 +134,7 @@ public interface IPeca {
 
 	A função desta interface é adaptar JLabels, fazer com que elas sejam responsívais ao mouse
 	
-	```
+```
 	
 	
 public interface IJlabelInterativa {
@@ -143,7 +144,7 @@ public interface IJlabelInterativa {
 	
 }
 	
-	`` 
+``` 
 	
 |Método  | Detalhamento	|
 | ------------- | ------------- |

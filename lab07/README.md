@@ -13,12 +13,20 @@ Vinícius Luiz Ferreira Farias - 195030
 ## Vídeos do Projeto
 
 Vídeo da Prévia
-*********LINK
+
+[Link do vídeo](apresentação/videos)
+
 ##Slides do Projeto
+
+[Link dos slides](apresentação/slides)
 
 # Documentação dos Componentes
 
 ## Diagramas
+
+!(apresentação/imagens/ArquiteturaGeral/1.png)
+!(apresentação/imagens/ArquiteturaGeral/2.png)
+!(apresentação/imagens/ArquiteturaGeral/3.png)
 
 O diagrama foi dividido em 3 ocasiões, quando o jogador escolhe seu deck(conjunto de cartas), quando o jogador coloca uma peça no tabuleiro e quanto um jogador mexe em uma peça.
 	

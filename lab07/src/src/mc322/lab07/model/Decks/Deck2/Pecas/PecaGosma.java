@@ -33,9 +33,9 @@ public class PecaGosma extends Peca{
 	}
 
 	@Override
-	public int gerarPeca() {
+	public Peca gerarPeca() {
 		// TODO Auto-generated method stub
-		return 0;
+		return new PecaGosma();
 	}
 
 }

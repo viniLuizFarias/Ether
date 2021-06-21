@@ -4,6 +4,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import mc322.lab07.controller.Controle;
 
 public abstract class JLabelInterativa extends JLabel implements IJlabelInterativa{
 	private static final long serialVersionUID = -692369956380797782L;

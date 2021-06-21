@@ -21,7 +21,7 @@ public abstract class Peca implements IPeca{
 	public abstract  int validarMovimento();
 	public abstract  int atacar();
 	public abstract boolean efeito();
-	public abstract int gerarPeca();
+	public abstract Peca gerarPeca();
 	
 
 	public int getVida() {
@@ -67,6 +67,14 @@ public abstract class Peca implements IPeca{
 		this.nomeArquivo=nomeArquivo;
 	}
 	
+
+	public int getQuantidade() {
+		return this.quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
 
 	
 

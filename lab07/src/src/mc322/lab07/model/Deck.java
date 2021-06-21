@@ -6,6 +6,7 @@ public class Deck {
 	protected String nome;
 	protected Peca [] listaPecas = new Peca[5];
 	
+	
 	public Deck(int identificador,String nome) {
 		this.identificador = identificador;
 		this.nome = nome;
@@ -25,5 +26,8 @@ public class Deck {
 	}
 	public String getNome() {
 		return this.nome;
+	}
+	public int getTamanho(){
+		return this.listaPecas.length;
 	}
 }

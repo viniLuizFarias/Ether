@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import mc322.lab07.controller.Controle;
 import mc322.lab07.model.Deck;
 import mc322.lab07.model.Peca;
 import mc322.lab07.model.Decks.Deck0.Deck0;
@@ -15,8 +16,9 @@ import mc322.lab07.model.Decks.Deck2.Deck2;
 
 public class ScreenSelecaoDeck extends JFrame implements IJanela{
 		private String nomeSelecionada="@@";
+		private Controle controle;
 		private int vidaSelecionada,ataqueSelecionada,restanteSelecionada,mobilidadeSelecionada=0;
-		public ScreenSelecaoDeck(int altura, int largura) {
+		public ScreenSelecaoDeck(int altura, int largura,Controle controle) {
 			
 			
 			super();
@@ -25,7 +27,8 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.setLayout(null);
 			this.setVisible(false);
-			
+			this.controle = controle;
+
 			Deck0 deck0 = new Deck0(); 
 			Deck1 deck1 = new Deck1(); 
 			Deck2 deck2 = new Deck2(); 

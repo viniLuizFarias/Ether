@@ -3,24 +3,31 @@ package mc322.lab07.model;
 public class Jogador {
 
 	private int vida;
-	private int qtdTotalPecas;
 	private int identificador;
 	private Peca[] cartas;
+	private int[] quantasPecasDeCada;
+	private Deck deck;
 
-	public Jogador(int vida,int identificador,Peca cartas[]){
+	public Jogador(int vida,int identificador){
 		this.vida = vida;
 		this.identificador = identificador;
-		this.qtdTotalPecas = 0;
-		this.cartas = cartas;
 	}
 	
+	public boolean podePorPeca(int numeroPeca){
+		return quantasPecasDeCada[numeroPeca] < deck.getPecaLista(numeroPeca).getQuantidade();
+	}
 
 
 
 
 
+	public void atualizarNumeroPecas(int numeroCarta){
+		
+	}
 
-
+	public Peca getCarta(int numeroCarta){
+		return cartas[numeroCarta];
+	}
 
 
 	public int getVida() {
@@ -31,14 +38,6 @@ public class Jogador {
 		this.vida = vida;
 	}
 
-	public int getQtdTotalPecas() {
-		return this.qtdTotalPecas;
-	}
-
-	public void setQtdTotalPecas(int qtdTotalPecas) {
-		this.qtdTotalPecas = qtdTotalPecas;
-	}
-
 	public int getIdentificador() {
 		return this.identificador;
 	}
@@ -47,12 +46,16 @@ public class Jogador {
 		this.identificador = identificador;
 	}
 
-	public Peca[] getCartas() {
-		return this.cartas;
+	public Deck getDeck() {
+		return this.deck;
 	}
 
-	public void setCartas(Peca[] cartas) {
-		this.cartas = cartas;
+	public void setDeck(Deck deck) {
+		this.deck = deck;
+		this.quantasPecasDeCada = new int[deck.getTamanho()];
+		for (int i = 0;i<deck.getTamanho();i++){
+			quantasPecasDeCada[i] = 0;
+		}
 	}
 
 	

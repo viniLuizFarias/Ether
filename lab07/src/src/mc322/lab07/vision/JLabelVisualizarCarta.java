@@ -2,6 +2,7 @@ package mc322.lab07.vision;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import mc322.lab07.controller.Controle;
 
 public class JLabelVisualizarCarta extends JLabelInterativa {
 

@@ -1,10 +1,10 @@
 package mc322.lab07.vision;
 import java.awt.Font;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import mc322.lab07.model.Peca;
+import mc322.lab07.controller.Controle;
 
 public class ScreenInGame extends JFrame implements IJanela{
 	
@@ -15,9 +15,9 @@ public class ScreenInGame extends JFrame implements IJanela{
 		//INFOS CARTA
 		private String nome="@@";
 		private int ataque,vida,restante;
+		private Controle controle;
 		
-		
-	public ScreenInGame(int altura, int largura){
+	public ScreenInGame(int altura, int largura,Controle controle){
 		super();
 		this.turno=0;
 		setSize(altura,largura);
@@ -25,7 +25,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
 		this.setVisible(false);
-
+		this.controle = controle;
 		
 		gerarTabuleiro(20, 10,256,180);
 		gerarCartas(286, 0,0);
@@ -40,7 +40,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		//GERA AS CARTAS DA MÃO DO JOGADOR
 		int tamanhoCarta=192;
 		for(int i=0;i<5;i++) {
-			JLabelCarta carta = new JLabelCarta("Carta", tamanhoCarta,idJogador,i,true,"Carta");
+			JLabelCarta carta = new JLabelCarta("Carta", tamanhoCarta,idJogador,i,true,"Carta",controle);
 			carta.setLocation(xTrans+i*(tamanhoCarta+64),yTrans);
 			this.add(carta);
 		}
@@ -51,7 +51,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		int tamanhoCelula = 64;
 		for(int i=0;i<l;i++) {
 			for(int j=0;j<c;j++) {
-				JLabelCelula celula = new JLabelCelula("Celula", i, j,tamanhoCelula,"grama");
+				JLabelCelula celula = new JLabelCelula("Celula", i, j,tamanhoCelula,"grama",controle);
 				celula.setLocation(xTrans+i*tamanhoCelula, yTrans+j*tamanhoCelula);
 				this.add(celula);
 			}
@@ -62,7 +62,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		//GERA AS CARTAS DA MÃO DO JOGADOR
 		int tamanhoCarta=192;
 		for(int i=0;i<5;i++) {
-			JLabelCarta carta = new JLabelCarta("Carta", tamanhoCarta,0,i,true,"Carta");
+			JLabelCarta carta = new JLabelCarta("Carta", tamanhoCarta,0,i,true,"Carta",controle);
 			carta.setLocation(xTrans+i*(tamanhoCarta+64),yTrans);
 			this.add(carta);
 		}
@@ -71,7 +71,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 	
 	private void gerarInfos(int xTrans,int yTrans) {
 		//IMG
-		JLabelCarta picInfo = new JLabelCarta("Carta",192,1, 1, true, "Carta");
+		JLabelCarta picInfo = new JLabelCarta("Carta",192,1, 1, true, "Carta",controle);
 		picInfo.setLocation(1625,150);
 		this.add(picInfo);
 		//NOME

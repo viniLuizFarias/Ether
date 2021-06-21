@@ -3,10 +3,17 @@ package mc322.lab07.model;
 public class Tabuleiro {
     int altura;
     int largura;
+    int maximoPecasPorPlayer;
+    int[] qtdPecasPlayer;
     Casa[][] casas;
-    public Tabuleiro(int altura,int largura){
+
+    public Tabuleiro(int altura,int largura,int maximoPecasPorPlayer){
         this.altura = altura;
         this.largura = largura;
+        this.maximoPecasPorPlayer = maximoPecasPorPlayer;
+        this.qtdPecasPlayer = new int[2];
+        this.qtdPecasPlayer[0] = 0;
+        this.qtdPecasPlayer[1] = 0;
         this.casas= new Casa[altura][largura];
         for (int linha = 0;linha<altura;linha++){
             for(int coluna=0;coluna<largura;coluna++){
@@ -22,12 +29,12 @@ public class Tabuleiro {
         }
         return true;
     }
-    private Casa casaAt(int[] pos){
+    public Casa casaAt(int[] pos){
         return casas[pos[0]][pos[1]];
     }
 
     public boolean casaVazia(int[] pos){
-        return casas[pos[0]][pos[1]].vazia();
+        return casaAt(pos).vazia();
     } 
 
     public int executarAcaoPeca(int[] pos1,int[] pos2 ){
@@ -44,12 +51,53 @@ public class Tabuleiro {
         return pecaEscolhida.validarMovimento();
     }
 
-    public boolean colocarPeca(Peca tipo_de_peca,int[] pos){
-        if (casaVazia(pos)){
-            System.out.println("Nao há peça na casa escolhida");
+    public boolean colocarPeca(Peca tipo_de_peca,int[] pos,int numeroPlayer){
+        if (!casaVazia(pos)){
+            System.out.println("Já há uma peça na casa escolhida");
             return false;
         }
+        if (this.qtdPecasPlayer[numeroPlayer]>=this.maximoPecasPorPlayer){
+            System.out.println("Player já está no limite máximo de peças");
+            return false;
+        }
+        atualizarInterfaceGrafica(pos);
         casaAt(pos).setPeca(tipo_de_peca);
         return true;
+    }
+
+    public void atualizarInterfaceGrafica(int[] coords){
+
+    }
+
+    public int getAltura() {
+        return this.altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
+
+    public int getLargura() {
+        return this.largura;
+    }
+
+    public void setLargura(int largura) {
+        this.largura = largura;
+    }
+
+    public int getMaximoPecasPorPlayer() {
+        return this.maximoPecasPorPlayer;
+    }
+
+    public void setMaximoPecasPorPlayer(int maximoPecasPorPlayer) {
+        this.maximoPecasPorPlayer = maximoPecasPorPlayer;
+    }
+
+    public Casa[][] getCasas() {
+        return this.casas;
+    }
+
+    public void setCasas(Casa[][] casas) {
+        this.casas = casas;
     }
 }

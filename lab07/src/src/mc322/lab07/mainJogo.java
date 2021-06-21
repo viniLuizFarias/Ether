@@ -12,12 +12,12 @@ public class MainJogo {
 	public static void main(String[] args) {
 		//ESCOLHER CARTAS
 		//Peca[][] cartas = escolherCartas();
-		Tabuleiro tabuleiro = new Tabuleiro(20,10);
+		Tabuleiro tabuleiro = new Tabuleiro(20,10,8);
 		//Controle controle = new Controle(40,cartas,tabuleiro);
 		
-		Controle controle = new Controle();
-		ScreenInGame janelaInGame = new ScreenInGame(1920,1080);
-		ScreenSelecaoDeck janelaDeck = new ScreenSelecaoDeck(1920,1080);
+		Controle controle = new Controle(50,tabuleiro);
+		ScreenInGame janelaInGame = new ScreenInGame(1920,1080,controle);
+		ScreenSelecaoDeck janelaDeck = new ScreenSelecaoDeck(1920,1080,controle);
 		
 		controle.setJanelaInGame(janelaInGame);
 		controle.setJanelaSelecaoDeck(janelaDeck);

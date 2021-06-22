@@ -56,27 +56,27 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 		}
 		private void gerarSelecionarDecks(int xTrans, int yTrans) {
 			
+			JLabel deck0 = new JLabel();
+			deck0.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\Carta.png"));
+			deck0.setSize(192,192);
+			adicionarMouseListener(deck0,new Deck0());
+			deck0.setLocation(xTrans,150+yTrans);
+			this.add(deck0);
+			
 			JLabel deck1 = new JLabel();
+			deck1.setLocation(xTrans,400+yTrans);
 			deck1.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\Carta.png"));
 			deck1.setSize(192,192);
-			adicionarMouseListener(deck1);
-			deck1.setLocation(xTrans,150+yTrans);
+			adicionarMouseListener(deck1,new Deck1());
 			this.add(deck1);
-			
-			JLabel deck2 = new JLabel();
-			deck2.setLocation(xTrans,400+yTrans);
-			deck2.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\Carta.png"));
-			deck2.setSize(192,192);
-			adicionarMouseListener(deck2);
-			this.add(deck2);
 
 			
-			JLabel deck3 = new JLabel();
-			deck3.setLocation(xTrans,650+yTrans);
-			deck3.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\Carta.png"));
-			deck3.setSize(192,192);
-			adicionarMouseListener(deck3);
-			this.add(deck3);
+			JLabel deck2 = new JLabel();
+			deck2.setLocation(xTrans,650+yTrans);
+			deck2.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\Carta.png"));
+			deck2.setSize(192,192);
+			adicionarMouseListener(deck2,new Deck2());
+			this.add(deck2);
 			
 		}
 		
@@ -159,7 +159,7 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 			this.nomeSelecionada=peca.getNome();
 			
 		}
-		private void adicionarMouseListener(JLabel jlbl) {
+		private void adicionarMouseListener(JLabel jlbl, Deck deck) {
 			jlbl.addMouseListener(new MouseListener() {
 				
 				public void mouseReleased(MouseEvent e) {
@@ -168,7 +168,8 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 
 				public void mouseClicked(MouseEvent arg0) {
 
-					System.out.println("CLICOU");
+					System.out.println("CLICOU NO DECK: "+  deck.getIdentificador());
+					controle.setDeckSelecionado(deck);
 				}
 
 

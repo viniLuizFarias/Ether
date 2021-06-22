@@ -25,6 +25,8 @@ public abstract class Peca implements IPeca{
 	public abstract Peca gerarPeca();
 	
 	public boolean validarMovimento(int[] coords){
+		//@@@@@@@@@ TEM QUE IMPLEMENTAR
+		return false;
 
 	}
 

@@ -12,6 +12,8 @@ public class Controle {
     private int numeroPAtual;
     private Jogador[] jogadores;
     
+    private Deck deckSelecionado;
+    
 	private JFrame screenInGame;
 	private JFrame screenSelecaoDeck;
     private int tipoAcaoAnterior; // -1 -> nenhuma acao jogada, 0-> carta clicada, 1 -> celula clicada
@@ -77,6 +79,10 @@ public class Controle {
     public void alterarSelecionada(Peca peca, JFrame janela) {
     	
     	
+    }
+    public void setDeckSelecionado(Deck deckSelecionado) {
+    	
+    	this.deckSelecionado = deckSelecionado;
     }
 
     public void celulaSelecionada(int[] coord){

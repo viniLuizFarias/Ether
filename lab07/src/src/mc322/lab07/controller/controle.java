@@ -63,8 +63,15 @@ public class Controle {
         return true;
 
     }
-    public void utilizarPeca(int[] coords1,int[] coords2){
-
+    public void moverPeca(int[] coords1,int[] coords2){
+        if(tabuleiro.moverPeca(coords1, coords2)){
+            trocarJogadorAtual();
+        }
+    }
+    public void ataquePeca(int[] coords1,int[] coords2){
+        if(tabuleiro.ataquePeca(coords1, coords2)){
+            trocarJogadorAtual();
+        }
     }
 
     public void alterarSelecionada(Peca peca, JFrame janela) {
@@ -75,16 +82,19 @@ public class Controle {
     public void celulaSelecionada(int[] coord){
         if(tabuleiro.casaVazia(coord)){
 
-            if(tipoAcaoAnterior == 0)
+            if(tipoAcaoAnterior == 0){
                 colocarPeca(coordAcaoAnterior[1],coord);
+                return;
+            }
             else if(tipoAcaoAnterior == 1)
-                utilizarPeca(coordAcaoAnterior,coord);
+                moverPeca(coordAcaoAnterior,coord);
             
         }else{
 
-            if(tipoAcaoAnterior == 1)
-                utilizarPeca(coordAcaoAnterior,coord);
-
+            if(tipoAcaoAnterior == 1){
+                ataquePeca(coordAcaoAnterior,coord);
+                return;
+            }
             else if(tipoAcaoAnterior == -1){
                 if(tabuleiro.casaAt(coord).getPeca().getPlayer() == numeroPAtual){
                     tipoAcaoAnterior = 1;

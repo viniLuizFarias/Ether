@@ -1,6 +1,8 @@
 package mc322.lab07.model;
 
 public abstract class Peca implements IPeca{
+	protected int linha;
+	protected int coluna;
 	protected int vida;
 	protected int ataque;
 	protected int mobilidade;
@@ -18,15 +20,22 @@ public abstract class Peca implements IPeca{
 		this.nomeArquivo=nomeArquivo;
 		
 	}
-	public abstract  int validarMovimento();
 	public abstract  int atacar();
 	public abstract boolean efeito();
 	public abstract Peca gerarPeca();
 	
+	public boolean validarMovimento(int[] coords){
+
+	}
 
 	public int getVida() {
 	
 		return this.vida;
+	}
+
+	public void setPosicao(int[] coord){
+		this.linha = coord[0];
+		this.coluna = coord[1];
 	}
 
 	public void setVida(int vida) {

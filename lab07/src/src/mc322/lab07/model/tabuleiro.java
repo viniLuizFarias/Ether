@@ -37,7 +37,23 @@ public class Tabuleiro {
         return casaAt(pos).vazia();
     } 
 
-    public int executarAcaoPeca(int[] pos1,int[] pos2 ){
+    public boolean moverPeca(int[] pos1,int[] pos2 ){
+
+        if ( !(posicaoValida(pos1) && posicaoValida(pos2)) )  {
+            System.out.println("Posicoes Invalidas");
+            return 0;
+        }
+        if (casaVazia(pos1)){
+            System.out.println("Nao há peça na casa escolhida");
+            return 0;
+        }
+        Peca pecaEscolhida = this.casas[pos1[0]][pos1[1]].getPeca();
+        if(!pecaEscolhida.validarMovimento(pos2)){
+
+        }
+    }
+
+    public boolean ataquePeca(int[] pos1,int[] pos2 ){
 
         if ( !(posicaoValida(pos1) && posicaoValida(pos2)) )  {
             System.out.println("Posicoes Invalidas");

@@ -5,12 +5,12 @@ import mc322.lab07.model.Peca;
 public class PecaTartaruga extends Peca{
 	
 	
-	public PecaTartaruga(int vida,int ataque,int mobilidade,String nome,String nomeArquivo) {
-		super(vida, ataque, mobilidade, nome, nomeArquivo);
+	public PecaTartaruga(int vida,int ataque,int mobilidade,String nome,String nomeArquivo,int qtdMax) {
+		super(vida, ataque, mobilidade, nome, nomeArquivo,qtdMax);
 		
 	}
 	public PecaTartaruga() {
-		super(1, 1, 1, "Tartaruga", "Tartaruga");
+		super(1, 1, 1, "Tartaruga", "Carta",5);
 		
 	}
 

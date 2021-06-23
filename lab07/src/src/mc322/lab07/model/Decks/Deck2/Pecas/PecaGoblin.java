@@ -4,12 +4,12 @@ import mc322.lab07.model.Peca;
 
 public class PecaGoblin extends Peca{
 
-	public PecaGoblin(int vida,int ataque,int mobilidade,String nome,String nomeArquivo) {
-		super(vida, ataque, mobilidade, nome, nomeArquivo);
+	public PecaGoblin(int vida,int ataque,int mobilidade,String nome,String nomeArquivo,int qtdMax) {
+		super(vida, ataque, mobilidade, nome, nomeArquivo,qtdMax);
 		
 	}
 	public PecaGoblin() {
-		super(1, 1, 1, "Goblin", "Goblin");
+		super(1, 1, 1, "Goblin", "Carta",6);
 		
 	}
 

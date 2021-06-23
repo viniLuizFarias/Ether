@@ -4,12 +4,12 @@ import mc322.lab07.model.Peca;
 
 public class PecaVampiro extends Peca{
 
-	public PecaVampiro(int vida,int ataque,int mobilidade,String nome,String nomeArquivo) {
-		super(vida, ataque, mobilidade, nome, nomeArquivo);
+	public PecaVampiro(int vida,int ataque,int mobilidade,String nome,String nomeArquivo,int qtdMax) {
+		super(vida, ataque, mobilidade, nome, nomeArquivo,qtdMax);
 		
 	}
 	public PecaVampiro() {
-		super(1, 1, 1, "Vampiro", "Vampiro");
+		super(1, 1, 1, "Vampiro", "Carta",2);
 		
 	}
 

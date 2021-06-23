@@ -6,12 +6,12 @@ public class PecaAguia extends Peca{
 
 	
 	
-	public PecaAguia(int vida,int ataque,int mobilidade,String nome,String nomeArquivo) {
-		super(vida, ataque, mobilidade, nome, nomeArquivo);
+	public PecaAguia(int vida,int ataque,int mobilidade,String nome,String nomeArquivo,int qtdMax) {
+		super(vida, ataque, mobilidade, nome, nomeArquivo,qtdMax);
 		
 	}
 	public PecaAguia() {
-		super(1, 1, 1, "Aguia", "Aguia");
+		super(1, 1, 1, "Aguia", "Carta",4);
 		
 	}
 

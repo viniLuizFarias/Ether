@@ -14,7 +14,8 @@ public class Jogador {
 	}
 	
 	public boolean podePorPeca(int numeroPeca){
-		return quantasPecasDeCada[numeroPeca] < deck.getPecaLista(numeroPeca).getQuantidade();
+		System.out.println(deck.getPecaLista(numeroPeca).getqtdMax());
+		return quantasPecasDeCada[numeroPeca] < deck.getPecaLista(numeroPeca).getqtdMax();
 	}
 
 

@@ -7,24 +7,31 @@ public abstract class Peca implements IPeca{
 	protected int ataque;
 	protected int mobilidade;
 	protected int player;
-	protected int quantidade;
+	protected int qtdMax;
 	protected String nome;
 	protected Tabuleiro tabuleiro;
 	protected String nomeArquivo;
 	
-	public Peca(int vida,int ataque,int mobilidade,String nome,String nomeArquivo) {
+	public Peca(int vida,int ataque,int mobilidade,String nome,String nomeArquivo,int qtdMax) {
 		this.vida=vida;
 		this.ataque=ataque;
 		this.mobilidade=mobilidade;
 		this.nome = nome;
 		this.nomeArquivo=nomeArquivo;
+		this.qtdMax=qtdMax;
 		
 	}
-	public abstract  int atacar();
+	public abstract  int atacar(Peca peca);
 	public abstract boolean efeito();
 	public abstract Peca gerarPeca();
 	
 	public boolean validarMovimento(int[] coords){
+		//@@@@@@@@@ TEM QUE IMPLEMENTAR
+		return false;
+
+	}
+
+	public boolean validarAtaque(int[] coords){
 		//@@@@@@@@@ TEM QUE IMPLEMENTAR
 		return false;
 
@@ -79,12 +86,12 @@ public abstract class Peca implements IPeca{
 	}
 	
 
-	public int getQuantidade() {
-		return this.quantidade;
+	public int getqtdMax() {
+		return this.qtdMax;
 	}
 
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
+	public void setqtdMax(int qtdMax) {
+		this.qtdMax = qtdMax;
 	}
 
 	

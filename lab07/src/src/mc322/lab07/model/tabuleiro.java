@@ -41,30 +41,42 @@ public class Tabuleiro {
 
         if ( !(posicaoValida(pos1) && posicaoValida(pos2)) )  {
             System.out.println("Posicoes Invalidas");
-            return 0;
+            return false;
         }
         if (casaVazia(pos1)){
             System.out.println("Nao há peça na casa escolhida");
-            return 0;
+            return false;
         }
         Peca pecaEscolhida = this.casas[pos1[0]][pos1[1]].getPeca();
         if(!pecaEscolhida.validarMovimento(pos2)){
-
+            casaAt(pos2).setPeca(pecaEscolhida);
+            casaAt(pos1).esvaziar();
+            return true;
         }
+        System.out.println("peca nao validou o movimento");
+        return false;
     }
 
     public boolean ataquePeca(int[] pos1,int[] pos2 ){
 
         if ( !(posicaoValida(pos1) && posicaoValida(pos2)) )  {
             System.out.println("Posicoes Invalidas");
-            return 0;
+            return false;
         }
-        if (casaVazia(pos1)){
+        if (casaVazia(pos1) || casaVazia(pos2)){
             System.out.println("Nao há peça na casa escolhida");
-            return 0;
+            return false;
         }
-        Peca pecaEscolhida = this.casas[pos1[0]][pos1[1]].getPeca();
-        return pecaEscolhida.validarMovimento();
+        Peca pecaEscolhida = casaAt(pos1).getPeca();
+        if(!pecaEscolhida.validarAtaque(pos2)){
+            System.out.println("A peca falou que o ataque [e] inválido");
+            return false;
+        }
+        pecaEscolhida.atacar(casaAt(pos2).getPeca());
+        if(casaAt(pos2).getPeca().getVida()<0){
+            casaAt(pos2).esvaziar();
+        }
+        return true;
     }
 
     public boolean colocarPeca(Peca tipo_de_peca,int[] pos,int numeroPlayer){
@@ -115,5 +127,16 @@ public class Tabuleiro {
 
     public void setCasas(Casa[][] casas) {
         this.casas = casas;
+    }
+    public void mostrarNoTerminal(){
+        for(int i = 0;i<altura;i++){
+            for(int j=0;j<largura;j++){
+                int[] coord = {i,j};
+                if(casaVazia(coord))
+                    System.out.println("-");
+                else
+                    System.out.println("P");
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@ public class Controle {
     private int numeroPAtual;
     private Jogador[] jogadores;
     
-    private Deck deckSelecionado;
+    private int qtdDecksEscolhidos;
     
 	private JFrame screenInGame;
 	private JFrame screenSelecaoDeck;
@@ -27,6 +27,7 @@ public class Controle {
         this.jogadores[0] = new Jogador(vida,0); 
         this.jogadores[1] = new Jogador(vida,1);
         this.tipoAcaoAnterior = -1;
+        this.qtdDecksEscolhidos = 0;
     }
     public Controle(){}
     
@@ -47,11 +48,12 @@ public class Controle {
         else
             numeroPAtual = 0;
         this.tipoAcaoAnterior = -1;
+        tabuleiro.mostrarNoTerminal();
     }
 
     public boolean colocarPeca(int numeroCarta,int[] coordenadas){
         Jogador jogador = jogadores[numeroPAtual];
-        if(!jogador.podePorPeca(tabuleiro.getMaximoPecasPorPlayer())){
+        if(!jogador.podePorPeca(numeroCarta)){
             System.out.println("JOGADOR TENTANDO COLOCAR PECAS ALEM DO LIMITE DA PECA");
             return false;
         }
@@ -81,8 +83,14 @@ public class Controle {
     	
     }
     public void setDeckSelecionado(Deck deckSelecionado) {
-    	
-    	this.deckSelecionado = deckSelecionado;
+        this.jogadores[numeroPAtual].setDeck(deckSelecionado);
+        this.qtdDecksEscolhidos += 1;
+        trocarJogadorAtual();
+        if (this.qtdDecksEscolhidos == 2){
+            ScreenInGame janelaInGame = new ScreenInGame(1920,1080,this);
+            setJanelaInGame(janelaInGame);
+            abrirJanela(janelaInGame);
+        }
     }
 
     public void celulaSelecionada(int[] coord){
@@ -127,5 +135,34 @@ public class Controle {
             tipoAcaoAnterior = 0;
             coordAcaoAnterior = coord;
         }
+    }
+
+
+    public Tabuleiro getTabuleiro() {
+        return this.tabuleiro;
+    }
+
+    public void setTabuleiro(Tabuleiro tabuleiro) {
+        this.tabuleiro = tabuleiro;
+    }
+
+    public int getNumeroPAtual() {
+        return this.numeroPAtual;
+    }
+
+    public void setNumeroPAtual(int numeroPAtual) {
+        this.numeroPAtual = numeroPAtual;
+    }
+
+    public Jogador[] getJogadores() {
+        return this.jogadores;
+    }
+
+    public void setJogadores(Jogador[] jogadores) {
+        this.jogadores = jogadores;
+    }
+
+    public Jogador getJogador(int numero) {
+        return this.jogadores[numero];
     }
 }

@@ -3,13 +3,13 @@ package mc322.lab07.model.Decks.Deck0.Pecas;
 import mc322.lab07.model.Peca;
 
 public class PecaPaladino extends Peca{
-	public PecaPaladino(int vida,int ataque,int mobilidade,String nome,String nomeArquivo) {
-		super(vida, ataque, mobilidade, nome, nomeArquivo);
+	public PecaPaladino(int vida,int ataque,int mobilidade,String nome,String nomeArquivo,int qtdMax) {
+		super(vida, ataque, mobilidade, nome, nomeArquivo,qtdMax);
 		
 	}
 
 	public PecaPaladino() {
-		super(1, 1, 1, "Paladino", "Paladino");
+		super(1, 1, 1, "Paladino", "Carta",3);
 		
 	}
 	public int validarMovimento() {

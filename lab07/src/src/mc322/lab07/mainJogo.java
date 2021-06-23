@@ -16,15 +16,17 @@ public class MainJogo {
 		//Controle controle = new Controle(40,cartas,tabuleiro);
 		
 		Controle controle = new Controle(50,tabuleiro);
-		ScreenInGame janelaInGame = new ScreenInGame(1920,1080,controle);
-		ScreenSelecaoDeck janelaDeck = new ScreenSelecaoDeck(1920,1080,controle);
-		
-		controle.setJanelaInGame(janelaInGame);
-		controle.setJanelaSelecaoDeck(janelaDeck);
-		
-		controle.abrirJanela(janelaDeck);
-		controle.abrirJanela(janelaInGame);
 
+		ScreenSelecaoDeck janelaDeck = new ScreenSelecaoDeck(1920,1080,controle);
+		controle.setJanelaSelecaoDeck(janelaDeck);
+		controle.abrirJanela(janelaDeck);
+
+
+		/*
+		ScreenInGame janelaInGame = new ScreenInGame(1920,1080,controle);
+		controle.setJanelaInGame(janelaInGame);
+		controle.abrirJanela(janelaInGame);
+		*/
 	}
 
 }

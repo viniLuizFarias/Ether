@@ -4,12 +4,12 @@ import mc322.lab07.model.Peca;
 
 public class PecaZumbi extends Peca{
 
-	public PecaZumbi(int vida,int ataque,int mobilidade,String nome,String nomeArquivo) {
-		super(vida, ataque, mobilidade, nome, nomeArquivo);
+	public PecaZumbi(int vida,int ataque,int mobilidade,String nome,String nomeArquivo,int qtdMax) {
+		super(vida, ataque, mobilidade, nome, nomeArquivo,qtdMax);
 		
 	}
 	public PecaZumbi() {
-		super(1, 1, 1, "Zumbi", "Zumbi");
+		super(1, 1, 1, "Zumbi", "Carta",4);
 		
 	}
 

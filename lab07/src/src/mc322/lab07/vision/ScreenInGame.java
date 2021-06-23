@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 
 import mc322.lab07.model.Peca;
 import mc322.lab07.controller.Controle;
+import mc322.lab07.model.Deck;
+import mc322.lab07.model.Jogador;
 
 public class ScreenInGame extends JFrame implements IJanela{
 	
@@ -28,19 +30,22 @@ public class ScreenInGame extends JFrame implements IJanela{
 		this.controle = controle;
 		
 		gerarTabuleiro(20, 10,256,180);
-		gerarCartas(286, 0,0);
-		gerarCartas(286, 820,1);
+		gerarCartas(286, 0,0,controle.getJogador(0).getDeck());
+		gerarCartas(286, 820,1,controle.getJogador(1).getDeck());
 		gerarScoreboard(25,100);
 		gerarInfos(0, 0);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 	}
 	
-	private void gerarCartas(int xTrans,int yTrans,int idJogador) {
+	private void gerarCartas(int xTrans,int yTrans,int idJogador,Deck deck) {
 		//GERA AS CARTAS DA MÃO DO JOGADOR
 		int tamanhoCarta=192;
 		for(int i=0;i<5;i++) {
-			JLabelCarta carta = new JLabelCarta("Carta", tamanhoCarta,idJogador,i,true,"Carta",controle);
+			System.out.println(idJogador);
+			String nomeArq = deck.getPecaLista(i).getNomeArquivo();
+			System.out.println(nomeArq);
+			JLabelCarta carta = new JLabelCarta("Carta", tamanhoCarta,idJogador,i,true,nomeArq,controle);
 			carta.setLocation(xTrans+i*(tamanhoCarta+64),yTrans);
 			this.add(carta);
 		}

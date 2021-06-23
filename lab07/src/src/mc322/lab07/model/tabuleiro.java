@@ -7,7 +7,7 @@ public class Tabuleiro {
     int[] qtdPecasPlayer;
     Casa[][] casas;
 
-    public Tabuleiro(int altura,int largura,int maximoPecasPorPlayer){
+    public Tabuleiro(int largura,int altura,int maximoPecasPorPlayer){
         this.altura = altura;
         this.largura = largura;
         this.maximoPecasPorPlayer = maximoPecasPorPlayer;
@@ -129,14 +129,17 @@ public class Tabuleiro {
         this.casas = casas;
     }
     public void mostrarNoTerminal(){
+        System.out.println("Estado atual:");
         for(int i = 0;i<altura;i++){
             for(int j=0;j<largura;j++){
                 int[] coord = {i,j};
                 if(casaVazia(coord))
-                    System.out.println("-");
+                    System.out.print("-");
                 else
-                    System.out.println("P");
+                    System.out.print("P");
             }
+            System.out.println("");
         }
+        System.out.println("");
     }
 }

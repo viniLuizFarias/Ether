@@ -42,9 +42,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		//GERA AS CARTAS DA MÃO DO JOGADOR
 		int tamanhoCarta=192;
 		for(int i=0;i<5;i++) {
-			System.out.println(idJogador);
 			String nomeArq = deck.getPecaLista(i).getNomeArquivo();
-			System.out.println(nomeArq);
 			JLabelCarta carta = new JLabelCarta("Carta", tamanhoCarta,idJogador,i,true,nomeArq,controle);
 			carta.setLocation(xTrans+i*(tamanhoCarta+64),yTrans);
 			this.add(carta);

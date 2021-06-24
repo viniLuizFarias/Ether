@@ -35,4 +35,11 @@ public class PecaGuerreiro extends Peca{
 		// TODO Auto-generated method stub
 		return new PecaGuerreiro();
 	}
+
+
+	@Override
+	public int atacar(Peca peca) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

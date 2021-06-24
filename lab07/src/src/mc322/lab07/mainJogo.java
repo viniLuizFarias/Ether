@@ -25,8 +25,10 @@ public class MainJogo {
 		/*
 		ScreenInGame janelaInGame = new ScreenInGame(1920,1080,controle);
 		controle.setJanelaInGame(janelaInGame);
-		controle.abrirJanela(janelaInGame);
-		*/
+		//controle.abrirJanela(janelaInGame);
+		 */
+		 
+		
 	}
 
 }

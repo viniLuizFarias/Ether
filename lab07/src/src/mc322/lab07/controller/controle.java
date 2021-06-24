@@ -23,6 +23,7 @@ public class Controle {
 
     	this.numeroPAtual = 0;
         this.tabuleiro = tabuleiro;
+        tabuleiro.setControle(this);
         this.jogadores = new Jogador[2];
         this.jogadores[0] = new Jogador(vida,0); 
         this.jogadores[1] = new Jogador(vida,1);
@@ -33,6 +34,9 @@ public class Controle {
     
     public void setJanelaInGame(JFrame screenInGame) {
     	this.screenInGame = screenInGame;
+    }
+    public ScreenInGame getJanelaInGame() {
+    return this.getJanelaInGame();
     }
     public void setJanelaSelecaoDeck(JFrame screenSelecaoDeck) {
     	this.screenSelecaoDeck=screenSelecaoDeck;
@@ -89,7 +93,9 @@ public class Controle {
         if (this.qtdDecksEscolhidos == 2){
             ScreenInGame janelaInGame = new ScreenInGame(1920,1080,this);
             setJanelaInGame(janelaInGame);
-            abrirJanela(janelaInGame);
+            screenSelecaoDeck.setVisible(false);
+            abrirJanela(this.screenInGame);
+            
         }
     }
 

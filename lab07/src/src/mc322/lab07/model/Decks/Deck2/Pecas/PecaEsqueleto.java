@@ -9,7 +9,7 @@ public class PecaEsqueleto extends Peca{
 		
 	}
 	public PecaEsqueleto(){
-		super(1, 1, 1, "Esqueleto", "Carta",6);
+		super(1, 1, 1, "Esqueleto", "Esqueleto",6);
 		
 	}
 
@@ -35,6 +35,11 @@ public class PecaEsqueleto extends Peca{
 	public Peca gerarPeca() {
 		// TODO Auto-generated method stub
 		return new PecaEsqueleto();
+	}
+	@Override
+	public int atacar(Peca peca) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

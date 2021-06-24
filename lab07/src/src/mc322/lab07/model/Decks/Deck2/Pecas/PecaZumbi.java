@@ -9,7 +9,7 @@ public class PecaZumbi extends Peca{
 		
 	}
 	public PecaZumbi() {
-		super(1, 1, 1, "Zumbi", "Carta",4);
+		super(1, 1, 1, "Zumbi", "Zumbi",4);
 		
 	}
 
@@ -35,6 +35,11 @@ public class PecaZumbi extends Peca{
 	public Peca gerarPeca() {
 		// TODO Auto-generated method stub
 		return new PecaZumbi();
+	}
+	@Override
+	public int atacar(Peca peca) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

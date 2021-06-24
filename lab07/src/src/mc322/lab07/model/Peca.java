@@ -93,6 +93,7 @@ public abstract class Peca implements IPeca{
 	public void setqtdMax(int qtdMax) {
 		this.qtdMax = qtdMax;
 	}
+	
 
 	
 

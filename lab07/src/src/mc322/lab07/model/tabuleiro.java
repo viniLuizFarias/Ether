@@ -1,15 +1,21 @@
 package mc322.lab07.model;
 
-public class Tabuleiro {
-    int altura;
-    int largura;
-    int maximoPecasPorPlayer;
-    int[] qtdPecasPlayer;
-    Casa[][] casas;
+import mc322.lab07.controller.Controle;
+import mc322.lab07.vision.JLabelCelula;
+import mc322.lab07.vision.ScreenInGame;
 
+public class Tabuleiro {
+    private int altura;
+    private int largura;
+    private int maximoPecasPorPlayer;
+    private int[] qtdPecasPlayer;
+    private Controle controle;
+    private Casa[][] casas;
+    
     public Tabuleiro(int largura,int altura,int maximoPecasPorPlayer){
         this.altura = altura;
         this.largura = largura;
+        this.controle=controle;
         this.maximoPecasPorPlayer = maximoPecasPorPlayer;
         this.qtdPecasPlayer = new int[2];
         this.qtdPecasPlayer[0] = 0;
@@ -23,6 +29,11 @@ public class Tabuleiro {
 
     }
 
+    public void atualizarCasaTabuleiroVisual(int linha,int coluna){
+    	//Isso vai atualizar a interface com base no que tem no tabuleiro
+    	controle.getJanelaInGame().atualizarCasaTabuleiroVisual(linha, coluna);
+    	
+    }
     private boolean posicaoValida(int[] pos){
         if ((0>pos[0]||this.altura-1<pos[0])||(0>pos[1]||this.largura-1<pos[1])){
             return false;
@@ -36,7 +47,9 @@ public class Tabuleiro {
     public boolean casaVazia(int[] pos){
         return casaAt(pos).vazia();
     } 
-
+    public void setControle(Controle controle) {
+    	this.controle=controle;
+    }
     public boolean moverPeca(int[] pos1,int[] pos2 ){
 
         if ( !(posicaoValida(pos1) && posicaoValida(pos2)) )  {

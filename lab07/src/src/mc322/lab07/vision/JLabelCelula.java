@@ -2,6 +2,7 @@ package mc322.lab07.vision;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import mc322.lab07.controller.Controle;
+import mc322.lab07.model.Peca;
 
 public class JLabelCelula extends JLabelInterativa{
 	int linha,coluna;
@@ -16,7 +17,7 @@ public class JLabelCelula extends JLabelInterativa{
 
 	}
 
-	@Override
+
 	public void tornarInterativa() {
 		
 		
@@ -29,7 +30,7 @@ public class JLabelCelula extends JLabelInterativa{
 			}
 
 			public void mouseClicked(MouseEvent arg0) {
-
+				
 				
 			}
 

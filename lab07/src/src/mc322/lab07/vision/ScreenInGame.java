@@ -1,9 +1,12 @@
 package mc322.lab07.vision;
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import mc322.lab07.model.Peca;
+import mc322.lab07.model.Tabuleiro;
 import mc322.lab07.controller.Controle;
 import mc322.lab07.model.Deck;
 import mc322.lab07.model.Jogador;
@@ -16,9 +19,12 @@ public class ScreenInGame extends JFrame implements IJanela{
 		
 		//INFOS CARTA
 		private String nome="@@";
-		private int ataque,vida,restante;
+		private int ataque,vida,restante,mobilidade;
 		private Controle controle;
 		
+		//Comunicação e estrutura com o tabuleiro
+		private Tabuleiro tabuleiro;
+		private JLabelCelula tabuleiroVisual[][];
 	public ScreenInGame(int altura, int largura,Controle controle){
 		super();
 		this.turno=0;
@@ -28,6 +34,8 @@ public class ScreenInGame extends JFrame implements IJanela{
 		this.setLayout(null);
 		this.setVisible(false);
 		this.controle = controle;
+		this.tabuleiroVisual = new JLabelCelula[altura][largura];
+		tabuleiro = this.controle.getTabuleiro();
 		
 		gerarTabuleiro(20, 10,256,180);
 		gerarCartas(286, 0,0,controle.getJogador(0).getDeck());
@@ -56,11 +64,26 @@ public class ScreenInGame extends JFrame implements IJanela{
 			for(int j=0;j<c;j++) {
 				JLabelCelula celula = new JLabelCelula("Celula", i, j,tamanhoCelula,"grama",controle);
 				celula.setLocation(xTrans+i*tamanhoCelula, yTrans+j*tamanhoCelula);
+				tabuleiroVisual[i][j]=celula;
 				this.add(celula);
 			}
 		}
 		
 	}
+	public void atualizarCasaTabuleiroVisual(int linha,int coluna) {
+		Peca peca = tabuleiro.getCasas()[linha][coluna].getPeca();
+		String nomeArquivo;
+		if(peca == null) {
+			
+			nomeArquivo = "grama";
+		}
+		else {
+			nomeArquivo = peca.getNomeArquivo();
+		}
+		tabuleiroVisual[linha][coluna].setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\"+nomeArquivo+".png"));
+	}
+	
+	
 	private void gerarCartas(int xTrans,int yTrans) {
 		//GERA AS CARTAS DA MÃO DO JOGADOR
 		int tamanhoCarta=192;
@@ -80,12 +103,12 @@ public class ScreenInGame extends JFrame implements IJanela{
 		//NOME
 		JLabel txtNome = new JLabel("Nome : ");
 		txtNome.setLocation(1550,310);
-		txtNome.setSize(200,200);
+		txtNome.setSize(250,200);
 		txtNome.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtNome);
 		
 		JLabel txtintNome = new JLabel(this.nome);
-		txtintNome.setLocation(1750,310);
+		txtintNome.setLocation(1780,310);
 		txtintNome.setSize(200,200);
 		txtintNome.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtintNome);
@@ -93,42 +116,56 @@ public class ScreenInGame extends JFrame implements IJanela{
 		//ATAQUE
 		JLabel txtAtq = new JLabel("Ataque : ");
 		txtAtq.setLocation(1550,350);
-		txtAtq.setSize(200,200);
+		txtAtq.setSize(250,200);
 		txtAtq.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtAtq);
 		
 		JLabel txtintAtq = new JLabel(this.ataque+"");
-		txtintAtq.setLocation(1750,350);
+		txtintAtq.setLocation(1780,350);
 		txtintAtq.setSize(200,200);
 		txtintAtq.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtintAtq);
 		//VIDA
 		JLabel txtVida = new JLabel("Vida : ");
 		txtVida.setLocation(1550,390);
-		txtVida.setSize(200,200);
+		txtVida.setSize(250,200);
 		txtVida.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtVida);
 		
 		JLabel txtintVida = new JLabel(this.vida+"");
-		txtintVida.setLocation(1750,390);
+		txtintVida.setLocation(1780,390);
 		txtintVida.setSize(200,200);
 		txtintVida.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtintVida);
 		//RESTANTE
 		JLabel txtRest = new JLabel("Restante : ");
 		txtRest.setLocation(1550,430);
-		txtRest.setSize(200,200);
+		txtRest.setSize(250,200);
 		txtRest.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtRest);
 		
 		JLabel txtintRest = new JLabel(this.restante+"");
-		txtintRest.setLocation(1750,430);
+		txtintRest.setLocation(1780,430);
 		txtintRest.setSize(200,200);
 		txtintRest.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtintRest);
+		//MOBILIDADE
+		JLabel txtMob = new JLabel("Mobilidade : ");
+		txtMob.setLocation(1550,470);
+		txtMob.setSize(250,200);
+		txtMob.setFont(new Font("MV Boli", Font.BOLD,30));
+		this.add(txtMob);
+		
+		JLabel txtintMob = new JLabel(this.restante+"");
+		txtintMob.setLocation(1780,470);
+		txtintMob.setSize(200,200);
+		txtintMob.setFont(new Font("MV Boli", Font.BOLD,30));
+		this.add(txtintMob);
 		
 		
-		
+	}
+	public JLabelCelula[][] getTabuleiroVisual() {
+		return this.tabuleiroVisual;
 	}
 	private void gerarScoreboard(int xTrans,int yTrans) {
 		

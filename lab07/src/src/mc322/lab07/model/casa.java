@@ -32,7 +32,7 @@ public class Casa{
         this.peca = null;
     }
 
-    public void setPeca(Peca tipo_de_peca,int nPlayer) {
+    public void setPeca(ICarta tipo_de_peca,int nPlayer) {
         this.peca = tipo_de_peca.gerarPeca();
         this.peca.setPlayer(nPlayer);
     }

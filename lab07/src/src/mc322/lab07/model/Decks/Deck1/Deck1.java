@@ -16,11 +16,11 @@ public class Deck1 extends Deck{
 		PecaLobo pLobo= new PecaLobo();
 		PecaTartaruga pTart = new PecaTartaruga();
 		
-		setPecaLista(pAguia, 0);
-		setPecaLista(pCavalo, 1);
-		setPecaLista(pDrag, 2);
-		setPecaLista(pLobo, 3);
-		setPecaLista(pTart, 4);
+		setCartaLista(pAguia, 0);
+		setCartaLista(pCavalo, 1);
+		setCartaLista(pDrag, 2);
+		setCartaLista(pLobo, 3);
+		setCartaLista(pTart, 4);
 
 	}
 }

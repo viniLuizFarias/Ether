@@ -70,7 +70,7 @@ public class Controle {
             System.out.println("JOGADOR TENTANDO COLOCAR PECAS ALEM DO LIMITE DA PECA");
             return false;
         }
-        Peca tipoDePeca = jogador.getCarta(numeroCarta);
+        ICarta tipoDePeca = jogador.getCarta(numeroCarta);
         if(tabuleiro.colocarPeca(tipoDePeca,coordenadas,numeroPAtual)){
             jogador.atualizarNumeroPecas(numeroCarta);
             trocarJogadorAtual();

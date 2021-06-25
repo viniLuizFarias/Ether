@@ -21,11 +21,11 @@ public class Deck0 extends Deck{
 		PecaMago pMago= new PecaMago();
 		PecaPaladino pPalad = new PecaPaladino();
 
-		setPecaLista(pArq, 0);
-		setPecaLista(pCav, 1);
-		setPecaLista(pGuerr, 2);
-		setPecaLista(pMago, 3);
-		setPecaLista(pPalad, 4);
+		setCartaLista(pArq, 0);
+		setCartaLista(pCav, 1);
+		setCartaLista(pGuerr, 2);
+		setCartaLista(pMago, 3);
+		setCartaLista(pPalad, 4);
 
 	}
 

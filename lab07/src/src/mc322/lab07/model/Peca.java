@@ -1,8 +1,7 @@
 package mc322.lab07.model;
 import java.lang.Math;
-import java.lang.*;
 
-public abstract class Peca implements IPeca{
+public abstract class Peca implements IPeca,ICarta{
 	protected int linha;
 	protected int coluna;
 	protected int vida;

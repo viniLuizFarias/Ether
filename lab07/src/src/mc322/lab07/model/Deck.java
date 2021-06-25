@@ -4,7 +4,7 @@ public class Deck {
 	
 	protected int identificador;
 	protected String nome;
-	protected Peca [] listaPecas = new Peca[5];
+	protected ICarta [] listaCartas = new Peca[5];
 	
 	
 	public Deck(int identificador,String nome) {
@@ -12,13 +12,13 @@ public class Deck {
 		this.nome = nome;
 	}
 	
-	public void setPecaLista(Peca peca,int i) {
+	public void setCartaLista(ICarta Carta,int i) {
 		
-		this.listaPecas[i]=peca;
+		this.listaCartas[i]=Carta;
 		
 	}
-	public Peca getPecaLista(int i) {
-		return this.listaPecas[i];
+	public ICarta getCartaLista(int i) {
+		return this.listaCartas[i];
 		
 	}
 	public int getIdentificador() {
@@ -28,6 +28,6 @@ public class Deck {
 		return this.nome;
 	}
 	public int getTamanho(){
-		return this.listaPecas.length;
+		return this.listaCartas.length;
 	}
 }

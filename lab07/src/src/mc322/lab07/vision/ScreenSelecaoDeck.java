@@ -72,7 +72,7 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 
 			int tamanhoCarta=192;
 			for(int i=0;i<5;i++) {
-				JLabelVisualizarCarta carta = new JLabelVisualizarCarta(tamanhoCarta, deck.getPecaLista(i),i,this);
+				JLabelVisualizarCarta carta = new JLabelVisualizarCarta(tamanhoCarta, (Peca)deck.getCartaLista(i),i,this);
 				carta.setLocation(xTrans+i*(tamanhoCarta+16),yTrans);
 				this.add(carta);
 			}
@@ -203,6 +203,7 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 
 				public void mouseClicked(MouseEvent arg0) {
 
+					System.out.println("CLICOU NO DECK: "+  deck.getIdentificador());
 					controle.setDeckSelecionado(deck);
 				}
 

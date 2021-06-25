@@ -16,11 +16,11 @@ public class Deck2 extends Deck{
 		PecaVampiro pVamp = new PecaVampiro();
 		PecaZumbi pZumbi = new PecaZumbi();
 		
-		setPecaLista(pEsq, 0);
-		setPecaLista(pGob, 1);
-		setPecaLista(pGos, 2);
-		setPecaLista(pVamp, 3);
-		setPecaLista(pZumbi, 4);
+		setCartaLista(pEsq, 0);
+		setCartaLista(pGob, 1);
+		setCartaLista(pGos, 2);
+		setCartaLista(pVamp, 3);
+		setCartaLista(pZumbi, 4);
 	}
 
 }

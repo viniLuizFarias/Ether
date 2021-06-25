@@ -116,7 +116,7 @@ public class Tabuleiro {
         return true;
     }
 
-    public boolean colocarPeca(Peca tipo_de_peca,int[] pos,int numeroPlayer){
+    public boolean colocarPeca(ICarta tipo_de_peca,int[] pos,int numeroPlayer){
         if (!casaVazia(pos)){
             System.out.println("Já há uma peça na casa escolhida");
             return false;

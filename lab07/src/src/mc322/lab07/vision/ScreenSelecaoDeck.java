@@ -203,7 +203,6 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 
 				public void mouseClicked(MouseEvent arg0) {
 
-					System.out.println("CLICOU NO DECK: "+  deck.getIdentificador());
 					controle.setDeckSelecionado(deck);
 				}
 

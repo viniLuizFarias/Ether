@@ -9,19 +9,14 @@ public class PecaMago extends Peca{
 	}
 	
 	public PecaMago() {
-		super(1, 1, 1, "Mago", "Mago",4);
+		super(7, 10, 1, "Mago", "Mago",4);
 		
 	}
-	public int validarMovimento() {
-		// TODO Auto-generated method stub
-		return 0;
+	@Override
+	public boolean validarAtaque(int[] coords) {
+		return calcularDistancia(coords) < 4;
 	}
 
-
-	public int atacar() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 
 	public boolean efeito() {
@@ -35,9 +30,4 @@ public class PecaMago extends Peca{
 		return new PecaMago();
 	}
 
-	@Override
-	public int atacar(Peca peca) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

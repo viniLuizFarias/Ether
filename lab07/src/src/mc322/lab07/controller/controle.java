@@ -14,7 +14,7 @@ public class Controle {
     
     private int qtdDecksEscolhidos;
     
-	private JFrame screenInGame;
+	private ScreenInGame screenInGame;
 	private JFrame screenSelecaoDeck;
     private int tipoAcaoAnterior; // -1 -> nenhuma acao jogada, 0-> carta clicada, 1 -> celula clicada
     private int[] coordAcaoAnterior; 
@@ -32,7 +32,7 @@ public class Controle {
     }
     public Controle(){}
     
-    public void setJanelaInGame(JFrame screenInGame) {
+    public void setJanelaInGame(ScreenInGame screenInGame) {
     	this.screenInGame = screenInGame;
     }
     public ScreenInGame getJanelaInGame() {
@@ -46,13 +46,21 @@ public class Controle {
     	janela.setVisible(true);
     }
 
+    private void acabarJogo(){
+        System.exit(0);
+    }
+
     private void trocarJogadorAtual(){
+        if(!jogadores[0].vivo() || !jogadores[1].vivo()){
+            acabarJogo();
+        }
         if(numeroPAtual == 0)
             numeroPAtual = 1;
         else
             numeroPAtual = 0;
         this.tipoAcaoAnterior = -1;
-        tabuleiro.mostrarNoTerminal();
+        System.out.println("JOGADOR ATUAL:" +numeroPAtual);
+        //tabuleiro.mostrarNoTerminal();
     }
 
     public boolean colocarPeca(int numeroCarta,int[] coordenadas){
@@ -68,24 +76,44 @@ public class Controle {
         }else{
             return false;
         }
+        this.screenInGame.atualizarCasaTabuleiroVisual(coordenadas[0], coordenadas[1]);
         return true;
 
+
     }
+
+    private void sacrificarPeca(Peca peca,Jogador jogador){
+        jogador.levarDano(2*peca.getVida());
+        tabuleiro.casaAt(peca.getCoords()).esvaziar();
+    }
+
     public void moverPeca(int[] coords1,int[] coords2){
         if(tabuleiro.moverPeca(coords1, coords2)){
             trocarJogadorAtual();
+            if(tabuleiro.deveSerSacrificada(coords2)){
+                sacrificarPeca(tabuleiro.pecaAt(coords2),jogadores[numeroPAtual]);
+            }
+            this.screenInGame.atualizarCasaTabuleiroVisual(coords1[0], coords1[1]);
+            this.screenInGame.atualizarCasaTabuleiroVisual(coords2[0], coords2[1]);
         }
     }
     public void ataquePeca(int[] coords1,int[] coords2){
+        Peca pecaAtacada = tabuleiro.casaAt(coords2).getPeca();
+        if(pecaAtacada.getPlayer() == numeroPAtual){
+            System.out.println("JOGADOR TENTANDO ATACAR SUAS PRÓPRIA PEÇAS!");
+            return;
+        }
         if(tabuleiro.ataquePeca(coords1, coords2)){
             trocarJogadorAtual();
+            if (!pecaAtacada.viva()){
+                jogadores[pecaAtacada.getPlayer()].levarDano(pecaAtacada.overkill());
+                tabuleiro.casaAt(coords2).esvaziar();
+            }
+            this.screenInGame.atualizarCasaTabuleiroVisual(coords1[0], coords1[1]);
+            this.screenInGame.atualizarCasaTabuleiroVisual(coords2[0], coords2[1]);
         }
     }
 
-    public void alterarSelecionada(Peca peca, JFrame janela) {
-    	
-    	
-    }
     public void setDeckSelecionado(Deck deckSelecionado) {
         this.jogadores[numeroPAtual].setDeck(deckSelecionado);
         this.qtdDecksEscolhidos += 1;

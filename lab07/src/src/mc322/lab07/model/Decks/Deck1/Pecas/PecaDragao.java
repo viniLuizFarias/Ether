@@ -9,21 +9,10 @@ public class PecaDragao extends Peca{
 		
 	}
 	public PecaDragao() {
-		super(1, 1, 1, "Dragao", "Dragao",2);
+		super(45, 11, 2, "Dragao", "Dragao",2);
 		
 	}
 
-	@Override
-	public int validarMovimento() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int atacar() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public boolean efeito() {
@@ -35,11 +24,6 @@ public class PecaDragao extends Peca{
 	public Peca gerarPeca() {
 		// TODO Auto-generated method stub
 		return new PecaDragao();
-	}
-	@Override
-	public int atacar(Peca peca) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 

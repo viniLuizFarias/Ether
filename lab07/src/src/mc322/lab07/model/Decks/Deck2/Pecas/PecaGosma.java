@@ -10,21 +10,10 @@ public class PecaGosma extends Peca{
 		
 	}
 	public PecaGosma() {
-		super(1, 1, 1, "Gosma", "Slime",4);
+		super(30, 2, 2, "Gosma", "Slime",4);
 		
 	}
 
-	@Override
-	public int validarMovimento() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int atacar() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public boolean efeito() {
@@ -37,10 +26,6 @@ public class PecaGosma extends Peca{
 		// TODO Auto-generated method stub
 		return new PecaGosma();
 	}
-	@Override
-	public int atacar(Peca peca) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 }

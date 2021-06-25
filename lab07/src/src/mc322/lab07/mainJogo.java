@@ -15,7 +15,7 @@ public class MainJogo {
 		Tabuleiro tabuleiro = new Tabuleiro(20,10,8);
 		//Controle controle = new Controle(40,cartas,tabuleiro);
 		
-		Controle controle = new Controle(50,tabuleiro);
+		Controle controle = new Controle(160,tabuleiro);
 
 		ScreenSelecaoDeck janelaDeck = new ScreenSelecaoDeck(1920,1080,controle);
 		controle.setJanelaSelecaoDeck(janelaDeck);

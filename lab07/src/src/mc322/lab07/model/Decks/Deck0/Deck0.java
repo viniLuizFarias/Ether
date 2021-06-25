@@ -26,8 +26,6 @@ public class Deck0 extends Deck{
 		setPecaLista(pGuerr, 2);
 		setPecaLista(pMago, 3);
 		setPecaLista(pPalad, 4);
-		System.out.print("AAAA ");
-		System.out.println(getPecaLista(2).getNomeArquivo());
 
 	}
 

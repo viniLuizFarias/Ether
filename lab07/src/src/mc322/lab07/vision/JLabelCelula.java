@@ -24,7 +24,6 @@ public class JLabelCelula extends JLabelInterativa{
 		this.addMouseListener(new MouseListener() {
 			
 			public void mouseReleased(MouseEvent e) {
-				System.out.println("Nome: "+nome +" Linha: "+ linha +" Coluna: "+coluna);
 				int[] coords = {linha,coluna};
 				controle.celulaSelecionada(coords);
 			}

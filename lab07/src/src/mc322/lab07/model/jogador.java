@@ -4,7 +4,6 @@ public class Jogador {
 
 	private int vida;
 	private int identificador;
-	private Peca[] cartas;
 	private int[] quantasPecasDeCada;
 	private Deck deck;
 
@@ -14,12 +13,17 @@ public class Jogador {
 	}
 	
 	public boolean podePorPeca(int numeroPeca){
-		System.out.println(deck.getPecaLista(numeroPeca).getqtdMax());
 		return quantasPecasDeCada[numeroPeca] < deck.getPecaLista(numeroPeca).getqtdMax();
 	}
 
 
+	public void levarDano(int dano){
+		this.vida -= dano;
+	}
 
+	public boolean vivo(){
+		return this.vida > 0;
+	}
 
 
 	public void atualizarNumeroPecas(int numeroCarta){
@@ -27,7 +31,7 @@ public class Jogador {
 	}
 
 	public Peca getCarta(int numeroCarta){
-		return cartas[numeroCarta];
+		return deck.getPecaLista(numeroCarta);
 	}
 
 

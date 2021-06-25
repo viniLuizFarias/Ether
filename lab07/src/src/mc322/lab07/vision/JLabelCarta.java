@@ -30,7 +30,6 @@ public class JLabelCarta extends JLabelInterativa{
 			
 			public void mouseReleased(MouseEvent e) {
 				if(clicavel) {
-				System.out.println("Nome : "+nome +" Jogador: "+jogador+" Id: "+identificador);
 				int[] coord = {jogador,identificador};
 				controle.cartaSelecionada(coord);
 				}

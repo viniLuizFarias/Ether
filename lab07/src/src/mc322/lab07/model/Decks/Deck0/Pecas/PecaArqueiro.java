@@ -10,20 +10,18 @@ public class PecaArqueiro extends Peca{
 		
 	}
 	public PecaArqueiro() {
-		super(1, 1, 1, "Arqueiro", "Arqueiro",5);
+		super(6, 6, 4, "Arqueiro", "Arqueiro",5);
 		
 	}
 
-	
-	public int validarMovimento() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 
-	public int atacar() {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean validarAtaque(int[] coords){
+		int distancia = (int)calcularDistancia(coords);
+		if(distancia<4){
+			return true;
+		}
+		return false;
 	}
 
 
@@ -36,10 +34,5 @@ public class PecaArqueiro extends Peca{
 	public Peca gerarPeca() {
 		// TODO Auto-generated method stub
 		return new PecaArqueiro();
-	}
-	@Override
-	public int atacar(Peca peca) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }

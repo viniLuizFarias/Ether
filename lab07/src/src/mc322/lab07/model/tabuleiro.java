@@ -12,21 +12,41 @@ public class Tabuleiro {
     private Controle controle;
     private Casa[][] casas;
     
-    public Tabuleiro(int largura,int altura,int maximoPecasPorPlayer){
+    public Tabuleiro(int altura,int largura,int maximoPecasPorPlayer){
         this.altura = altura;
         this.largura = largura;
-        this.controle=controle;
         this.maximoPecasPorPlayer = maximoPecasPorPlayer;
         this.qtdPecasPlayer = new int[2];
         this.qtdPecasPlayer[0] = 0;
         this.qtdPecasPlayer[1] = 0;
         this.casas= new Casa[altura][largura];
+
+        for(int coluna=0;coluna<altura;coluna++){
+            this.casas[coluna][0] = new Casa(1,0);
+        }
+    
+        for(int coluna=1;coluna<altura;coluna++){
+            this.casas[coluna][1] = new Casa(-1,0);
+        }
+
         for (int linha = 0;linha<altura;linha++){
-            for(int coluna=0;coluna<largura;coluna++){
-                this.casas[linha][coluna] = new Casa();
+            for(int coluna=2;coluna<largura-2;coluna++){
+                this.casas[linha][coluna] = new Casa(-1,-1);
             }
         }
 
+        for(int coluna=0;coluna<altura;coluna++){
+            this.casas[coluna][largura-2] = new Casa(-1,1);
+        }
+
+        for(int coluna=0;coluna<altura;coluna++){
+            this.casas[coluna][largura-1] = new Casa(0,1);
+        }
+
+    }
+
+    public boolean deveSerSacrificada(int[] coords){
+        return casaAt(coords).deveSerSacrificada(); 
     }
 
     public void atualizarCasaTabuleiroVisual(int linha,int coluna){
@@ -47,6 +67,11 @@ public class Tabuleiro {
     public boolean casaVazia(int[] pos){
         return casaAt(pos).vazia();
     } 
+
+    public Peca pecaAt(int[] coords){
+        return casaAt(coords).getPeca();
+    }
+
     public void setControle(Controle controle) {
     	this.controle=controle;
     }
@@ -60,10 +85,11 @@ public class Tabuleiro {
             System.out.println("Nao há peça na casa escolhida");
             return false;
         }
-        Peca pecaEscolhida = this.casas[pos1[0]][pos1[1]].getPeca();
-        if(!pecaEscolhida.validarMovimento(pos2)){
-            casaAt(pos2).setPeca(pecaEscolhida);
+        Peca pecaEscolhida = casaAt(pos1).getPeca();
+        if(pecaEscolhida.validarMovimento(pos2)){
+            casaAt(pos2).colocarPeca(pecaEscolhida);
             casaAt(pos1).esvaziar();
+            pecaEscolhida.setPosicao(pos2);
             return true;
         }
         System.out.println("peca nao validou o movimento");
@@ -82,13 +108,11 @@ public class Tabuleiro {
         }
         Peca pecaEscolhida = casaAt(pos1).getPeca();
         if(!pecaEscolhida.validarAtaque(pos2)){
-            System.out.println("A peca falou que o ataque [e] inválido");
+            System.out.println("A peca falou que o ataque é inválido!");
             return false;
         }
+
         pecaEscolhida.atacar(casaAt(pos2).getPeca());
-        if(casaAt(pos2).getPeca().getVida()<0){
-            casaAt(pos2).esvaziar();
-        }
         return true;
     }
 
@@ -101,14 +125,17 @@ public class Tabuleiro {
             System.out.println("Player já está no limite máximo de peças");
             return false;
         }
-        atualizarInterfaceGrafica(pos);
-        casaAt(pos).setPeca(tipo_de_peca);
+
+        if (!casaAt(pos).podePorPeca(numeroPlayer)){
+            System.out.println("Player tentando colocar peças fora da zona permitida");
+            return false;
+        }
+        casaAt(pos).setPeca(tipo_de_peca,numeroPlayer);
+        casaAt(pos).getPeca().setPosicao(pos);
+        this.qtdPecasPlayer[numeroPlayer] += 1;
         return true;
     }
 
-    public void atualizarInterfaceGrafica(int[] coords){
-
-    }
 
     public int getAltura() {
         return this.altura;

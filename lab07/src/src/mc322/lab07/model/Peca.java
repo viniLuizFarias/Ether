@@ -1,4 +1,6 @@
 package mc322.lab07.model;
+import java.lang.Math;
+import java.lang.*;
 
 public abstract class Peca implements IPeca{
 	protected int linha;
@@ -21,25 +23,52 @@ public abstract class Peca implements IPeca{
 		this.qtdMax=qtdMax;
 		
 	}
-	public abstract  int atacar(Peca peca);
 	public abstract boolean efeito();
 	public abstract Peca gerarPeca();
 	
+	public void atacar(Peca pecaInimiga){
+		pecaInimiga.levarDano(this.ataque);
+	}
+
+	public void levarDano(int dano){
+		this.vida -= dano;
+	}
+
 	public boolean validarMovimento(int[] coords){
-		//@@@@@@@@@ TEM QUE IMPLEMENTAR
+		int distancia = (int)calcularDistancia(coords);
+		if ((distancia) <= this.mobilidade)
+			return true;
 		return false;
 
 	}
 
-	public boolean validarAtaque(int[] coords){
-		//@@@@@@@@@ TEM QUE IMPLEMENTAR
-		return false;
+	public double calcularDistancia(int[] coords){
+		int dx = (coords[0]-linha);
+		int dy = (coords[1]-coluna);
 
+		double distancia = Math.pow(Math.pow((double)dx,2) + Math.pow((double)dy,2),0.5);
+		return distancia;
+	}
+
+	public boolean validarAtaque(int[] coords){
+		return calcularDistancia(coords) < 2;
+	}
+
+	public String getDescricao(){
+		return "Essa é a descrição de uma peça genérica. Ela deve ser sobreescrita em suas subclasses.";
 	}
 
 	public int getVida() {
 	
 		return this.vida;
+	}
+
+	public boolean viva(){
+		return this.vida > 0;
+	}
+
+	public int overkill() {
+		return -this.vida;
 	}
 
 	public void setPosicao(int[] coord){
@@ -94,6 +123,10 @@ public abstract class Peca implements IPeca{
 		this.qtdMax = qtdMax;
 	}
 	
+	public int[] getCoords(){
+		int[] coords = {this.linha,this.coluna};
+		return coords;
+	}
 
 	
 

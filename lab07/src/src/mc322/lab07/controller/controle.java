@@ -78,6 +78,7 @@ public class Controle {
             return false;
         }
         this.screenInGame.atualizarCasaTabuleiroVisual(coordenadas[0], coordenadas[1]);
+        this.jogadores[numeroPAtual].atualizarNumeroPecas(numeroCarta);
         return true;
 
 

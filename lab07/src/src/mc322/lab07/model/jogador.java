@@ -27,7 +27,7 @@ public class Jogador {
 
 
 	public void atualizarNumeroPecas(int numeroCarta){
-		
+		quantasPecasDeCada[numeroCarta] += 1;
 	}
 
 	public Peca getCarta(int numeroCarta){

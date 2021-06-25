@@ -47,6 +47,7 @@ public class Controle {
     }
 
     private void acabarJogo(){
+        System.out.println("ALGUM PLAYER MORREU, FIM DE JOGO!");
         System.exit(0);
     }
 

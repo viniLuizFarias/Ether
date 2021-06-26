@@ -9,7 +9,7 @@ public class PecaEsqueleto extends Peca{
 		
 	}
 	public PecaEsqueleto(){
-		super(10, 9, 2, "Esqueleto", "Esqueleto",6);
+		super(12, 8, 1, "Esqueleto", "Esqueleto",6);
 		
 	}
 

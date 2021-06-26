@@ -10,7 +10,7 @@ public class PecaTartaruga extends Peca{
 		
 	}
 	public PecaTartaruga() {
-		super(35, 6, 1, "Tartaruga", "Tartaruga",5);
+		super(25, 2, 1, "Tartaruga", "Tartaruga",5);
 		
 	}
 

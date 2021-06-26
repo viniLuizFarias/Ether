@@ -11,7 +11,7 @@ public class Controle {
     private Tabuleiro tabuleiro;
     private int numeroPAtual;
     private Jogador[] jogadores;
-    private int turno=0;
+    private int turno;
     
     private int qtdDecksEscolhidos;
     
@@ -30,6 +30,7 @@ public class Controle {
         this.jogadores[1] = new Jogador(vida,1);
         this.tipoAcaoAnterior = -1;
         this.qtdDecksEscolhidos = 0;
+        this.turno = 0;
     }
     public Controle(){}
     
@@ -52,15 +53,21 @@ public class Controle {
         System.exit(0);
     }
 
+
+    private int getOtherPlayer(){
+        if(numeroPAtual == 0)
+            return 1;
+        return 0;
+    }
+
     private void trocarJogadorAtual(){
         if(!jogadores[0].vivo() || !jogadores[1].vivo()){
             acabarJogo();
         }
-        if(numeroPAtual == 0)
-            numeroPAtual = 1;
-        else
-            numeroPAtual = 0;
+        this.numeroPAtual = getOtherPlayer();
         this.tipoAcaoAnterior = -1;
+        incrementarTurno();
+        atualizarScoreboardInGame();
         System.out.println("JOGADOR ATUAL:" +numeroPAtual);
         //tabuleiro.mostrarNoTerminal();
     }
@@ -79,7 +86,6 @@ public class Controle {
             return false;
         }
         this.screenInGame.atualizarCasaTabuleiroVisual(coordenadas[0], coordenadas[1]);
-        this.jogadores[numeroPAtual].atualizarNumeroPecas(numeroCarta);
         return true;
 
 
@@ -93,12 +99,12 @@ public class Controle {
 
     public void moverPeca(int[] coords1,int[] coords2){
         if(tabuleiro.moverPeca(coords1, coords2)){
-            trocarJogadorAtual();
             if(tabuleiro.deveSerSacrificada(coords2)){
-                sacrificarPeca(tabuleiro.pecaAt(coords2),jogadores[numeroPAtual]);
+                sacrificarPeca(tabuleiro.pecaAt(coords2),jogadores[getOtherPlayer()]);
             }
             this.screenInGame.atualizarCasaTabuleiroVisual(coords1[0], coords1[1]);
             this.screenInGame.atualizarCasaTabuleiroVisual(coords2[0], coords2[1]);
+            trocarJogadorAtual();
         }
     }
     public void ataquePeca(int[] coords1,int[] coords2){
@@ -108,20 +114,20 @@ public class Controle {
             return;
         }
         if(tabuleiro.ataquePeca(coords1, coords2)){
-            trocarJogadorAtual();
             if (!pecaAtacada.viva()){
                 jogadores[pecaAtacada.getPlayer()].levarDano(pecaAtacada.overkill());
                 tabuleiro.casaAt(coords2).esvaziar();
             }
             this.screenInGame.atualizarCasaTabuleiroVisual(coords1[0], coords1[1]);
             this.screenInGame.atualizarCasaTabuleiroVisual(coords2[0], coords2[1]);
+            trocarJogadorAtual();
         }
     }
 
     public void setDeckSelecionado(Deck deckSelecionado) {
         this.jogadores[numeroPAtual].setDeck(deckSelecionado);
         this.qtdDecksEscolhidos += 1;
-        trocarJogadorAtual();
+        this.numeroPAtual = getOtherPlayer();
         if (this.qtdDecksEscolhidos == 2){
             ScreenInGame janelaInGame = new ScreenInGame(1920,1080,this);
             setJanelaInGame(janelaInGame);
@@ -135,8 +141,7 @@ public class Controle {
     	setTurno(this.turno+1);
     }
     public void setTurno(int n){
-    	this.turno = n;
-    	atualizarScoreboardInGame();	
+    	this.turno = n;	
     }
     public void atualizarScoreboardInGame() {
        	this.screenInGame.atualizarScoreboard(jogadores[0].getVida(), jogadores[1].getVida(), this.turno);

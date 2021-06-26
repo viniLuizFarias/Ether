@@ -9,7 +9,7 @@ public class PecaDragao extends Peca{
 		
 	}
 	public PecaDragao() {
-		super(45, 11, 2, "Dragao", "Dragao",2);
+		super(45, 11, 1, "Dragao", "Dragao",2);
 		
 	}
 

@@ -9,7 +9,7 @@ public class PecaMago extends Peca{
 	}
 	
 	public PecaMago() {
-		super(7, 10, 1, "Mago", "Mago",4);
+		super(7, 10, 1, "Mago", "Mago",2);
 		
 	}
 	@Override

@@ -9,7 +9,7 @@ public class PecaLobo extends Peca{
 		
 	}
 	public PecaLobo() {
-		super(15, 8, 3, "Lobo", "Lobo",5);
+		super(8, 6, 2, "Lobo", "Lobo",5);
 		
 	}
 

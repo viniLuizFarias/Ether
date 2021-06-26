@@ -9,7 +9,7 @@ public class PecaPaladino extends Peca{
 	}
 
 	public PecaPaladino() {
-		super(40, 6, 1, "Paladino", "Paladino",3);
+		super(40, 9, 1, "Paladino", "Paladino",3);
 		
 	}
 

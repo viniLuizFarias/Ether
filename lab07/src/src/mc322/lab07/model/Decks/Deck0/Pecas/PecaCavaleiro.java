@@ -9,7 +9,7 @@ public class PecaCavaleiro extends Peca{
 	}
 	
 	public PecaCavaleiro() {
-		super(25, 8, 3, "Cavaleiro", "Cavaleiro",3);
+		super(11, 7, 2, "Cavaleiro", "Cavaleiro",3);
 		
 	}
 	public int validarMovimento() {

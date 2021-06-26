@@ -13,6 +13,13 @@ public class PecaZumbi extends Peca{
 		
 	}
 
+	public void atacar(Peca pecaInimiga){
+		pecaInimiga.levarDano(this.ataque);
+		if(pecaInimiga.getAtaque() > 3)
+			pecaInimiga.setAtaque(pecaInimiga.getAtaque()-3);
+		else
+			pecaInimiga.setAtaque(0);
+	}
 
 	@Override
 	public boolean efeito() {
@@ -24,6 +31,11 @@ public class PecaZumbi extends Peca{
 	public Peca gerarPeca() {
 		// TODO Auto-generated method stub
 		return new PecaZumbi();
+	}
+	@Override
+	public String getDescricao() {
+		// TODO Auto-generated method stub
+		return "Seu ataque reduz o dano da peça inimiga.";
 	}
 
 }

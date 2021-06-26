@@ -10,10 +10,16 @@ public class PecaGosma extends Peca{
 		
 	}
 	public PecaGosma() {
-		super(30, 2, 2, "Gosma", "Slime",4);
+		super(5, 12, 0, "Gosma", "Slime",4);
 		
 	}
-
+	public boolean validarAtaque(int[] coords){
+		int distancia = (int)calcularDistancia(coords);
+		if(distancia<4){
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public boolean efeito() {
@@ -26,6 +32,10 @@ public class PecaGosma extends Peca{
 		// TODO Auto-generated method stub
 		return new PecaGosma();
 	}
-
+	@Override
+	public String getDescricao() {
+		// TODO Auto-generated method stub
+		return "Não pode se mover, mas tem um forte ataque a uma distância de até 4 unidades.";
+	}
 
 }

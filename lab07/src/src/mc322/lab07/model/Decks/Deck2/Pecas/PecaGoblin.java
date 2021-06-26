@@ -9,7 +9,7 @@ public class PecaGoblin extends Peca{
 		
 	}
 	public PecaGoblin() {
-		super(12, 4, 3, "Goblin", "Goblin",6);
+		super(9, 6, 2, "Goblin", "Goblin",6);
 		
 	}
 

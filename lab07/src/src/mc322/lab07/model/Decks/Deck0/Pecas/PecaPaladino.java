@@ -10,7 +10,7 @@ public class PecaPaladino extends Peca{
 
 	public PecaPaladino() {
 		super(40, 9, 1, "Paladino", "Paladino",3);
-		
+
 	}
 
 
@@ -24,6 +24,10 @@ public class PecaPaladino extends Peca{
 		// TODO Auto-generated method stub
 		return new PecaPaladino();
 	}
-
+	@Override
+	public String getDescricao() {
+		// TODO Auto-generated method stub
+		return "É a peça especial dos Humanos. Pode ser colocado apenas 2 vezes durante a partida toda. Extremamente tanque.";
+	}
 }
 

@@ -16,6 +16,12 @@ public class Jogador {
 		return quantasPecasDeCada[numeroPeca] < deck.getCartaLista(numeroPeca).getqtdMax();
 	}
 
+	public void pecaEliminada(Peca peca){
+		int numeroPeca = deck.nomeToIdn(peca.getNome());
+		if(deck.getNCartaEspecial() != numeroPeca){
+			this.quantasPecasDeCada[numeroPeca] -= 1;
+		}
+	}
 
 	public void levarDano(int dano){
 		this.vida -= dano;

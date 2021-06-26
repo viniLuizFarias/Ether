@@ -12,7 +12,11 @@ public class PecaVampiro extends Peca{
 		super(25, 8, 1, "Vampiro", "Vampire",2);
 		
 	}
-
+	@Override
+	public void atacar(Peca pecaInimiga){
+		vida += 4;
+		pecaInimiga.levarDano(this.ataque);
+	}
 
 	@Override
 	public boolean efeito() {
@@ -25,5 +29,9 @@ public class PecaVampiro extends Peca{
 		// TODO Auto-generated method stub
 		return new PecaVampiro();
 	}
-
+	@Override
+	public String getDescricao() {
+		// TODO Auto-generated method stub
+		return "É a peça especial dos Monstros. Pode ser colocado apenas 2 vezes durante a partida toda. Regenera vida ao dar dano.";
+	}
 }

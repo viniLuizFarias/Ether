@@ -21,6 +21,8 @@ public class Deck2 extends Deck{
 		setCartaLista(pGos, 2);
 		setCartaLista(pVamp, 3);
 		setCartaLista(pZumbi, 4);
+
+		setNCartaEspecial(3);
 	}
 
 }

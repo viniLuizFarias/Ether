@@ -91,9 +91,14 @@ public class Controle {
 
     }
 
+    private void eliminarPeca(Peca peca){
+        tabuleiro.removerPeca(peca);
+        jogadores[peca.getPlayer()].pecaEliminada(peca);
+    }
+
     private void sacrificarPeca(Peca peca,Jogador jogador){
         jogador.levarDano(2*peca.getVida());
-        tabuleiro.casaAt(peca.getCoords()).esvaziar();
+        eliminarPeca(peca);
     }
  
 
@@ -110,13 +115,14 @@ public class Controle {
     public void ataquePeca(int[] coords1,int[] coords2){
         Peca pecaAtacada = tabuleiro.casaAt(coords2).getPeca();
         if(pecaAtacada.getPlayer() == numeroPAtual){
-            System.out.println("JOGADOR TENTANDO ATACAR SUAS PRÓPRIA PEÇAS!");
+            tipoAcaoAnterior = 1;
+            coordAcaoAnterior = coords2;
             return;
         }
         if(tabuleiro.ataquePeca(coords1, coords2)){
             if (!pecaAtacada.viva()){
                 jogadores[pecaAtacada.getPlayer()].levarDano(pecaAtacada.overkill());
-                tabuleiro.casaAt(coords2).esvaziar();
+                eliminarPeca(pecaAtacada);
             }
             this.screenInGame.atualizarCasaTabuleiroVisual(coords1[0], coords1[1]);
             this.screenInGame.atualizarCasaTabuleiroVisual(coords2[0], coords2[1]);

@@ -26,5 +26,9 @@ public class PecaTartaruga extends Peca{
 		// TODO Auto-generated method stub
 		return new PecaTartaruga();
 	}
-
+	@Override
+	public String getDescricao() {
+		// TODO Auto-generated method stub
+		return "Porque alguém levaria uma tartaruga pra guerra?";
+	}
 }

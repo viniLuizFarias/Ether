@@ -9,7 +9,7 @@ public class PecaDragao extends Peca{
 		
 	}
 	public PecaDragao() {
-		super(45, 11, 1, "Dragao", "Dragao",2);
+		super(50, 15, 1, "Dragao", "Dragao",1);
 		
 	}
 
@@ -25,6 +25,10 @@ public class PecaDragao extends Peca{
 		// TODO Auto-generated method stub
 		return new PecaDragao();
 	}
-
+	@Override
+	public String getDescricao() {
+		// TODO Auto-generated method stub
+		return "Põe medo até no paladino. Pode ser colocado apenas 1 vez durante a partida toda.";
+	}
 
 }

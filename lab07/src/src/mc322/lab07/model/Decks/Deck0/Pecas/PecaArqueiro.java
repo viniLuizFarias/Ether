@@ -10,7 +10,7 @@ public class PecaArqueiro extends Peca{
 		
 	}
 	public PecaArqueiro() {
-		super(6, 6, 4, "Arqueiro", "Arqueiro",5);
+		super(6, 6, 2, "Arqueiro", "Arqueiro",5);
 		
 	}
 
@@ -34,5 +34,10 @@ public class PecaArqueiro extends Peca{
 	public Peca gerarPeca() {
 		// TODO Auto-generated method stub
 		return new PecaArqueiro();
+	}
+	@Override
+	public String getDescricao() {
+		// TODO Auto-generated method stub
+		return "Pode atacar a 4 unidades de distância. Brabo";
 	}
 }

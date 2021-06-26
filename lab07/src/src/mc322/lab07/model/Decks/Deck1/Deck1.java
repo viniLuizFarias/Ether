@@ -22,5 +22,6 @@ public class Deck1 extends Deck{
 		setCartaLista(pLobo, 3);
 		setCartaLista(pTart, 4);
 
+		setNCartaEspecial(2);
 	}
 }

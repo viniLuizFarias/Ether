@@ -73,6 +73,11 @@ public class Tabuleiro {
         return casaAt(coords).getPeca();
     }
 
+    public void removerPeca(Peca peca){
+        casaAt(peca.getCoords()).esvaziar();
+        qtdPecasPlayer[peca.getPlayer()] -= 1;
+    }
+
     public void setControle(Controle controle) {
     	this.controle=controle;
     }

@@ -41,12 +41,12 @@ public abstract class Peca implements IPeca,ICarta{
 
 	}
 
-	public double calcularDistancia(int[] coords){
+	public int calcularDistancia(int[] coords){
 		int dx = (coords[0]-linha);
 		int dy = (coords[1]-coluna);
 
 		double distancia = Math.pow(Math.pow((double)dx,2) + Math.pow((double)dy,2),0.5);
-		return distancia;
+		return (int)Math.round(distancia);
 	}
 
 	public boolean validarAtaque(int[] coords){
@@ -54,7 +54,7 @@ public abstract class Peca implements IPeca,ICarta{
 	}
 
 	public String getDescricao(){
-		return "Essa é a descrição de uma peça genérica. Ela deve ser sobreescrita em suas subclasses.";
+		return "";
 	}
 
 	public int getVida() {

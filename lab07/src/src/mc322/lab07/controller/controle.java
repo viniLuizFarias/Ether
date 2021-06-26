@@ -11,6 +11,7 @@ public class Controle {
     private Tabuleiro tabuleiro;
     private int numeroPAtual;
     private Jogador[] jogadores;
+    private int turno=0;
     
     private int qtdDecksEscolhidos;
     
@@ -88,6 +89,7 @@ public class Controle {
         jogador.levarDano(2*peca.getVida());
         tabuleiro.casaAt(peca.getCoords()).esvaziar();
     }
+ 
 
     public void moverPeca(int[] coords1,int[] coords2){
         if(tabuleiro.moverPeca(coords1, coords2)){
@@ -128,7 +130,21 @@ public class Controle {
             
         }
     }
-
+    
+    public void incrementarTurno() {
+    	setTurno(this.turno+1);
+    }
+    public void setTurno(int n){
+    	this.turno = n;
+    	atualizarScoreboardInGame();	
+    }
+    public void atualizarScoreboardInGame() {
+       	this.screenInGame.atualizarScoreboard(jogadores[0].getVida(), jogadores[1].getVida(), this.turno);
+    }
+    
+    public int getTurno() {
+    	return this.turno;
+    }
     public void celulaSelecionada(int[] coord){
         if(tabuleiro.casaVazia(coord)){
 

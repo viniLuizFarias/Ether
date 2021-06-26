@@ -13,6 +13,7 @@ public class Casa{
 
  
     public Peca getPeca() {
+    	if(this.peca == null) return null;
         return this.peca;
     }
 

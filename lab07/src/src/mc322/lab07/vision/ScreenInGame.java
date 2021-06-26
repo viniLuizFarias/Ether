@@ -1,5 +1,6 @@
 package mc322.lab07.vision;
 import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -9,25 +10,44 @@ import mc322.lab07.model.Peca;
 import mc322.lab07.model.Tabuleiro;
 import mc322.lab07.controller.Controle;
 import mc322.lab07.model.Deck;
-import mc322.lab07.model.Jogador;
+import mc322.lab07.model.ICarta;
+
 
 public class ScreenInGame extends JFrame implements IJanela{
 	
 		private int altura,largura;
-		private int turno;
-		private int jogador1,jogador2;//VIDAS
 		
-		//INFOS CARTA
-		private String nome="@@";
-		private int ataque,vida,restante,mobilidade;
 		private Controle controle;
+		
 		
 		//Comunicação e estrutura com o tabuleiro
 		private Tabuleiro tabuleiro;
 		private JLabelCelula tabuleiroVisual[][];
+		
+		//Componentes
+		JLabel picInfo = new JLabel();
+
+		
+		JLabel txtStrNome = new JLabel("");
+		JLabel txtintAtq = new JLabel("");
+		JLabel txtintVida = new JLabel("");
+		JLabel txtintRest = new JLabel("");
+		JLabel txtintMob = new JLabel("");
+		
+		JLabel txtintTurno = new JLabel();
+		JLabel txtintVida0 = new JLabel();
+		JLabel txtintVida1 = new JLabel();
+		
+		JLabel txtTurno = new JLabel();
+		JLabel txtVida0 = new JLabel();
+		JLabel txtVida1 = new JLabel();
+		
+		JLabel indicadorVezJogador1 = new JLabel();
+		JLabel indicadorVezJogador2 = new JLabel();
+		
+		
 	public ScreenInGame(int altura, int largura,Controle controle){
 		super();
-		this.turno=0;
 		setSize(altura,largura);
 		this.setTitle("Ether");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,7 +71,8 @@ public class ScreenInGame extends JFrame implements IJanela{
 		int tamanhoCarta=192;
 		for(int i=0;i<5;i++) {
 			String nomeArq = deck.getCartaLista(i).getNomeArquivo();
-			JLabelCarta carta = new JLabelCarta("Carta", tamanhoCarta,idJogador,i,true,nomeArq,controle);
+			ICarta peca = deck.getCartaLista(i);
+			JLabelCarta carta = new JLabelCarta(peca.getNome(), tamanhoCarta,idJogador,i,true,nomeArq,controle,this);
 			carta.setLocation(xTrans+i*(tamanhoCarta+64),yTrans);
 			this.add(carta);
 		}
@@ -62,12 +83,43 @@ public class ScreenInGame extends JFrame implements IJanela{
 		int tamanhoCelula = 64;
 		for(int i=0;i<l;i++) {
 			for(int j=0;j<c;j++) {
-				JLabelCelula celula = new JLabelCelula("Celula", i, j,tamanhoCelula,"grama",controle);
+				JLabelCelula celula = new JLabelCelula("Celula", i, j,tamanhoCelula,"grama",controle,this);
 				celula.setLocation(xTrans+i*tamanhoCelula, yTrans+j*tamanhoCelula);
 				tabuleiroVisual[i][j]=celula;
 				this.add(celula);
 			}
 		}
+		
+	}
+	public void alterarSelecionada(Peca peca) {
+		if(peca == null) {
+			
+			picInfo.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\CartaPadrao.png"));
+			txtStrNome.setText("");
+			txtintAtq.setText("");
+			txtintMob.setText("");
+			txtintRest.setText("");
+			txtintVida.setText("");
+			
+			return;
+		}
+		
+		picInfo.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\"+peca.getNomeArquivo()+".png"));
+		txtStrNome.setText( peca.getNome());
+		txtintAtq.setText( peca.getAtaque()+"");
+		txtintMob.setText(peca.getMobilidade()+"");
+		txtintRest.setText(peca.getqtdMax()+"");
+		txtintVida.setText(peca.getVida()+"");
+		
+	}
+	public void atualizarScoreboard(int vidaJogador0,int vidaJogador1,int turno) {
+		
+		txtVida0.setText(vidaJogador0+"");
+		txtVida1.setText(vidaJogador1+"");
+		txtintTurno.setText(turno +"");
+		
+		indicadorVezJogador1.setVisible(turno%2==0);
+		indicadorVezJogador2.setVisible(turno%2!=0);
 		
 	}
 	public void atualizarCasaTabuleiroVisual(int linha,int coluna) {
@@ -80,25 +132,17 @@ public class ScreenInGame extends JFrame implements IJanela{
 		else {
 			nomeArquivo = peca.getNomeArquivo();
 		}
-		tabuleiroVisual[linha][coluna].setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\"+nomeArquivo+".png"));
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\"+nomeArquivo+".png").getImage().getScaledInstance(64, 64, Image.SCALE_DEFAULT));
+		tabuleiroVisual[linha][coluna].setIcon(imageIcon);
 	}
 	
-	
-	private void gerarCartas(int xTrans,int yTrans) {
-		//GERA AS CARTAS DA MÃO DO JOGADOR
-		int tamanhoCarta=192;
-		for(int i=0;i<5;i++) {
-			JLabelCarta carta = new JLabelCarta("Carta", tamanhoCarta,0,i,true,"Carta",controle);
-			carta.setLocation(xTrans+i*(tamanhoCarta+64),yTrans);
-			this.add(carta);
-		}
-		
-	}
 	
 	private void gerarInfos(int xTrans,int yTrans) {
 		//IMG
-		JLabelCarta picInfo = new JLabelCarta("Carta",192,1, 1, true, "Carta",controle);
+
 		picInfo.setLocation(1625,150);
+		picInfo.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\CartaPadrao.png"));
+		picInfo.setSize(200,200);
 		this.add(picInfo);
 		//NOME
 		JLabel txtNome = new JLabel("Nome : ");
@@ -107,11 +151,11 @@ public class ScreenInGame extends JFrame implements IJanela{
 		txtNome.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtNome);
 		
-		JLabel txtintNome = new JLabel(this.nome);
-		txtintNome.setLocation(1780,310);
-		txtintNome.setSize(200,200);
-		txtintNome.setFont(new Font("MV Boli", Font.BOLD,30));
-		this.add(txtintNome);
+
+		txtStrNome.setLocation(1780,310);
+		txtStrNome.setSize(200,200);
+		txtStrNome.setFont(new Font("MV Boli", Font.BOLD,30));
+		this.add(txtStrNome);
 		
 		//ATAQUE
 		JLabel txtAtq = new JLabel("Ataque : ");
@@ -120,7 +164,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		txtAtq.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtAtq);
 		
-		JLabel txtintAtq = new JLabel(this.ataque+"");
+
 		txtintAtq.setLocation(1780,350);
 		txtintAtq.setSize(200,200);
 		txtintAtq.setFont(new Font("MV Boli", Font.BOLD,30));
@@ -132,7 +176,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		txtVida.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtVida);
 		
-		JLabel txtintVida = new JLabel(this.vida+"");
+
 		txtintVida.setLocation(1780,390);
 		txtintVida.setSize(200,200);
 		txtintVida.setFont(new Font("MV Boli", Font.BOLD,30));
@@ -144,7 +188,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		txtRest.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtRest);
 		
-		JLabel txtintRest = new JLabel(this.restante+"");
+
 		txtintRest.setLocation(1780,430);
 		txtintRest.setSize(200,200);
 		txtintRest.setFont(new Font("MV Boli", Font.BOLD,30));
@@ -156,7 +200,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		txtMob.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtMob);
 		
-		JLabel txtintMob = new JLabel(this.restante+"");
+
 		txtintMob.setLocation(1780,470);
 		txtintMob.setSize(200,200);
 		txtintMob.setFont(new Font("MV Boli", Font.BOLD,30));
@@ -168,107 +212,68 @@ public class ScreenInGame extends JFrame implements IJanela{
 		return this.tabuleiroVisual;
 	}
 	private void gerarScoreboard(int xTrans,int yTrans) {
+
+		indicadorVezJogador1.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\EstrelaVez.png"));
+		indicadorVezJogador1.setSize(64,64);
+		indicadorVezJogador1.setLocation(xTrans+50,250+yTrans);
+		this.add(indicadorVezJogador1);
 		
+		
+
+		indicadorVezJogador2.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\EstrelaVez.png"));
+		indicadorVezJogador2.setSize(64,64);
+		indicadorVezJogador2.setLocation(xTrans+50,450+yTrans);
+		indicadorVezJogador2.setVisible(false);
+		this.add(indicadorVezJogador2);
 		
 		//TURNO
-		JLabel txtTurno = new JLabel();
+
 		txtTurno.setText("TURNO:");
 		txtTurno.setSize(200,200);
 		txtTurno.setFont(new Font("MV Boli", Font.BOLD,30));
 		txtTurno.setLocation(xTrans,yTrans);
 		this.add(txtTurno);
 		
-		JLabel txtintTurno = new JLabel();
-		txtintTurno.setText(this.turno + "");
+
+		txtintTurno.setText("0");
 		txtintTurno.setSize(200,200);
 		txtintTurno.setFont(new Font("MV Boli", Font.BOLD,30));
 		txtintTurno.setLocation(xTrans+150,yTrans);
 		this.add(txtintTurno);
 		
 		//JOGADOR 1
-		JLabel txtVida1 = new JLabel();
-		txtVida1.setText("Jogador 1:");
+
+		txtVida0.setText("Jogador 1:");
+		txtVida0.setSize(200,200);
+		txtVida0.setFont(new Font("MV Boli", Font.BOLD,30));
+		txtVida0.setLocation(xTrans,yTrans+250);
+		this.add(txtVida0);
+		
+
+		txtintVida0.setText(controle.getJogador(0).getVida()+"");
+		txtintVida0.setSize(200,200);
+		txtintVida0.setFont(new Font("MV Boli", Font.BOLD,30));
+		txtintVida0.setLocation(xTrans,yTrans+300);
+		this.add(txtintVida0);
+		//JOGADOR 2
+
+		txtVida1.setText("Jogador 2:");
 		txtVida1.setSize(200,200);
 		txtVida1.setFont(new Font("MV Boli", Font.BOLD,30));
-		txtVida1.setLocation(xTrans,yTrans+250);
+		txtVida1.setLocation(xTrans,yTrans+450);
 		this.add(txtVida1);
 		
-		JLabel txtintVida1 = new JLabel();
-		txtintVida1.setText("###");
+
+		txtintVida1.setText(controle.getJogador(1).getVida()+"");
 		txtintVida1.setSize(200,200);
 		txtintVida1.setFont(new Font("MV Boli", Font.BOLD,30));
-		txtintVida1.setLocation(xTrans,yTrans+300);
+		txtintVida1.setLocation(xTrans,yTrans+500);
 		this.add(txtintVida1);
-		//JOGADOR 2
-		JLabel txtVida2 = new JLabel();
-		txtVida2.setText("Jogador 2:");
-		txtVida2.setSize(200,200);
-		txtVida2.setFont(new Font("MV Boli", Font.BOLD,30));
-		txtVida2.setLocation(xTrans,yTrans+450);
-		this.add(txtVida2);
 		
-		JLabel txtintVida2 = new JLabel();
-		txtintVida2.setText("###");
-		txtintVida2.setSize(200,200);
-		txtintVida2.setFont(new Font("MV Boli", Font.BOLD,30));
-		txtintVida2.setLocation(xTrans,yTrans+500);
-		this.add(txtintVida2);
-		
-	}
-	
-
-	public void alterarSelecionada(Peca peca) {
-
-		
-	}
-	
-	
-	//GETTERS E SETTERS
-	public void setVidaJogador1(int vida) {
-		this.jogador1=vida;
-		
-	}
-	public int getVidaJogador1() {
-		return this.jogador1;
-	}
-	
-	public void setVidaJogador2(int vida) {
-		this.jogador2=vida;
-		
-	}
-	public int getVidaJogador2() {
-		return this.jogador2;
-	}
-		
-	public void setTurno(int turno) {
-		this.turno=turno;
-		
-	}
-	public int getTurno() {
-		return this.turno;
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getNome() {
-		return this.nome;
-	}
-	public void setAtaque(int ataque) {
-		this.turno=ataque;
-		
-	}
-	public int getAtaque() {
-		return this.ataque;
-	}
-	public void setRestante(int restante) {
-		this.turno=restante;
-		
-	}
-	public int getRestante() {
-		return this.restante;
 	}
 
+	
+	
 
 
 	

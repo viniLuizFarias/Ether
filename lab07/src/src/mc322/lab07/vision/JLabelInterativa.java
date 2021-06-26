@@ -1,4 +1,5 @@
 package mc322.lab07.vision;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -18,8 +19,11 @@ public abstract class JLabelInterativa extends JLabel implements IJlabelInterati
 		this.tamanho = tamanho;
 		this.nomeArquivo=nomeArquivo;
 
-			
-		this.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\"+nomeArquivo+".png"));
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\"+nomeArquivo+".png").getImage().getScaledInstance(tamanho, tamanho, Image.SCALE_DEFAULT));
+		this.setIcon(imageIcon);
+		
+		
+		//this.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\"+nomeArquivo+".png"));
 
 		setSize(tamanho,tamanho);
 		

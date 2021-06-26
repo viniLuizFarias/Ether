@@ -2,17 +2,20 @@ package mc322.lab07.vision;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import mc322.lab07.controller.Controle;
+import mc322.lab07.model.Casa;
 import mc322.lab07.model.Peca;
 
 public class JLabelCelula extends JLabelInterativa{
 	int linha,coluna;
 	private Controle controle;
-
-	public JLabelCelula(String nome,int linha,int coluna, int tamanho,String nomeArquivo,Controle controle) {
+	private ScreenInGame janelaMae;
+	
+	public JLabelCelula(String nome,int linha,int coluna, int tamanho,String nomeArquivo,Controle controle,ScreenInGame janelaMae) {
 		super(nome, tamanho,nomeArquivo);
 		this.linha = linha;
 		this.coluna = coluna;
 		this.controle = controle;
+		this.janelaMae = janelaMae;
 		tornarInterativa();
 
 	}
@@ -36,7 +39,9 @@ public class JLabelCelula extends JLabelInterativa{
 
 			public void mouseEntered(MouseEvent arg0) {
 
-				
+				Peca peca=controle.getTabuleiro().getCasas()[linha][coluna].getPeca();
+				janelaMae.alterarSelecionada(peca);
+
 			}
 
 

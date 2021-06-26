@@ -25,7 +25,7 @@ public class Tabuleiro {
             this.casas[coluna][0] = new Casa(1,0);
         }
     
-        for(int coluna=1;coluna<altura;coluna++){
+        for(int coluna=0;coluna<altura;coluna++){
             this.casas[coluna][1] = new Casa(-1,0);
         }
 
@@ -42,6 +42,7 @@ public class Tabuleiro {
         for(int coluna=0;coluna<altura;coluna++){
             this.casas[coluna][largura-1] = new Casa(0,1);
         }
+       
 
     }
 

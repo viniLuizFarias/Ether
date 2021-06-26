@@ -24,6 +24,10 @@ public class PecaCavalo extends Peca{
 		// TODO Auto-generated method stub
 		return new PecaCavalo();
 	}
-
+	@Override
+	public String getDescricao() {
+		// TODO Auto-generated method stub
+		return "É a mesma coisa que o cavaleiro, só que sem ter uma pessoa em cima.";
+	}
 
 }

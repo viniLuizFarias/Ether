@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
 import mc322.lab07.controller.Controle;
 import mc322.lab07.model.Deck;
@@ -24,7 +25,7 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 		JLabel txtNome = new JLabel("Nome : ");
 		JLabel txtAtq = new JLabel("Ataque : ");
 		JLabel txtVida = new JLabel("Vida : ");
-		JLabel txtRest = new JLabel("Quantidade : ");
+		JLabel txtRest = new JLabel("Limite : ");
 		JLabel txtMob = new JLabel("Mobilidade : ");
 		
 		JLabel txtstrNome = new JLabel("Passe o");
@@ -32,6 +33,8 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 		JLabel txtintVida = new JLabel("sobre");
 		JLabel txtintRest = new JLabel("as");
 		JLabel txtintMob = new JLabel("cartas");
+		
+		JTextArea txtStrDesc = new JTextArea("");
 		
 		//Componentes visualmente interativos
 		
@@ -180,6 +183,23 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 			txtintMob.setFont(new Font("MV Boli", Font.BOLD,30));
 			this.add(txtintMob);			
 			
+			//Descrição
+			JLabel txtDesc = new JLabel("Descrição : ");
+			txtDesc.setLocation(1550+xTrans,510+yTrans);
+			txtDesc.setSize(250,200);
+			txtDesc.setFont(new Font("MV Boli", Font.BOLD,30));
+			this.add(txtDesc);
+			
+
+			txtStrDesc.setLocation(1550,650);
+			txtStrDesc.setSize(300,200);
+			txtStrDesc.setLineWrap(true);
+			txtStrDesc.setEditable(false);
+			txtStrDesc.setWrapStyleWord(true);
+			txtStrDesc.setFont(new Font("MV Boli", Font.BOLD,20));
+			txtStrDesc.setBackground(Color.CYAN);
+			this.add(txtStrDesc);
+			
 			
 		}
 
@@ -192,6 +212,7 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 			txtintMob.setText(peca.getMobilidade()+"");
 			txtintRest.setText(peca.getqtdMax()+"");
 			txtintVida.setText(peca.getVida()+"");
+			txtStrDesc.setText(peca.getDescricao()+"");
 			
 		}
 		private void adicionarMouseListener(JLabel jlbl, Deck deck) {

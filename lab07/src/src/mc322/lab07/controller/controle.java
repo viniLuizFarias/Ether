@@ -2,7 +2,9 @@ package mc322.lab07.controller;
 
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
+import mc322.lab07.MainJogo;
 import mc322.lab07.model.*;
 import mc322.lab07.vision.ScreenInGame;
 import mc322.lab07.vision.ScreenSelecaoDeck;
@@ -47,10 +49,24 @@ public class Controle {
     public void abrirJanela(JFrame janela) {
     	janela.setVisible(true);
     }
+    
+	public void jogarNovamente() {
+		
+	       int rejogar =  JOptionPane.showConfirmDialog(null,
+	             "Jogar novamente?", "Fim de jogo!", JOptionPane.YES_NO_OPTION);
 
+	       if (rejogar == JOptionPane.YES_OPTION) {
+	           this.screenInGame.dispose();
+	           MainJogo.main(null);
+	       } else if (rejogar == JOptionPane.NO_OPTION) {
+	           System.exit(0);
+	       }
+	    
+	
+}
     private void acabarJogo(){
         System.out.println("ALGUM PLAYER MORREU, FIM DE JOGO!");
-        System.exit(0);
+        jogarNovamente();
     }
 
 
@@ -137,8 +153,9 @@ public class Controle {
         if (this.qtdDecksEscolhidos == 2){
             ScreenInGame janelaInGame = new ScreenInGame(1920,1080,this);
             setJanelaInGame(janelaInGame);
-            screenSelecaoDeck.setVisible(false);
+            screenSelecaoDeck.dispose();
             abrirJanela(this.screenInGame);
+
             
         }
     }

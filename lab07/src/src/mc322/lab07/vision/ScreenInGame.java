@@ -1,13 +1,17 @@
 package mc322.lab07.vision;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 
 import mc322.lab07.model.Peca;
 import mc322.lab07.model.Tabuleiro;
+import mc322.lab07.MainJogo;
 import mc322.lab07.controller.Controle;
 import mc322.lab07.model.Deck;
 import mc322.lab07.model.ICarta;
@@ -33,6 +37,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		JLabel txtintVida = new JLabel("");
 		JLabel txtintRest = new JLabel("");
 		JLabel txtintMob = new JLabel("");
+		JTextArea txtStrDesc = new JTextArea("");
 		
 		JLabel txtintTurno = new JLabel();
 		JLabel txtintVida0 = new JLabel();
@@ -56,13 +61,16 @@ public class ScreenInGame extends JFrame implements IJanela{
 		this.controle = controle;
 		this.tabuleiroVisual = new JLabelCelula[altura][largura];
 		tabuleiro = this.controle.getTabuleiro();
+		this.getContentPane().setBackground(Color.decode("#BB7843"));
 		
 		gerarTabuleiro(20, 10,256,180);
 		gerarCartas(286, 0,0,controle.getJogador(0).getDeck());
 		gerarCartas(286, 820,1,controle.getJogador(1).getDeck());
 		gerarScoreboard(25,100);
 		gerarInfos(0, 0);
+		gerarFundo(0,-50);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
 		
 	}
 	
@@ -91,6 +99,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		}
 		
 	}
+
 	public void alterarSelecionada(Peca peca) {
 		if(peca == null) {
 			
@@ -100,6 +109,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 			txtintMob.setText("");
 			txtintRest.setText("");
 			txtintVida.setText("");
+			txtStrDesc.setText("");
 			
 			return;
 		}
@@ -110,12 +120,13 @@ public class ScreenInGame extends JFrame implements IJanela{
 		txtintMob.setText(peca.getMobilidade()+"");
 		txtintRest.setText(peca.getqtdMax()+"");
 		txtintVida.setText(peca.getVida()+"");
+		txtStrDesc.setText(peca.getDescricao());
 		
 	}
 	public void atualizarScoreboard(int vidaJogador0,int vidaJogador1,int turno) {
 		
-		txtVida0.setText(vidaJogador0+"");
-		txtVida1.setText(vidaJogador1+"");
+		txtintVida0.setText(vidaJogador0+"");
+		txtintVida1.setText(vidaJogador1+"");
 		txtintTurno.setText(turno +"");
 		
 		indicadorVezJogador1.setVisible(turno%2==0);
@@ -152,7 +163,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		this.add(txtNome);
 		
 
-		txtStrNome.setLocation(1780,310);
+		txtStrNome.setLocation(1680,310);
 		txtStrNome.setSize(200,200);
 		txtStrNome.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtStrNome);
@@ -181,8 +192,8 @@ public class ScreenInGame extends JFrame implements IJanela{
 		txtintVida.setSize(200,200);
 		txtintVida.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtintVida);
-		//RESTANTE
-		JLabel txtRest = new JLabel("Restante : ");
+		//Limite
+		JLabel txtRest = new JLabel("Limite : ");
 		txtRest.setLocation(1550,430);
 		txtRest.setSize(250,200);
 		txtRest.setFont(new Font("MV Boli", Font.BOLD,30));
@@ -206,10 +217,33 @@ public class ScreenInGame extends JFrame implements IJanela{
 		txtintMob.setFont(new Font("MV Boli", Font.BOLD,30));
 		this.add(txtintMob);
 		
+		//Descrição
+		JLabel txtDesc = new JLabel("Descrição : ");
+		txtDesc.setLocation(1550,510);
+		txtDesc.setSize(250,200);
+		txtDesc.setFont(new Font("MV Boli", Font.BOLD,30));
+		this.add(txtDesc);
+		
+
+		txtStrDesc.setLocation(1550,650);
+		txtStrDesc.setSize(300,200);
+		txtStrDesc.setLineWrap(true);
+		txtStrDesc.setEditable(false);
+		txtStrDesc.setWrapStyleWord(true);
+		txtStrDesc.setFont(new Font("MV Boli", Font.BOLD,20));
+		txtStrDesc.setBackground(Color.decode("#BB7843"));
+		this.add(txtStrDesc);
+		
 		
 	}
 	public JLabelCelula[][] getTabuleiroVisual() {
 		return this.tabuleiroVisual;
+	}		
+	private void gerarFundo(int xTrans,int yTrans) {
+		JLabel bg = new JLabel();
+		bg.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\bkgInGame.png"));
+		bg.setSize(1920+xTrans,1080+yTrans);
+		this.add(bg);
 	}
 	private void gerarScoreboard(int xTrans,int yTrans) {
 

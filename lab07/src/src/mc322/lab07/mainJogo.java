@@ -10,23 +10,18 @@ public class MainJogo {
 		return null;
 	}
 	public static void main(String[] args) {
-		//ESCOLHER CARTAS
-		//Peca[][] cartas = escolherCartas();
-		Tabuleiro tabuleiro = new Tabuleiro(20,10,8);
-		//Controle controle = new Controle(40,cartas,tabuleiro);
 		
+		
+		
+		Tabuleiro tabuleiro = new Tabuleiro(20,10,8);	
 		Controle controle = new Controle(160,tabuleiro);
-
 		ScreenSelecaoDeck janelaDeck = new ScreenSelecaoDeck(1920,1080,controle);
 		controle.setJanelaSelecaoDeck(janelaDeck);
 		controle.abrirJanela(janelaDeck);
 
 
-		/*
-		ScreenInGame janelaInGame = new ScreenInGame(1920,1080,controle);
-		controle.setJanelaInGame(janelaInGame);
-		//controle.abrirJanela(janelaInGame);
-		 */
+
+
 		 
 		
 	}

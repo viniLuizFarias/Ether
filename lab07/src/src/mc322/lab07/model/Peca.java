@@ -21,6 +21,8 @@ public abstract class Peca implements IPeca,ICarta{
 		this.nomeArquivo=nomeArquivo;
 		this.qtdMax=qtdMax;
 		
+
+		
 	}
 	public abstract boolean efeito();
 	public abstract Peca gerarPeca();

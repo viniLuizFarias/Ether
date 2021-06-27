@@ -15,7 +15,7 @@ public class PecaGosma extends Peca{
 	}
 	public boolean validarAtaque(int[] coords){
 		int distancia = (int)calcularDistancia(coords);
-		if(distancia<=3){
+		if(distancia<=2){
 			return true;
 		}
 		return false;
@@ -35,7 +35,7 @@ public class PecaGosma extends Peca{
 	@Override
 	public String getDescricao() {
 		// TODO Auto-generated method stub
-		return "Não pode se mover, mas tem um forte ataque a uma distância de até 3 unidades.";
+		return "Não pode se mover, mas tem um forte ataque a uma distância de 2 unidades.";
 	}
 
 }

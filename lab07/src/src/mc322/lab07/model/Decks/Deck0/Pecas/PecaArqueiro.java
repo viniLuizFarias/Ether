@@ -18,7 +18,7 @@ public class PecaArqueiro extends Peca{
 
 	public boolean validarAtaque(int[] coords){
 		int distancia = (int)calcularDistancia(coords);
-		if(distancia<=4){
+		if(distancia<=3){
 			return true;
 		}
 		return false;
@@ -38,6 +38,6 @@ public class PecaArqueiro extends Peca{
 	@Override
 	public String getDescricao() {
 		// TODO Auto-generated method stub
-		return "Pode atacar a 4 unidades de distância. Brabo";
+		return "Pode atacar a 3 unidades de distância. Brabo";
 	}
 }

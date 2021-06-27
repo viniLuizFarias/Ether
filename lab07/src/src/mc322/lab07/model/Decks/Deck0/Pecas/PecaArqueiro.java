@@ -10,7 +10,7 @@ public class PecaArqueiro extends Peca{
 		
 	}
 	public PecaArqueiro() {
-		super(6, 6, 2, "Arqueiro", "Arqueiro",5);
+		super(5, 5, 2, "Arqueiro", "Arqueiro",5);
 		
 	}
 
@@ -18,7 +18,7 @@ public class PecaArqueiro extends Peca{
 
 	public boolean validarAtaque(int[] coords){
 		int distancia = (int)calcularDistancia(coords);
-		if(distancia<4){
+		if(distancia<=4){
 			return true;
 		}
 		return false;

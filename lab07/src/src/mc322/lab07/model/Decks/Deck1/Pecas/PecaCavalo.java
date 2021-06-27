@@ -8,7 +8,7 @@ public class PecaCavalo extends Peca{
 		
 	}
 	public PecaCavalo() {
-		super(10, 4, 3, "Cavalo", "Cavalo",5);
+		super(10, 5, 3, "Cavalo", "Cavalo",5);
 		
 	}
 

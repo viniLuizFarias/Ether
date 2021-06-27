@@ -14,7 +14,7 @@ public class PecaMago extends Peca{
 	}
 	@Override
 	public boolean validarAtaque(int[] coords) {
-		return calcularDistancia(coords) < 3;
+		return calcularDistancia(coords) <= 2;
 	}
 
 
@@ -32,6 +32,6 @@ public class PecaMago extends Peca{
 	@Override
 	public String getDescricao() {
 		// TODO Auto-generated method stub
-		return "Pode atacar a 3 unidades de distância.";
+		return "Pode atacar a 2 unidades de distância.";
 	}
 }

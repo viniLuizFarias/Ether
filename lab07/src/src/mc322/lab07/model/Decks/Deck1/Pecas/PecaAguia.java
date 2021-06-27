@@ -11,7 +11,7 @@ public class PecaAguia extends Peca{
 		
 	}
 	public PecaAguia() {
-		super(6, 4, 4, "Aguia", "Aguia",4);
+		super(5, 4, 4, "Aguia", "Aguia",4);
 		
 	}
 

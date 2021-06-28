@@ -27,7 +27,7 @@ public class PecaPaladino extends Peca{
 	@Override
 	public String getDescricao() {
 		// TODO Auto-generated method stub
-		return "É a peça especial dos Humanos. Pode ser colocado apenas 2 vezes durante a partida toda. Extremamente tanque.";
+		return "É a peça especial dos Humanos. Pode ser colocado apenas 3 vezes durante a partida toda. Extremamente tanque.";
 	}
 }
 

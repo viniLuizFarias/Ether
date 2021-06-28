@@ -19,6 +19,8 @@ Vídeo da Prévia
 
 Vídeo do Jogo
 
+[Link do vídeo](apresentação/videos)
+
 ## Slides do Projeto
 
 Slides da previa
@@ -26,6 +28,8 @@ Slides da previa
 [Link dos slides](apresentação/slides)
 
 Slides da Apresentação Final
+
+[Link dos slides](apresentação/slides)
 
 ## Relatório de Evolução
 

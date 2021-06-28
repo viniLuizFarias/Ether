@@ -7,7 +7,10 @@ import mc322.lab07.model.ICarta;
 import mc322.lab07.model.Peca;
 
 public class JLabelCarta extends JLabelInterativa{
-
+//CARTA NA MAO DO JOGADOR
+	
+	
+	private static final long serialVersionUID = -2851445424921471765L;
 	int jogador;
 	boolean clicavel;
 	int identificador;
@@ -26,10 +29,11 @@ public class JLabelCarta extends JLabelInterativa{
 
 	}
 
-	@Override
+
 	
 	
 	public void tornarInterativa() {
+		// FAZ COM QUE ESTE COMPONENTE RESPONDA AO MOUSE
 		this.addMouseListener(new MouseListener() {
 			
 			public void mouseReleased(MouseEvent e) {

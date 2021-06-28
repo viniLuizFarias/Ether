@@ -18,7 +18,11 @@ import mc322.lab07.model.ICarta;
 
 
 public class ScreenInGame extends JFrame implements IJanela{
+	//TELA PRINCIPAL DO JOGO
 	
+	
+	private static final long serialVersionUID = 834757497130264557L;
+
 		private int altura,largura;
 		
 		private Controle controle;
@@ -101,6 +105,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 	}
 
 	public void alterarSelecionada(Peca peca) {
+		//ALTERA A INTERFACE COM BASE NA CARTA SELECIONADA
 		if(peca == null) {
 			
 			picInfo.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\CartaPadrao.png"));
@@ -124,6 +129,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		
 	}
 	public void atualizarScoreboard(int vidaJogador0,int vidaJogador1,int turno) {
+		//ATUALIZA AS INFORMAÇÕES DE TURNO E JOGADORES
 		
 		txtintVida0.setText(vidaJogador0+"");
 		txtintVida1.setText(vidaJogador1+"");
@@ -134,6 +140,7 @@ public class ScreenInGame extends JFrame implements IJanela{
 		
 	}
 	public void atualizarCasaTabuleiroVisual(int linha,int coluna) {
+		//ATUALIZA O TABULEIRO 
 		Peca peca = tabuleiro.getCasas()[linha][coluna].getPeca();
 		String nomeArquivo;
 		if(peca == null) {
@@ -149,6 +156,8 @@ public class ScreenInGame extends JFrame implements IJanela{
 	
 	
 	private void gerarInfos(int xTrans,int yTrans) {
+		//GERA OS COMPONENTES NOS QUAIS OS ATRIBUTOS DAS CARTAS SERÃO MOSTRADOS
+		
 		//IMG
 
 		picInfo.setLocation(1625,150);

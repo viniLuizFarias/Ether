@@ -54,12 +54,8 @@ Quanto ao código,arquitetura e organização:
 Este trecho foi usado na tela de escolha de cartas, cada método gera uma parte do interface gráfica, permitindo a reciclagem de código, além de uma organização melhor do layout, pois é possível transladar os componentes gerados
 
 ```
-
 		public ScreenSelecaoDeck(...) {
-			
-		
 	...
-
 
 			gerarFundo();
 			gerarInfos(-50,0);
@@ -68,7 +64,6 @@ Este trecho foi usado na tela de escolha de cartas, cada método gera uma parte 
 			gerarCartas(450,650,deck2);
 	...
 		}
-
 
 ```
 

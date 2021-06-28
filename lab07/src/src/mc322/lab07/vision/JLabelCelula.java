@@ -6,6 +6,9 @@ import mc322.lab07.model.Casa;
 import mc322.lab07.model.Peca;
 
 public class JLabelCelula extends JLabelInterativa{
+//RESPONSÁVEL PELAS CELULAS DO TABULEIRO
+	
+	private static final long serialVersionUID = 3119551299196060209L;
 	int linha,coluna;
 	private Controle controle;
 	private ScreenInGame janelaMae;
@@ -22,6 +25,7 @@ public class JLabelCelula extends JLabelInterativa{
 
 
 	public void tornarInterativa() {
+		//TORNA O COMPONENTE RESPONSIVO AO MOUSE
 		
 		
 		this.addMouseListener(new MouseListener() {

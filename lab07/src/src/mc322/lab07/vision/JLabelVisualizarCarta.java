@@ -10,8 +10,10 @@ import mc322.lab07.controller.Controle;
 import mc322.lab07.model.Peca;
 
 public class JLabelVisualizarCarta extends JLabelInterativa {
+//RESPONSIVO APENAS A PASSAGEM DO MOUSE
+	
 
-
+	private static final long serialVersionUID = 1L;
 	int identificador;
 	ScreenSelecaoDeck janelaMae;
 	Peca peca;
@@ -26,6 +28,7 @@ public class JLabelVisualizarCarta extends JLabelInterativa {
 	}
 
 	public void tornarInterativa() {
+		//TORNA O COMPONENTE RESPONSIVO AO MOUSE
 		this.addMouseListener(new MouseListener() {
 			
 			public void mouseReleased(MouseEvent e) {

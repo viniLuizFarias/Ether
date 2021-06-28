@@ -11,6 +11,9 @@ import javax.swing.JOptionPane;
 import mc322.lab07.controller.Controle;
 
 public abstract class JLabelInterativa extends JLabel implements IJlabelInterativa{
+	//COMPONENTE INTERATIVO GENÉRICO
+	
+	
 	private static final long serialVersionUID = -692369956380797782L;
 	String nome;
 	int tamanho;
@@ -48,7 +51,7 @@ public abstract class JLabelInterativa extends JLabel implements IJlabelInterati
 		
 
 	}
-	@Override
+
 	public abstract void tornarInterativa();
 
 

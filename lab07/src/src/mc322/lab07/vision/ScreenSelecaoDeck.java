@@ -17,6 +17,9 @@ import mc322.lab07.model.Decks.Deck1.Deck1;
 import mc322.lab07.model.Decks.Deck2.Deck2;
 
 public class ScreenSelecaoDeck extends JFrame implements IJanela{
+	//TELA DE SELEÇÃO DE DECK
+	
+	private static final long serialVersionUID = 6622824472738787450L;
 		private Controle controle;
 		private int altura,largura;
 		
@@ -36,7 +39,7 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 		
 		JTextArea txtStrDesc = new JTextArea("");
 		
-		//Componentes visualmente interativos
+	
 		
 		
 		public ScreenSelecaoDeck(int altura, int largura,Controle controle) {
@@ -72,7 +75,8 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 			setExtendedState(JFrame.MAXIMIZED_BOTH);
 		}
 		private void gerarCartas(int xTrans,int yTrans,Deck deck) {
-
+			//GERA AS CARTAS A SEREM VISTAS
+			
 			int tamanhoCarta=192;
 			for(int i=0;i<5;i++) {
 				JLabelVisualizarCarta carta = new JLabelVisualizarCarta(tamanhoCarta, (Peca)deck.getCartaLista(i),i,this);
@@ -82,12 +86,14 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 			
 		}
 		private void gerarFundo() {
+			//GERA O FUNDO DE PAREDE
 			JLabel bg = new JLabel();
 			bg.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\bg.png"));
 			bg.setSize(1920,1080);
 			this.add(bg);
 		}
 		private void gerarSelecionarDecks(int xTrans, int yTrans) {
+			//GERA OS 3 DECKS A SEREM SELECIONADOS - CLICÁVEIS
 			
 			JLabel deck0 = new JLabel();
 			deck0.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\DeckHumanos.png"));
@@ -114,6 +120,9 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 		}
 		
 		private void gerarInfos(int xTrans,int yTrans) {
+			//GERA O PAINEL DE INFORMAÇÕES RESPONSIVO
+			
+			
 			
 			//IMG
 
@@ -204,6 +213,7 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 		}
 
 		public void alterarSelecionada(Peca peca) {
+			//ATUALIZA O PAINEL DE INFORMAÇÕES DAS CARTAS
 
 			
 			picInfo.setIcon(new ImageIcon(JLabelInterativa.class.getResource(".").getPath()+"\\prefabs\\"+peca.getNomeArquivo()+".png"));
@@ -216,6 +226,7 @@ public class ScreenSelecaoDeck extends JFrame implements IJanela{
 			
 		}
 		private void adicionarMouseListener(JLabel jlbl, Deck deck) {
+			//TORNA UM COMPONENTE -JLABEL OU HERDEIRO - INTERATIVO AO MOUSE
 			jlbl.addMouseListener(new MouseListener() {
 				
 				public void mouseReleased(MouseEvent e) {

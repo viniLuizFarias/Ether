@@ -51,7 +51,7 @@ public class Controle {
     }
     
 	public void jogarNovamente() {
-		
+		//ABRE A OPÇÃO DE JOGAR NOVAMENTE
 	       int rejogar =  JOptionPane.showConfirmDialog(null,
 	             "Jogar novamente?", "Fim de jogo!", JOptionPane.YES_NO_OPTION);
 

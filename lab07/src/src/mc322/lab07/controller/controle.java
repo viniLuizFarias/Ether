@@ -71,12 +71,14 @@ public class Controle {
 
 
     private int getOtherPlayer(){
+        // RETORNA O NUMERO DO PLAYER QUE NÃO É O ATUAL
         if(numeroPAtual == 0)
             return 1;
         return 0;
     }
 
     private void trocarJogadorAtual(){
+        // TROCA DE JOGADOR E ATUALIZA A INTERFACE
         if(!jogadores[0].vivo() || !jogadores[1].vivo()){
             acabarJogo();
         }
@@ -89,6 +91,7 @@ public class Controle {
     }
 
     public boolean colocarPeca(int numeroCarta,int[] coordenadas){
+        // COLOCA UMA NOVA PEÇA NO TABULEIRO
         Jogador jogador = jogadores[numeroPAtual];
         if(!jogador.podePorPeca(numeroCarta)){
             System.out.println("JOGADOR TENTANDO COLOCAR PECAS ALEM DO LIMITE DA PECA");
@@ -113,12 +116,14 @@ public class Controle {
     }
 
     private void sacrificarPeca(Peca peca,Jogador jogador){
+        // SACRIFICA UMA PEÇA QUE CHEGOU A ZONA DE SACRIFICIO
         jogador.levarDano(2*peca.getVida());
         eliminarPeca(peca);
     }
  
 
     public void moverPeca(int[] coords1,int[] coords2){
+        // MOVE UMA PEÇA
         if(tabuleiro.moverPeca(coords1, coords2)){
             if(tabuleiro.deveSerSacrificada(coords2)){
                 sacrificarPeca(tabuleiro.pecaAt(coords2),jogadores[getOtherPlayer()]);
@@ -129,6 +134,7 @@ public class Controle {
         }
     }
     public void ataquePeca(int[] coords1,int[] coords2){
+        // REALIZA O ATAQUE DA PEÇA EM coords1 SOBRE A PEÇA EM coords2
         Peca pecaAtacada = tabuleiro.casaAt(coords2).getPeca();
         if(pecaAtacada.getPlayer() == numeroPAtual){
             tipoAcaoAnterior = 1;
@@ -147,6 +153,7 @@ public class Controle {
     }
 
     public void setDeckSelecionado(Deck deckSelecionado) {
+        // ATRIBUI O DECK ESCOLHIDO AO JOGADOR ATUAL
         this.jogadores[numeroPAtual].setDeck(deckSelecionado);
         this.qtdDecksEscolhidos += 1;
         this.numeroPAtual = getOtherPlayer();
@@ -174,6 +181,8 @@ public class Controle {
     	return this.turno;
     }
     public void celulaSelecionada(int[] coord){
+        // É ATIVADA PELA INTERFACE GRÁFICA QUANDO ALGUMA CÉLULA É SELECIONADA
+        // IDENTIFICA SE A SELEÇÃO CORRESPONDE A UM ATAQUE, MOVIMENTO OU PEÇA COLOCADA
         if(tabuleiro.casaVazia(coord)){
 
             if(tipoAcaoAnterior == 0){
@@ -209,6 +218,7 @@ public class Controle {
     }
 
     public void cartaSelecionada(int[] coord){
+        // È ATIVADA PELA INTERFACE GRÁFICA QUANDO ALGUMA CARTA É SELECIONADA
         if(coord[0] != this.numeroPAtual){
             System.out.println("JOGADOR CLICANDO EM CARTAS QUE NAO SAO SUAS");
         }else{

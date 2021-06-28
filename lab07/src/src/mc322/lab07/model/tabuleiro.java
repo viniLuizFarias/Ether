@@ -82,7 +82,7 @@ public class Tabuleiro {
     	this.controle=controle;
     }
     public boolean moverPeca(int[] pos1,int[] pos2 ){
-
+        // MOVE UMA PEÇA DE pos1 PARA pos2
         if ( !(posicaoValida(pos1) && posicaoValida(pos2)) )  {
             System.out.println("Posicoes Invalidas");
             return false;
@@ -103,7 +103,7 @@ public class Tabuleiro {
     }
 
     public boolean ataquePeca(int[] pos1,int[] pos2 ){
-
+        // REALIZA O ATAQUE DA PEÇA EM pos1 SOBRE A PEÇA EM pos2
         if ( !(posicaoValida(pos1) && posicaoValida(pos2)) )  {
             System.out.println("Posicoes Invalidas");
             return false;
@@ -123,6 +123,7 @@ public class Tabuleiro {
     }
 
     public boolean colocarPeca(ICarta tipo_de_peca,int[] pos,int numeroPlayer){
+        // COLOCA UMA PEÇA EM pos2
         if (!casaVazia(pos)){
             System.out.println("Já há uma peça na casa escolhida");
             return false;
@@ -175,6 +176,7 @@ public class Tabuleiro {
         this.casas = casas;
     }
     public void mostrarNoTerminal(){
+        // FUNÇÃO USADA NAS VERSOES INICIAIS DO PROGRAMA
         System.out.println("Estado atual:");
         for(int i = 0;i<altura;i++){
             for(int j=0;j<largura;j++){

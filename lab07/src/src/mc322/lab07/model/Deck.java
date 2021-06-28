@@ -14,6 +14,7 @@ public class Deck {
 	}
 	
 	public int nomeToIdn(String nome){
+		// RETORNA A POSICAO DA CARTA NO DECK A PARTIR DO NOME DA CARTA
 		for (int i =0;i<listaCartas.length;i++){
 			if(listaCartas[i].getNome().equals(nome)){
 				return i;

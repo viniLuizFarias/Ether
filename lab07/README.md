@@ -8,6 +8,7 @@ Ganha quem usar melhor de suas peças e estratégias para zerar a vida do oponen
 ## Equipe
 
 Renan Luis Moraes de Sousa - 243792
+
 Vinícius Luiz Ferreira Farias - 195030
 
 ## Vídeos do Projeto
@@ -84,20 +85,9 @@ Este método no controle permitia sempre que desejado, atualizar parte da interf
 	
 ```
 
-## Destaque 03
 
-Este método no controle permitia sempre que desejado, atualizar parte da interface gráfica que dependia das informações contidas nele(controle) sem que fosse necessário atualizar a interface gráfica inteira
 
-```
-...
-    public void atualizarScoreboardInGame() {
-       	this.screenInGame.atualizarScoreboard(jogadores[0].getVida(), jogadores[1].getVida(), this.turno);
-    }
-...
-	
-```
-
-## Destaaque 04
+## Destaaque 03
 
 Este método transforma a carta na mão do jogador de uma imagem em um componente interativo, por meio de um mouse listener.
 
@@ -128,7 +118,7 @@ Este método transforma a carta na mão do jogador de uma imagem em um component
 
 ```
 
-## Destaque 5
+## Destaque 04
 
 Embora bem simples, esta função usa de polimorfismo(janela não é necessáriamente um JFrame, pode ser herdeiro) para ativar uma janela que estava inativa. Ela facilida o gerenciamento por parte do controle, sendo responsável por iniciar o "View"
 
@@ -141,7 +131,7 @@ Embora bem simples, esta função usa de polimorfismo(janela não é necessária
 ```
 
 
-## Destaque 6
+## Destaque 05
 
 ```
 

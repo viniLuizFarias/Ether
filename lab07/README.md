@@ -26,7 +26,7 @@ Slides da previa
 
 Slides da Apresentação Final
 
-##Relatório de Evolução
+## Relatório de Evolução
 
 Quanto as regras e complexidade do jogo houveram algumas melhorias:
 *Não seria possível os jogadores escolherem suas próprias cartas, elas seriam previamente fornecidas. Porém, na versão final, cada jogador escolhe seu conjunto de cartas.
@@ -46,9 +46,9 @@ Quanto ao código,arquitetura e organização:
 *As peças tem mais autonomia, são responsáveis pelo seu movimento e combate.
 *Foram adicionadas algumas interfaces para manter o padrão de conexão entre alguns componentes.
 
-#Destaques de Código
+# Destaques de Código
 
-##Destaque 01
+## Destaque 01
 
 Este trecho foi usado na tela de escolha de cartas, cada método gera uma parte do interface gráfica, permitindo a reciclagem de código, além de uma organização melhor do layout, pois é possível transladar os componentes gerados
 
@@ -71,7 +71,7 @@ Este trecho foi usado na tela de escolha de cartas, cada método gera uma parte 
 
 ```
 
-##Destaque 02
+## Destaque 02
 
 Este método no controle permitia sempre que desejado, atualizar parte da interface gráfica que dependia das informações contidas nele(controle) sem que fosse necessário atualizar a interface gráfica inteira
 
@@ -84,7 +84,7 @@ Este método no controle permitia sempre que desejado, atualizar parte da interf
 	
 ```
 
-##Destaque 03
+## Destaque 03
 
 Este método no controle permitia sempre que desejado, atualizar parte da interface gráfica que dependia das informações contidas nele(controle) sem que fosse necessário atualizar a interface gráfica inteira
 
@@ -97,7 +97,7 @@ Este método no controle permitia sempre que desejado, atualizar parte da interf
 	
 ```
 
-##Destaaque 04
+## Destaaque 04
 
 Este método transforma a carta na mão do jogador de uma imagem em um componente interativo, por meio de um mouse listener.
 
@@ -128,7 +128,7 @@ Este método transforma a carta na mão do jogador de uma imagem em um component
 
 ```
 
-##Destaque 5
+## Destaque 5
 
 Embora bem simples, esta função usa de polimorfismo(janela não é necessáriamente um JFrame, pode ser herdeiro) para ativar uma janela que estava inativa. Ela facilida o gerenciamento por parte do controle, sendo responsável por iniciar o "View"
 
@@ -141,7 +141,7 @@ Embora bem simples, esta função usa de polimorfismo(janela não é necessária
 ```
 
 
-##Destaque 6
+## Destaque 6
 
 ```
 
@@ -161,9 +161,9 @@ Este método causa a troca de turnos e todas as suas consequências
 
 ```
 
-#Destaques do Pattern
+# Destaques do Pattern
 
-##Destaque 1
+## Destaque 1
 
 Este padrão mostra de forma muito clara a parte da arquitetura Model-View-Controler:
 A interface indica para o controle qual peça deve ser colocada e a casa na qual ela deve ser colocada, após isso, o controle envia para o tabuleiro essas informações e ele (tabuleiro) avalia se é um comando válido, se sim, ele atualiza sua matriz de peças e retorna para o controle que houve mudança, o qual atualizará apenas as casas envolvidas.
@@ -192,7 +192,7 @@ Este modelo no qual o controle recebe o retorno de um model e atualiza a interfa
 ```
 
 
-##Destaque 2
+## Destaque 2
 Anologamente ao destaque 1, este método no controle é chamado de forma indireta pela interface. Novamente é possível ver a interação com o Model (tabuleiro) e o controle. Este destaque é para reforçar em como a abordagem deste tipo de arquitetura foi utilizada e em como ela facilitou a comunicação de componentes.
 
 
@@ -211,7 +211,7 @@ Anologamente ao destaque 1, este método no controle é chamado de forma indiret
 
 ```
 
-##Destaque 3
+## Destaque 3
 O controle consegue acessar parte dos componentes do Model,e trocar informações entre Model e View. Isso permite que a troca de informações entre ambos seja feita de forma a minimizar a dependência entre eles e facilitar a implementação.
 
 ```
@@ -221,7 +221,7 @@ O controle consegue acessar parte dos componentes do Model,e trocar informaçõe
 
 ```
 
-#Conclusões e Trabalhos Futuros
+# Conclusões e Trabalhos Futuros
 
 Acreditamos que este projeto não foi apenas importante para testar nossos conhecimentos, mas também para evoluir a nossa capacidade de desenvolver grandes projetos em equipe. 
 Com relação ao tempo, gostariamos de ter adicionado mais cartas e mais interações no tabuleiro para tornar o jogo mais divertido, além disso, gostariamos de ter colocado mais interfaces para facilitar a expansão do programa. Ademais, há techos de códigos que podem ser escritos em menos linhas

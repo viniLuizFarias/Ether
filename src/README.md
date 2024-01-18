@@ -1,0 +1,2 @@
+Há duas formas de fazer o projeto Ether rodar, e primeira consiste em abrir o projeto em uma IDE, compilar e rodar; a segunda consiste em executar o arquivo  compilado mainJogo.class
+através do console, para isto é necessário passar apenas o caminho deste arquivo (é necessário também copiar os demais arquivos, apenas o mainJogo.class não é o suficiente).
